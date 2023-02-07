@@ -1,0 +1,88 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitThis": false,
+    "baseUrl": ".",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
+    "lib": [
+      "dom",
+      "es2017"
+    ],
+    "paths": {
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@containers/*": [
+        "./src/containers/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@common/*": [
+        "./src/common/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@const/*": [
+        "./src/common/consts/*"
+      ],
+      "@api/*": [
+        "./src/API/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@public/*": [
+        "./src/public/*"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    //    "isolatedModules": true,
+    "incremental": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "dist",
+    ".next",
+    "out",
+    "node_modules",
+    "next.config.js",
+    "postcss.config.js",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "coverage"
+  ],
+  "include": [
+    "src/**/*",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/profile/author/.[id]/index.ts"
+  ]
+}

@@ -1,0 +1,13 @@
+node_modules
+dist
+coverage
+.next
+.DS_Store
+../flat-app/.idea
+.project
+.vscode
+.jest
+.env
+.env.local
+.firebase
+out
