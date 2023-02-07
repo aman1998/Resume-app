@@ -11,3 +11,4 @@ coverage
 .env.local
 .firebase
 out
+.idea
