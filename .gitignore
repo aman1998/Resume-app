@@ -12,3 +12,4 @@ coverage
 .firebase
 out
 .idea
+.husky
