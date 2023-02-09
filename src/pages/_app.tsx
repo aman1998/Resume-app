@@ -2,6 +2,8 @@ import { AppProps } from 'next/app';
 import React from 'react';
 import Head from 'next/head';
 
+import { wrapper } from '@store/store';
+
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
   <>
     <Head>
@@ -11,4 +13,4 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
   </>
 );
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
