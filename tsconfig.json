@@ -63,7 +63,12 @@
     "resolveJsonModule": true,
     //    "isolatedModules": true,
     "incremental": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [
     "dist",
@@ -83,6 +88,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/profile/author/.[id]/index.ts"
-  ]
+    "src/pages/profile/author/.[id]/index.ts",
+    ".next/types/**/*.ts"
+, "app"  ]
 }

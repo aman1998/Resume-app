@@ -15,6 +15,7 @@
     "printWidth": 100
   },
   "dependencies": {
+    "@next/font": "^13.1.6",
     "classnames": "^2.3.2",
     "eslint-config-next": "^13.1.5",
     "immutable": "^4.2.4",
