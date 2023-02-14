@@ -51,6 +51,9 @@
       "@api/*": [
         "./src/API/*"
       ],
+      "@modules/*": [
+        "./src/modules/*"
+      ],
       "@utils/*": [
         "./src/utils/*"
       ],
@@ -90,5 +93,5 @@
     "**/*.tsx",
     "src/pages/profile/author/.[id]/index.ts",
     ".next/types/**/*.ts"
-, "app"  ]
+, "src/app"  ]
 }

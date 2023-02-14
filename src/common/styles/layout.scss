@@ -1,0 +1,15 @@
+html, body {
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: $fs-rem-xl;
+}
+
+.container {
+  width: 100%;
+  max-width: $max-container-media;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+

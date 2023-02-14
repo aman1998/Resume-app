@@ -1,6 +1,8 @@
 import { Roboto } from '@next/font/google';
 
-import Menu from './Menu';
+import ChakraProvider from '@common/providers/ChakraProvider';
+
+import '../common/styles/main.scss';
 
 const font = Roboto({
   weight: '400',
@@ -11,8 +13,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }): JSX.Element =>
   <html>
     <head />
     <body className={font.className}>
-      <Menu />
-      {children}
+      <ChakraProvider>{children}</ChakraProvider>
     </body>
   </html>
 );
