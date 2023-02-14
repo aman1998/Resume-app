@@ -10,13 +10,16 @@ const LoginController: FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isValid },
   } = useForm<IEmailPasswordForm>({
+    mode: 'onBlur',
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: IEmailPasswordForm) => {
     console.warn(data);
+    reset();
   };
 
   return (
@@ -31,7 +34,9 @@ const LoginController: FC = () => {
         <FormHelperText>{errors.password && errors.password.message}</FormHelperText>
       </FormControl>
 
-      <Button type="submit">Sign in</Button>
+      <Button type="submit" isDisabled={!isValid}>
+        Sign in
+      </Button>
     </form>
   );
 };

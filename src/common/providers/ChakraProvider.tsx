@@ -6,11 +6,23 @@ import chakraTheme from '@chakra-ui/theme';
 
 const { Button, Input } = chakraTheme.components;
 
+const colors = {
+  transparent: 'transparent',
+  black: '#000',
+  white: '#fff',
+  brand: {
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
+  },
+};
+
 const theme = extendBaseTheme({
   components: {
     Button,
     Input,
   },
+  colors,
 });
 
 const ChakraProvider: FC<{ children: React.ReactNode }> = ({ children }) => (

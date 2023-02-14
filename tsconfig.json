@@ -54,6 +54,9 @@
       "@modules/*": [
         "./src/modules/*"
       ],
+      "@UI/*": [
+        "./src/UI/*"
+      ],
       "@utils/*": [
         "./src/utils/*"
       ],
