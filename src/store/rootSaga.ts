@@ -1,9 +1,9 @@
 import { all, fork } from 'redux-saga/effects';
 
-import userSaga from '@store/user/effects';
+import authSaga from '@modules/AuthForm/store/effects';
 
 function* rootSaga(): Generator {
-  yield all([fork(userSaga)]);
+  yield all([fork(authSaga)]);
 }
 
 export default rootSaga;

@@ -2,8 +2,6 @@ import { RecordOf } from 'immutable';
 import { Task } from 'redux-saga';
 import { Store } from 'redux';
 
-import { IUserState } from '@store/user/types';
-
 import { IAuthState } from './../modules/AuthForm/store/types';
 
 export interface IWithSagaTaskStore extends Store {
@@ -12,9 +10,14 @@ export interface IWithSagaTaskStore extends Store {
 }
 
 export interface IAppState {
-  user?: TRecordOf<IUserState>;
   auth: IAuthState;
 }
+
+export type TRequestHandler<T> = {
+  fetching: boolean;
+  data: T[];
+  failure: unknown;
+};
 
 export declare type IPayloadAction<P = void, T extends string = string, M = never, E = never> = {
   payload: P;

@@ -1,15 +1,23 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 
 import InputControl from '@components/InputControl';
 
-import { EEmalPasswordForm, IEmailPasswordForm } from '@modules/AuthForm/types';
+import {
+  EAuthTypes,
+  EEmalPasswordForm,
+  IEmailPasswordForm,
+  ILoginControllerProps,
+} from '@modules/AuthForm/types';
 import { schema } from '@modules/AuthForm/validations';
 
 import Button from '@UI/Button';
 
-const LoginController: FC = () => {
+import { signInFetching, signUpFetching } from '../store/reducers';
+
+const LoginController: FC<ILoginControllerProps> = ({ type, setType }) => {
   const {
     handleSubmit,
     reset,
@@ -20,8 +28,15 @@ const LoginController: FC = () => {
     resolver: yupResolver(schema),
   });
 
+  const dispatch = useDispatch();
+
+  const text = type === EAuthTypes.signup ? 'Авторизация' : 'Регистрация';
+  const newType = type === EAuthTypes.signin ? EAuthTypes.signup : EAuthTypes.signin;
+
   const onSubmit = (data: IEmailPasswordForm) => {
-    console.warn(data);
+    if (type === EAuthTypes.signin) dispatch(signInFetching(data));
+    if (type === EAuthTypes.signup) dispatch(signUpFetching(data));
+
     reset();
   };
 
@@ -41,7 +56,8 @@ const LoginController: FC = () => {
         errorMessage={(errors.password ? errors.password.message : '') as string}
       />
 
-      <Button type="submit" isDisabled={!isValid} text="Sign in" />
+      <Button type="submit" isDisabled={!isValid} text="Сохранить" />
+      <Button text={text} onClick={() => setType(newType)} />
     </form>
   );
 };

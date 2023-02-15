@@ -1,5 +1,5 @@
-export const initialStateData = {
+export const defaultState = {
   fetching: false,
-  data: null,
+  data: [],
   failure: null,
 };
