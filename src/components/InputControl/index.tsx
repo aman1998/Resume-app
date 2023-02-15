@@ -1,27 +1,24 @@
-import { useController } from 'react-hook-form';
+import { FieldValues, useController } from 'react-hook-form';
 import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
-import { FC } from 'react';
 
 import { IInputControl } from '@components/types';
 
-import { EEmalPasswordForm, IEmailPasswordForm } from '@modules/AuthForm/types';
-
 import Input from '@UI/Input';
 
-const InputControl: FC<IInputControl<IEmailPasswordForm, EEmalPasswordForm>> = ({
+const InputControl = <T extends FieldValues>({
   name,
   labelText,
   control,
   errorMessage,
   ...props
-}) => {
+}: IInputControl<T>): JSX.Element => {
   const {
     field: { value, onChange, onBlur },
     fieldState: { invalid },
   } = useController({
     name,
     control,
-    defaultValue: '',
+    defaultValue: '' as never,
   });
 
   return (

@@ -1,12 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, FormControl, FormHelperText, Input } from '@chakra-ui/react';
 import { FC } from 'react';
 
 import InputControl from '@components/InputControl';
 
-import { schema } from '@modules/AuthForm/validations';
 import { EEmalPasswordForm, IEmailPasswordForm } from '@modules/AuthForm/types';
+import { schema } from '@modules/AuthForm/validations';
+
+import Button from '@UI/Button';
 
 const LoginController: FC = () => {
   const {
@@ -26,23 +27,21 @@ const LoginController: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputControl
+      <InputControl<IEmailPasswordForm>
         name={EEmalPasswordForm.email}
         labelText="Email"
         control={control}
         errorMessage={(errors.email ? errors.email.message : '') as string}
       />
 
-      <InputControl
+      <InputControl<IEmailPasswordForm>
         name={EEmalPasswordForm.password}
         labelText="Password"
         control={control}
         errorMessage={(errors.password ? errors.password.message : '') as string}
       />
 
-      <Button type="submit" isDisabled={!isValid}>
-        Sign in
-      </Button>
+      <Button type="submit" isDisabled={!isValid} text="Sign in" />
     </form>
   );
 };
