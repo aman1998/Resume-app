@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import { ChakraBaseProvider, extendBaseTheme } from '@chakra-ui/react';
 import chakraTheme from '@chakra-ui/theme';
 
-const { Button, Input } = chakraTheme.components;
+const { Button, Input, Modal } = chakraTheme.components;
 
 const colors = {
   transparent: 'transparent',
@@ -21,6 +21,7 @@ const theme = extendBaseTheme({
   components: {
     Button,
     Input,
+    Modal,
   },
   colors,
 });

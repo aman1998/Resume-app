@@ -1,7 +1,7 @@
 import { FieldValues, useController } from 'react-hook-form';
 import { FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
 
-import { IInputControl } from '@components/types';
+import { IInputControl } from '@components/InputControl/types';
 
 import Input from '@UI/Input';
 
