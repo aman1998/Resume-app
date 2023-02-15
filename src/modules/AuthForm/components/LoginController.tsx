@@ -3,17 +3,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, FormControl, FormHelperText, Input } from '@chakra-ui/react';
 import { FC } from 'react';
 
+import InputControl from '@components/InputControl';
+
 import { schema } from '@modules/AuthForm/validations';
-import { IEmailPasswordForm } from '@modules/AuthForm/types';
+import { EEmalPasswordForm, IEmailPasswordForm } from '@modules/AuthForm/types';
 
 const LoginController: FC = () => {
   const {
-    register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isValid },
   } = useForm<IEmailPasswordForm>({
-    mode: 'onBlur',
+    mode: 'onChange',
     resolver: yupResolver(schema),
   });
 
@@ -24,15 +26,19 @@ const LoginController: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={!!errors.email}>
-        <Input {...register('email')} placeholder="Email" />
-        <FormHelperText>{errors.email && errors.email.message}</FormHelperText>
-      </FormControl>
+      <InputControl
+        name={EEmalPasswordForm.email}
+        labelText="Email"
+        control={control}
+        errorMessage={(errors.email ? errors.email.message : '') as string}
+      />
 
-      <FormControl isInvalid={!!errors.password}>
-        <Input {...register('password')} type="password" placeholder="Password" />
-        <FormHelperText>{errors.password && errors.password.message}</FormHelperText>
-      </FormControl>
+      <InputControl
+        name={EEmalPasswordForm.password}
+        labelText="Password"
+        control={control}
+        errorMessage={(errors.password ? errors.password.message : '') as string}
+      />
 
       <Button type="submit" isDisabled={!isValid}>
         Sign in

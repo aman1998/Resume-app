@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import EmailPasswordForm from './components/EmailPassword';
+import LoginController from './components/LoginController';
 
-const AuthForm: FC = () => <EmailPasswordForm />;
+const AuthForm: FC = () => <LoginController />;
 export default AuthForm;
