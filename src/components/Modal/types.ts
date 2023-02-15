@@ -4,4 +4,5 @@ export interface IModal {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  title?: string;
 }

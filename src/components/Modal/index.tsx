@@ -12,11 +12,11 @@ import {
 
 import { IModal } from './types';
 
-const Modal: FC<IModal> = ({ isOpen, onClose, children }) => (
+const Modal: FC<IModal> = ({ isOpen, onClose, title, children }) => (
   <ModalChakra isCentered isOpen={isOpen} onClose={onClose}>
     <ModalOverlay />
     <ModalContent>
-      <ModalHeader>Modal Title</ModalHeader>
+      {!!title && <ModalHeader>{title}</ModalHeader>}
       <ModalCloseButton />
       <ModalBody>{children}</ModalBody>
     </ModalContent>

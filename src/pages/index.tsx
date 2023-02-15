@@ -9,7 +9,7 @@ const Home: FC = () => {
   return (
     <>
       <Button text="open" onClick={() => setIsOpen(true)} />
-      <Modal onClose={() => setIsOpen(false)} isOpen={isOpen}>
+      <Modal onClose={() => setIsOpen(false)} isOpen={isOpen} title="Авторизация">
         Modal
       </Modal>
     </>

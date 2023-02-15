@@ -4,6 +4,8 @@ import { Store } from 'redux';
 
 import { IUserState } from '@store/user/types';
 
+import { IAuthFormState } from './../modules/AuthForm/store/types';
+
 export interface IWithSagaTaskStore extends Store {
   sagaTask?: Task;
   initialState?: IAppState;
@@ -11,6 +13,7 @@ export interface IWithSagaTaskStore extends Store {
 
 export interface IAppState {
   user?: TRecordOf<IUserState>;
+  auth?: TRecordOf<IAuthFormState>;
 }
 
 export declare type IPayloadAction<P = void, T extends string = string, M = never, E = never> = {
