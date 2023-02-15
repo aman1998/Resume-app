@@ -1,11 +1,12 @@
-import { createSelector } from 'reselect';
-
-import { TAuthApplication, TAuthStateProps } from '@modules/AuthForm/store/types';
+import { createSelector } from '@reduxjs/toolkit';
 
 import { IAppState } from '@store/types';
 
-const selectState = (state: IAppState): TAuthApplication => state.auth;
+import { IAuthState } from './types';
 
-export const signUpFetchingSelector = createSelector(selectState, (state: TAuthStateProps) =>
-  state?.getIn(['sign_up', 'fetching'])
+const selectState = (state: IAppState) => state.auth;
+
+export const authModalIsOpenSelector = createSelector(
+  selectState,
+  (auth: IAuthState) => auth.authModalIsOpen
 );

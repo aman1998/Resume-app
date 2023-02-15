@@ -1,8 +1,8 @@
 import { TRecordOf } from '@store/types';
 
-export interface IAuthFormState {
+export interface IAuthState {
   authModalIsOpen: boolean;
 }
 
-export type TAuthApplication = TRecordOf<IAuthFormState> | undefined;
-export type TAuthStateProps = (Readonly<IAuthFormState> & TAuthApplication) | undefined;
+export type TAuthApplication = TRecordOf<IAuthState> | undefined;
+export type TAuthStateProps = (Readonly<IAuthState> & TAuthApplication) | undefined;

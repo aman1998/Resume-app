@@ -1,20 +1,21 @@
-import { FromJS, RecordOf, fromJS } from 'immutable';
-import { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TRecordOf } from '@store/types';
+import { IAuthState } from './types';
 
-import createReducer from '@utils/createReducer';
-
-import { AUTH_MODAL_IS_OPEN } from './actions';
-import { IAuthFormState } from './types';
-
-const initialState: FromJS<unknown> = fromJS({
+const initialState: IAuthState = {
   authModalIsOpen: false,
+};
+
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    changeAuthModalIsOpen(state: IAuthState, action: PayloadAction<boolean>) {
+      state.authModalIsOpen = action.payload;
+    },
+  },
 });
 
-const setAuthModalIsOpen = (state: TRecordOf<IAuthFormState>, action: PayloadAction<boolean>) =>
-  state.setIn('authModalIsOpen', action.payload);
+export const { changeAuthModalIsOpen } = authSlice.actions;
 
-export default createReducer<RecordOf<IAuthFormState>>(initialState, {
-  [AUTH_MODAL_IS_OPEN]: setAuthModalIsOpen,
-});
+export default authSlice.reducer;

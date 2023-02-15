@@ -5,9 +5,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   ModalCloseButton,
-  Button,
 } from '@chakra-ui/react';
 
 import { IModal } from './types';

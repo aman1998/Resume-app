@@ -1,17 +1,17 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 
-import Modal from '@components/Modal';
+import AuthForm from '@modules/AuthForm';
+import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
 
 import Button from '@UI/Button';
 
 const Home: FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
   return (
     <>
-      <Button text="open" onClick={() => setIsOpen(true)} />
-      <Modal onClose={() => setIsOpen(false)} isOpen={isOpen} title="Авторизация">
-        Modal
-      </Modal>
+      <Button text="open" onClick={() => dispatch(changeAuthModalIsOpen(true))} />
+      <AuthForm />
     </>
   );
 };
