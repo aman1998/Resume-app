@@ -1,12 +1,10 @@
-'use client';
-
 import { FC, useState } from 'react';
 
 import Modal from '@components/Modal';
 
 import Button from '@UI/Button';
 
-const Page: FC = () => {
+const Home: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <>
@@ -18,4 +16,4 @@ const Page: FC = () => {
   );
 };
 
-export default Page;
+export default Home;
