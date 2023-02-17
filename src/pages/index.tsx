@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { AddIcon } from '@chakra-ui/icons';
 
 import Seo from '@components/SEO';
 
@@ -24,7 +25,7 @@ const Home: FC = () => {
   return (
     <>
       <Seo seoTitle="Resume" />
-      <Button text="Добавить" onClick={handleAddClick} />
+      <Button leftIcon={<AddIcon />} text="Добавить" onClick={handleAddClick} />
       <AuthForm />
     </>
   );
