@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
-const Profile: FC = () => <div>profile</div>;
+import UserInfo from '@modules/UserInfo';
+
+const Profile: FC = () => <UserInfo />;
 
 export default Profile;

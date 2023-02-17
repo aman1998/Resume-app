@@ -1,16 +1,30 @@
 import { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+
+import Seo from '@components/SEO';
 
 import AuthForm from '@modules/AuthForm';
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
+import { isAuthSelector } from '@modules/AuthForm/store/selectors';
 
 import Button from '@UI/Button';
 
 const Home: FC = () => {
+  const isAuth = useSelector(isAuthSelector);
+
   const dispatch = useDispatch();
+  const { push } = useRouter();
+
+  const handleAddClick = () => {
+    if (isAuth) push('/profile');
+    else dispatch(changeAuthModalIsOpen(true));
+  };
+
   return (
     <>
-      <Button text="open" onClick={() => dispatch(changeAuthModalIsOpen(true))} />
+      <Seo seoTitle="Resume" />
+      <Button text="Добавить" onClick={handleAddClick} />
       <AuthForm />
     </>
   );

@@ -23,7 +23,6 @@ const SignUp: FC = () => {
       setLoading(true);
       const data = await createUserWithEmailAndPassword(email, password);
       if (data) {
-        console.warn('data =>', data);
         push('/profile');
         dispatch(changeAuthModalIsOpen(false));
       }

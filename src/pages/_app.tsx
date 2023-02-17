@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import { AppProps } from 'next/app';
-import { Roboto } from '@next/font/google';
 import { useRouter } from 'next/router';
 import { useSignOut } from 'react-firebase-hooks/auth';
+import { Roboto } from '@next/font/google';
 
 import '@common/styles/main.scss';
 
 import { auth } from 'firebase-config';
 import { wrapper } from 'src/rootStore/index';
+
+import MainLayout from '@components/Layouts/components/MainLayout';
+import HomeLayout from '@components/Layouts/components/HomeLayout';
 
 import ChakraProvider from '@common/providers/ChakraProvider';
 import PrivateProvider from '@common/providers/PrivateProvider';
@@ -20,30 +23,27 @@ const font = Roboto({
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const { pathname, push } = useRouter();
-  const [signOut] = useSignOut(auth);
-
-  const logout = async () => {
-    await signOut();
-    push('/');
-  };
 
   return (
-    <ChakraProvider>
-      <AuthContextProvider>
-        <div className={font.className}>
+    <div className={font.className}>
+      <ChakraProvider>
+        <AuthContextProvider>
           {pathname === '/' ? (
-            <Component {...pageProps} />
+            <HomeLayout>
+              <Component {...pageProps} />
+            </HomeLayout>
           ) : (
             <PrivateProvider>
               <>
-                <button onClick={logout}>выйти </button>
-                <Component {...pageProps} />
+                <MainLayout>
+                  <Component {...pageProps} />
+                </MainLayout>
               </>
             </PrivateProvider>
           )}
-        </div>
-      </AuthContextProvider>
-    </ChakraProvider>
+        </AuthContextProvider>
+      </ChakraProvider>
+    </div>
   );
 };
 
