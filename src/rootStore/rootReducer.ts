@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import auth from '@modules/AuthForm/store/reducers';
+import user from '@modules/UserInfo/store/reducers';
 
-import { IAppState } from '@store/types';
-
-const rootReducer = combineReducers<IAppState>({
+const rootReducer = combineReducers({
   auth,
+  user,
 });
 
 export default rootReducer;

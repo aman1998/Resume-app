@@ -1,31 +1,50 @@
-import React, { FC } from 'react';
-import { Provider } from 'react-redux';
+import { FC } from 'react';
 import { AppProps } from 'next/app';
 import { Roboto } from '@next/font/google';
+import { useRouter } from 'next/router';
+import { useSignOut } from 'react-firebase-hooks/auth';
 
 import '@common/styles/main.scss';
+
+import { auth } from 'firebase-config';
+import { wrapper } from 'src/rootStore/index';
+
+import ChakraProvider from '@common/providers/ChakraProvider';
+import PrivateProvider from '@common/providers/PrivateProvider';
+import AuthContextProvider from '@common/providers/AuthContextProvider';
 
 const font = Roboto({
   weight: '400',
   subsets: ['latin'],
 });
 
-import ChakraProvider from '@common/providers/ChakraProvider';
-
-import { wrapper } from '@store/store';
-
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-  const { store } = wrapper.useWrappedStore(pageProps);
+  const { pathname, push } = useRouter();
+  const [signOut] = useSignOut(auth);
+
+  const logout = async () => {
+    await signOut();
+    push('/');
+  };
 
   return (
-    <Provider store={store}>
-      <ChakraProvider>
+    <ChakraProvider>
+      <AuthContextProvider>
         <div className={font.className}>
-          <Component {...pageProps} />
+          {pathname === '/' ? (
+            <Component {...pageProps} />
+          ) : (
+            <PrivateProvider>
+              <>
+                <button onClick={logout}>выйти </button>
+                <Component {...pageProps} />
+              </>
+            </PrivateProvider>
+          )}
         </div>
-      </ChakraProvider>
-    </Provider>
+      </AuthContextProvider>
+    </ChakraProvider>
   );
 };
 
-export default App;
+export default wrapper.withRedux(App);

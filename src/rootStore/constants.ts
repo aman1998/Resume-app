@@ -1,5 +1,5 @@
 export const defaultState = {
   fetching: false,
-  data: [],
+  data: null,
   failure: null,
 };

@@ -43,7 +43,7 @@
         "./src/hooks/*"
       ],
       "@store/*": [
-        "./src/store/*"
+        "src/rootStore/*"
       ],
       "@const/*": [
         "./src/common/consts/*"

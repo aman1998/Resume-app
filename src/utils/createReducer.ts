@@ -1,4 +1,4 @@
-import { IPayloadAction, THandlers, THandler } from '@store/types';
+import { IPayloadAction, THandlers, THandler } from 'src/rootStore/types';
 
 import combineChanges from './combineChanges';
 

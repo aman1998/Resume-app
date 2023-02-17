@@ -2,7 +2,10 @@ import { RecordOf } from 'immutable';
 import { Task } from 'redux-saga';
 import { Store } from 'redux';
 
-import { IAuthState } from './../modules/AuthForm/store/types';
+import { IUserState } from '../modules/UserInfo/store/types';
+import { IAuthState } from '../modules/AuthForm/store/types';
+
+export type TNullable<T> = T | null;
 
 export interface IWithSagaTaskStore extends Store {
   sagaTask?: Task;
@@ -11,11 +14,12 @@ export interface IWithSagaTaskStore extends Store {
 
 export interface IAppState {
   auth: IAuthState;
+  user: IUserState;
 }
 
 export type TRequestHandler<T> = {
   fetching: boolean;
-  data: T[];
+  data: TNullable<T>;
   failure: unknown;
 };
 

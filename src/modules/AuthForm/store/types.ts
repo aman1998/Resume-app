@@ -1,9 +1,11 @@
-import { TRecordOf, TRequestHandler } from '@store/types';
+import { TRecordOf } from 'src/rootStore/types';
+
+import { EAuthTypes } from './../types';
 
 export interface IAuthState {
   authModalIsOpen: boolean;
-  signIn: TRequestHandler<string>;
-  signUp: TRequestHandler<string>;
+  isAuth: boolean;
+  authType: EAuthTypes;
 }
 
 export type TAuthApplication = TRecordOf<IAuthState> | undefined;

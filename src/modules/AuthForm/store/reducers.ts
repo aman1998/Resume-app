@@ -1,53 +1,32 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { defaultState } from '@store/constants';
+import { IPayloadAction } from 'src/rootStore/types';
 
+import { EAuthTypes } from './../types';
 import { IAuthState } from './types';
 
 const initialState: IAuthState = {
   authModalIsOpen: false,
-  signIn: defaultState,
-  signUp: defaultState,
+  isAuth: false,
+  authType: EAuthTypes.signin,
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    changeAuthModalIsOpen(state: IAuthState, action: PayloadAction<boolean>) {
+    changeIsAuth(state: IAuthState, action: IPayloadAction<boolean>) {
+      state.isAuth = action.payload;
+    },
+    changeAuthModalIsOpen(state: IAuthState, action: IPayloadAction<boolean>) {
       state.authModalIsOpen = action.payload;
     },
-
-    signInFetching(state: IAuthState, _) {
-      state.signIn.fetching = true;
-    },
-    signInSuccess(state: IAuthState, action) {
-      state.signIn = { ...defaultState, data: action.payload };
-    },
-    signInFailure(state: IAuthState, action) {
-      state.signIn = { ...defaultState, failure: action.payload };
-    },
-
-    signUpFetching(state: IAuthState, _) {
-      state.signUp.fetching = true;
-    },
-    signUpSuccess(state: IAuthState, action) {
-      state.signUp = { ...defaultState, data: action.payload };
-    },
-    signUpFailure(state: IAuthState, action) {
-      state.signUp = { ...defaultState, failure: action.payload };
+    changeAuthType(state: IAuthState, action: IPayloadAction<EAuthTypes>) {
+      state.authType = action.payload;
     },
   },
 });
 
-export const {
-  changeAuthModalIsOpen,
-  signInFailure,
-  signInFetching,
-  signInSuccess,
-  signUpFailure,
-  signUpFetching,
-  signUpSuccess,
-} = authSlice.actions;
+export const { changeIsAuth, changeAuthModalIsOpen, changeAuthType } = authSlice.actions;
 
 export default authSlice.reducer;

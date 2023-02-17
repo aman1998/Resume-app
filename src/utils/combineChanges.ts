@@ -1,4 +1,4 @@
-import { IPayloadAction, THandler } from '@store/types';
+import { IPayloadAction, THandler } from 'src/rootStore/types';
 
 type TUtilType<T, S = void> = (state: T, action: IPayloadAction<S>) => T;
 
