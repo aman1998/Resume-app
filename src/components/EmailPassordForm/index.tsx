@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from 'react';
 
-import InputControl from '@components/InputControl';
+import InputControl from '@components/TextFieldControl';
 
 import { schema } from '@modules/AuthForm/validations';
 
@@ -14,7 +14,7 @@ const EmailPasswordForm: FC<IUserEmailProps> = ({ loading, onSubmit }) => {
   const {
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<IEmailPasswordForm>({
     mode: 'onChange',
     resolver: yupResolver(schema),
@@ -36,7 +36,7 @@ const EmailPasswordForm: FC<IUserEmailProps> = ({ loading, onSubmit }) => {
         errorMessage={errors?.password?.message}
       />
 
-      <Button type="submit" isDisabled={!isValid} isLoading={loading} text="Сохранить" />
+      <Button type="submit" disabled={loading} text="Сохранить" />
     </form>
   );
 };

@@ -1,24 +1,13 @@
 import { FC } from 'react';
-import {
-  Modal as ModalChakra,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-} from '@chakra-ui/react';
+import MUIModal from '@mui/material/Dialog';
 
 import { IModal } from './types';
 
 const Modal: FC<IModal> = ({ isOpen, onClose, title, children }) => (
-  <ModalChakra isCentered isOpen={isOpen} onClose={onClose}>
-    <ModalOverlay />
-    <ModalContent>
-      {!!title && <ModalHeader>{title}</ModalHeader>}
-      <ModalCloseButton />
-      <ModalBody>{children}</ModalBody>
-    </ModalContent>
-  </ModalChakra>
+  <MUIModal open={isOpen} onClose={onClose}>
+    {title}
+    {children}
+  </MUIModal>
 );
 
 export default Modal;

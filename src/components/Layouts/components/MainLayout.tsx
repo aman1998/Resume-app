@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Grid, GridItem } from '@chakra-ui/react';
+import Grid from '@mui/material/Grid';
 
 import Header from '@components/Header';
 import Navigation from '@components/Navigation';
@@ -7,25 +7,16 @@ import Navigation from '@components/Navigation';
 import { ILayoutProps } from '../types';
 
 const MainLayout: FC<ILayoutProps> = ({ children }) => (
-  <Grid
-    templateAreas={`"header header"
-                "nav main"
-                "nav main"`}
-    gridTemplateRows={'50px 1fr 30px'}
-    gridTemplateColumns={'150px 1fr'}
-    h="100vh"
-    color="blackAlpha.700"
-    fontWeight="bold"
-  >
-    <GridItem pl="2" bg="orange.300" area={'header'}>
+  <Grid container spacing={2}>
+    <Grid item xs={12} style={{ background: 'red' }}>
       <Header />
-    </GridItem>
-    <GridItem pl="2" bg="pink.300" area={'nav'}>
+    </Grid>
+    <Grid item xs={4} style={{ background: 'green', height: '100vh' }}>
       <Navigation />
-    </GridItem>
-    <GridItem pl="2" bg="green.300" area={'main'}>
+    </Grid>
+    <Grid item xs={8}>
       <main>{children}</main>
-    </GridItem>
+    </Grid>
   </Grid>
 );
 

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import InputControl from '@components/InputControl';
+import InputControl from '@components/TextFieldControl';
 
 import { IPersonalStageProps } from './types';
 

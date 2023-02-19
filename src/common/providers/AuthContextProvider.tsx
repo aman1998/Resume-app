@@ -1,5 +1,3 @@
-// eslint-disable-file
-// @ts-nocheck
 import { createContext, FC, ReactNode, useContext, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch } from 'react-redux';
@@ -14,23 +12,24 @@ import { IUserContext } from './types';
 const AuthContext = createContext<IUserContext>({ user: null });
 
 export const useAuth = (): IUserContext => useContext(AuthContext);
-const user = {};
 
-const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => (
-  // const [user, loading] = useAuthState(auth);
+const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [user, loading] = useAuthState(auth);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     dispatch(userInfoSuccess({ email: user.email || '' }));
-  //     dispatch(changeIsAuth(true));
-  //   }
-  // }, [dispatch, user]);
+  useEffect(() => {
+    if (user) {
+      dispatch(userInfoSuccess({ email: user.email || '' }));
+      dispatch(changeIsAuth(true));
+    }
+  }, [dispatch, user]);
 
-  <AuthContext.Provider value={{ user }}>
-    {children}
-    {/* {loading ? <div>loading</div> : children} */}
-  </AuthContext.Provider>
-);
+  return (
+    <AuthContext.Provider value={{ user }}>
+      {loading ? <div>loading</div> : children}
+    </AuthContext.Provider>
+  );
+};
+
 export default AuthContextProvider;

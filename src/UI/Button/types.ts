@@ -1,4 +1,4 @@
-import { ButtonProps } from '@chakra-ui/react';
+import { ButtonProps } from '@mui/material';
 
 export interface IButton extends ButtonProps {
   text: string;

@@ -1,11 +1,11 @@
-import { Button as ChakraButton } from '@chakra-ui/react';
+import MUIButton from '@mui/material/Button';
 import { FC } from 'react';
 
 import { IButton } from './types';
 
 const Button: FC<IButton> = ({ text, className = '', ...props }) => (
-  <ChakraButton className={className} {...props}>
+  <MUIButton className={className} {...props}>
     {text}
-  </ChakraButton>
+  </MUIButton>
 );
 export default Button;
