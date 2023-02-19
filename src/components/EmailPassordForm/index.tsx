@@ -26,14 +26,14 @@ const EmailPasswordForm: FC<IUserEmailProps> = ({ loading, onSubmit }) => {
         name={EEmailPasswordForm.email}
         labelText="Email"
         control={control}
-        errorMessage={(errors.email ? errors.email.message : '') as string}
+        errorMessage={errors?.email?.message}
       />
 
       <InputControl<IEmailPasswordForm>
         name={EEmailPasswordForm.password}
         labelText="Password"
         control={control}
-        errorMessage={(errors.password ? errors.password.message : '') as string}
+        errorMessage={errors?.password?.message}
       />
 
       <Button type="submit" isDisabled={!isValid} isLoading={loading} text="Сохранить" />

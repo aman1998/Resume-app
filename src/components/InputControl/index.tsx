@@ -18,7 +18,6 @@ const InputControl = <T extends FieldValues>({
   } = useController({
     name,
     control,
-    defaultValue: '' as never,
   });
 
   return (

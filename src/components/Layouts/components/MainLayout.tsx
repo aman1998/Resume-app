@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
 
 import Header from '@components/Header';
+import Navigation from '@components/Navigation';
 
 import { ILayoutProps } from '../types';
 
@@ -20,7 +21,7 @@ const MainLayout: FC<ILayoutProps> = ({ children }) => (
       <Header />
     </GridItem>
     <GridItem pl="2" bg="pink.300" area={'nav'}>
-      Nav
+      <Navigation />
     </GridItem>
     <GridItem pl="2" bg="green.300" area={'main'}>
       <main>{children}</main>
