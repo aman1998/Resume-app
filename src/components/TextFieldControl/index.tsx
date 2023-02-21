@@ -1,22 +1,29 @@
-import { Controller, FieldValues } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
+import { FC } from 'react';
 
-import { IInputControl } from '@components/TextFieldControl/types';
+import { IInputControlProps } from '@components/TextFieldControl/types';
 
 import TextField from '@UI/TextField';
 
-const TextFieldControl = <T extends FieldValues>({
-  name,
+const TextFieldControl: FC<IInputControlProps> = ({
+  name = '',
   labelText,
   control,
   errorMessage,
-}: IInputControl<T>): JSX.Element => (
+  type = 'text',
+  defaultValue = '',
+  ...props
+}) => (
   <Controller
     name={name}
+    defaultValue={defaultValue}
     control={control}
-    render={({ field: { onChange, value } }) => (
+    render={({ field: { value, onChange } }) => (
       <TextField
-        onChange={onChange}
+        {...props}
         value={value}
+        onChange={onChange}
+        type={type}
         label={labelText}
         error={!!errorMessage}
         helperText={errorMessage}

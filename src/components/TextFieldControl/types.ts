@@ -1,9 +1,8 @@
-import { InputProps } from '@mui/material';
-import { Control, FieldValues, Path } from 'react-hook-form';
+import { StandardTextFieldProps } from '@mui/material';
+import { Control } from 'react-hook-form';
 
-export interface IInputControl<T extends FieldValues> extends InputProps {
-  errorMessage?: string;
+export interface IInputControlProps extends StandardTextFieldProps {
+  control: Control<any>;
   labelText?: string;
-  name: Path<T>;
-  control: Control<T>;
+  errorMessage?: string;
 }

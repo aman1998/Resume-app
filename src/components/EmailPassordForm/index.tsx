@@ -22,14 +22,14 @@ const EmailPasswordForm: FC<IUserEmailProps> = ({ loading, onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputControl<IEmailPasswordForm>
+      <InputControl
         name={EEmailPasswordForm.email}
         labelText="Email"
         control={control}
         errorMessage={errors?.email?.message}
       />
 
-      <InputControl<IEmailPasswordForm>
+      <InputControl
         name={EEmailPasswordForm.password}
         labelText="Password"
         control={control}
