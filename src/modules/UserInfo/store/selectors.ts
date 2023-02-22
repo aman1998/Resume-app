@@ -6,17 +6,33 @@ import { IUserState } from './types';
 
 const selectState = (state: IAppState) => state.user;
 
+export const mainInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.mainInfo.data
+);
+
 export const userInfoFetchingSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.fetching
 );
-
 export const userInfoSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.data
 );
-
 export const userInfoFailureSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.failure
+);
+
+export const updateUserInfoFetchingSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.updateUserInfo.fetching
+);
+export const updateUserInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.updateUserInfo.data
+);
+export const updateUserInfoFailureSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.updateUserInfo.failure
 );

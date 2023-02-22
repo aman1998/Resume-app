@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { auth } from 'firebase-config';
 
-import { userInfoSuccess } from '@modules/UserInfo/store/reducers';
+import { mainInfoSuccess, userInfoSuccess } from '@modules/UserInfo/store/reducers';
 import { changeIsAuth } from '@modules/AuthForm/store/reducers';
 
 import { IUserContext } from './types';
@@ -20,7 +20,7 @@ const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      dispatch(userInfoSuccess({ email: user.email || '' }));
+      dispatch(mainInfoSuccess({ email: user.email || '', id: user.uid }));
       dispatch(changeIsAuth(true));
     }
   }, [dispatch, user]);

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import UserPersonalInfo from '@modules/UserPersonalInfo';
+import UserPersonalInfo from '@modules/UserInfo/components/UserPersonalInfo';
 
 const Personal: FC = () => (
   <div>
