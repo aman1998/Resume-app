@@ -39,7 +39,7 @@ const UserPersonalInfo: FC = () => {
       firstname: user?.firstname,
       lastname: user?.lastname,
       surname: user?.surname,
-      gender: user?.gender,
+      gender: user?.gender || 'male',
       birthday: user?.birthday,
       location: user?.location,
       aboutme: user?.aboutme,

@@ -26,12 +26,7 @@ const PersonalInfoStage: FC<IPersonalStageProps> = ({ control, errors }) => (
       name="surname"
       errorMessage={errors?.surname?.message}
     />
-    <SelectControl
-      control={control}
-      name="gender"
-      options={options}
-      errorMessage={errors?.gender?.message}
-    />
+    <SelectControl control={control} name="gender" label="Пол" options={options} />
     <TextFieldControl
       control={control}
       type="date"

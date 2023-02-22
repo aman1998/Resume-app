@@ -6,6 +6,6 @@ export const userSchema = Yup.object().shape({
   surname: Yup.string(),
   location: Yup.string(),
   aboutme: Yup.string(),
-  gender: Yup.string().required('Это поле обязательно'),
+  gender: Yup.string(),
   birthday: Yup.string().required('Это поле обязательно'),
 });
