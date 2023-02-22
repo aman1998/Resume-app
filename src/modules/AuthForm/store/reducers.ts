@@ -7,7 +7,6 @@ import { IAuthState } from './types';
 
 const initialState: IAuthState = {
   authModalIsOpen: false,
-  isAuth: false,
   authType: EAuthTypes.signin,
 };
 
@@ -15,9 +14,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    changeIsAuth(state: IAuthState, action: IPayloadAction<boolean>) {
-      state.isAuth = action.payload;
-    },
     changeAuthModalIsOpen(state: IAuthState, action: IPayloadAction<boolean>) {
       state.authModalIsOpen = action.payload;
     },
@@ -27,6 +23,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { changeIsAuth, changeAuthModalIsOpen, changeAuthType } = authSlice.actions;
+export const { changeAuthModalIsOpen, changeAuthType } = authSlice.actions;
 
 export default authSlice.reducer;

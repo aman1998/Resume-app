@@ -6,7 +6,7 @@ import Seo from '@components/SEO';
 
 import AuthForm from '@modules/AuthForm';
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
-import { isAuthSelector } from '@modules/AuthForm/store/selectors';
+import { isAuthSelector } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
 
@@ -17,7 +17,7 @@ const Home: FC = () => {
   const { push } = useRouter();
 
   const handleAddClick = () => {
-    if (isAuth) push('/profile');
+    if (isAuth) push('/profile/personal');
     else dispatch(changeAuthModalIsOpen(true));
   };
 

@@ -6,6 +6,8 @@ import { IUserState } from './types';
 
 const selectState = (state: IAppState) => state.user;
 
+export const isAuthSelector = createSelector(selectState, (state: IUserState) => state.isAuth);
+
 export const mainInfoSelector = createSelector(
   selectState,
   (state: IUserState) => state.mainInfo.data

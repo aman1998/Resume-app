@@ -10,8 +10,8 @@ import { updateUserInfoFetching, userInfoFetching } from '@modules/UserInfo/stor
 import {
   updateUserInfoFetchingSelector,
   userInfoSelector,
+  isAuthSelector,
 } from '@modules/UserInfo/store/selectors';
-import { isAuthSelector } from '@modules/AuthForm/store/selectors';
 
 import Button from '@UI/Button';
 

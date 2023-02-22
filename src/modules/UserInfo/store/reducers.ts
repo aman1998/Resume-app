@@ -9,12 +9,17 @@ const initialState: IUserState = {
   mainInfo: defaultState,
   userInfo: defaultState,
   updateUserInfo: defaultState,
+  isAuth: false,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    changeIsAuth(state: IUserState, action: IPayloadAction<boolean>) {
+      state.isAuth = action.payload;
+    },
+
     mainInfoFetching(state: IUserState) {
       state.mainInfo.fetching = true;
     },
@@ -48,12 +53,16 @@ const userSlice = createSlice({
 });
 
 export const {
+  changeIsAuth,
+
   userInfoFetching,
   userInfoSuccess,
   userInfoFailure,
+
   updateUserFailure,
   updateUserInfoFetching,
   updateUserSuccess,
+
   mainInfoFailure,
   mainInfoFetching,
   mainInfoSuccess,

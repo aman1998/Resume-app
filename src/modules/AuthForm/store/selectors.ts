@@ -6,8 +6,6 @@ import { IAuthState } from './types';
 
 const selectState = (state: IAppState) => state.auth;
 
-export const isAuthSelector = createSelector(selectState, (state: IAuthState) => state.isAuth);
-
 export const authModalIsOpenSelector = createSelector(
   selectState,
   (state: IAuthState) => state.authModalIsOpen

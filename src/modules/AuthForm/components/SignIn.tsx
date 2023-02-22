@@ -23,7 +23,7 @@ const SignIn: FC = () => {
       setLoading(true);
       const data = await signInWithEmailAndPassword(email, password);
       if (data) {
-        push('/profile');
+        push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
       }
     } finally {

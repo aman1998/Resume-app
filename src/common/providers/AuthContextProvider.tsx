@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { auth } from 'firebase-config';
 
-import { mainInfoSuccess, userInfoSuccess } from '@modules/UserInfo/store/reducers';
-import { changeIsAuth } from '@modules/AuthForm/store/reducers';
+import { changeIsAuth, mainInfoSuccess } from '@modules/UserInfo/store/reducers';
 
 import { IUserContext } from './types';
 

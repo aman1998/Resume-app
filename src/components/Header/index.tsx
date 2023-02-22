@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { auth } from 'firebase-config';
 
-import { changeIsAuth } from '@modules/AuthForm/store/reducers';
-import { isAuthSelector } from '@modules/AuthForm/store/selectors';
+import { isAuthSelector } from '@modules/UserInfo/store/selectors';
+import { changeIsAuth } from '@modules/UserInfo/store/reducers';
 
 import Button from '@UI/Button';
 

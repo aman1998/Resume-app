@@ -4,7 +4,6 @@ import { EAuthTypes } from './../types';
 
 export interface IAuthState {
   authModalIsOpen: boolean;
-  isAuth: boolean;
   authType: EAuthTypes;
 }
 

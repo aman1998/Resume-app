@@ -13,4 +13,5 @@ export interface IUserState {
   userInfo: TRequestHandler<TUserInfo>;
   updateUserInfo: TRequestHandler<unknown>;
   mainInfo: TRequestHandler<IMainInfo>;
+  isAuth: boolean;
 }
