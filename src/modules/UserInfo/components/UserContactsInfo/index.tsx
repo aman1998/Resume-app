@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IContactsInfoStage } from '@components/Stages/ContactsInfoStage/types';
 import ContactsInfoStage from '@components/Stages/ContactsInfoStage';
 
-import { updateUserInfoFetching, userInfoFetching } from '@modules/UserInfo/store/reducers';
+import UserInfoProvider from '@common/providers/UserInfoProvider';
+
+import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 import {
   updateUserInfoFetchingSelector,
   userInfoSelector,
-  isAuthSelector,
 } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
@@ -20,7 +21,6 @@ import { contactsSchema } from './validations';
 const UserContactsInfo: FC = () => {
   const updateUserLoading = useSelector(updateUserInfoFetchingSelector);
   const user = useSelector(userInfoSelector);
-  const isAuth = useSelector(isAuthSelector);
 
   const dispatch = useDispatch();
 
@@ -43,19 +43,17 @@ const UserContactsInfo: FC = () => {
     });
   }, [user, reset]);
 
-  useEffect(() => {
-    if (!user && isAuth) dispatch(userInfoFetching());
-  }, [dispatch, user, isAuth]);
-
   const onSubmit = async (values: IContactsInfoStage) => {
     dispatch(updateUserInfoFetching({ contacts: values }));
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <ContactsInfoStage control={control} errors={errors} />
-      <Button type="submit" text="Сохранить" loading={updateUserLoading} />
-    </form>
+    <UserInfoProvider>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <ContactsInfoStage control={control} errors={errors} />
+        <Button type="submit" text="Сохранить" loading={updateUserLoading} />
+      </form>
+    </UserInfoProvider>
   );
 };
 

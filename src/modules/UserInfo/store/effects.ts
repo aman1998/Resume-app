@@ -14,6 +14,7 @@ import {
   updateUserSuccess,
   userInfoFailure,
   userInfoFetching,
+  closeAllModal,
 } from '@modules/UserInfo/store/reducers';
 
 import { mainInfoSelector } from './selectors';
@@ -43,6 +44,8 @@ function* updateUserInfo(action: IPayloadAction<IPersonalInfoStage>) {
     const userRef = doc(database, 'users', id);
     yield setDoc(userRef, { id, ...action.payload }, { merge: true });
     yield put(updateUserSuccess({ id, text: 'success' }));
+    yield put(closeAllModal());
+    yield put(userInfoFetching());
   } catch (e) {
     yield put(updateUserFailure(e));
   }

@@ -10,6 +10,7 @@ const initialState: IUserState = {
   userInfo: defaultState,
   updateUserInfo: defaultState,
   isAuth: false,
+  experiencesModalIsOpen: false,
 };
 
 const userSlice = createSlice({
@@ -18,6 +19,14 @@ const userSlice = createSlice({
   reducers: {
     changeIsAuth(state: IUserState, action: IPayloadAction<boolean>) {
       state.isAuth = action.payload;
+    },
+
+    changeEperiencesModalIsOpen(state: IUserState, action: IPayloadAction<boolean>) {
+      state.experiencesModalIsOpen = action.payload;
+    },
+
+    closeAllModal(state: IUserState) {
+      state.experiencesModalIsOpen = false;
     },
 
     mainInfoFetching(state: IUserState) {
@@ -40,6 +49,7 @@ const userSlice = createSlice({
       state.userInfo = { ...defaultState, failure: action.payload };
     },
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     updateUserInfoFetching(state: IUserState, _) {
       state.updateUserInfo.fetching = true;
     },
@@ -54,6 +64,10 @@ const userSlice = createSlice({
 
 export const {
   changeIsAuth,
+
+  changeEperiencesModalIsOpen,
+
+  closeAllModal,
 
   userInfoFetching,
   userInfoSuccess,

@@ -8,6 +8,11 @@ const selectState = (state: IAppState) => state.user;
 
 export const isAuthSelector = createSelector(selectState, (state: IUserState) => state.isAuth);
 
+export const experiencesModalIsOpenSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.experiencesModalIsOpen
+);
+
 export const mainInfoSelector = createSelector(
   selectState,
   (state: IUserState) => state.mainInfo.data
@@ -24,6 +29,11 @@ export const userInfoFailureSelector = createSelector(
 export const userInfoSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.data
+);
+
+export const experiencesInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.userInfo.data?.experiences
 );
 
 export const updateUserInfoFetchingSelector = createSelector(
