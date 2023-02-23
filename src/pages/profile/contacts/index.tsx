@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
-const Contacts: FC = () => <div>contacts</div>;
+import UserContactsInfo from '@modules/UserInfo/components/UserContactsInfo';
+
+const Contacts: FC = () => <UserContactsInfo />;
 
 export default Contacts;
