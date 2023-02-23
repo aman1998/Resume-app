@@ -9,6 +9,7 @@ export interface IExperiencesInfoStage {
   startYear: string;
   endMonth: string;
   endYear: string;
+  id: string;
 }
 
 export type TExperiencesInfoStageProps = IStage<IExperiencesInfoStage>;

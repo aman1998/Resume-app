@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,7 +7,7 @@ import UserExperiencesStage from '@components/Stages/ExperiencesStage';
 import Modal from '@components/Modal';
 import { IExperiencesInfoStage } from '@components/Stages/ExperiencesStage/types';
 
-import { uniqueIDWitdhDate } from '@common/constants/date';
+import { generateUUID } from '@common/constants/date';
 import UserInfoProvider from '@common/providers/UserInfoProvider';
 
 import {
@@ -20,15 +20,11 @@ import {
   updateUserInfoFetching,
 } from '@modules/UserInfo/store/reducers';
 
-import { TNullable } from '@store/types';
-
 import Button from '@UI/Button';
 
 import { experiencesSchema } from './validations';
 
 const UserExperiencesInfo: FC = () => {
-  const [id, setID] = useState<TNullable<string>>(null);
-
   const isOpenModal = useSelector(experiencesModalIsOpenSelector);
   const experiences = useSelector(experiencesInfoSelector) || [];
   const loading = useSelector(updateUserInfoFetchingSelector);
@@ -46,11 +42,11 @@ const UserExperiencesInfo: FC = () => {
   });
 
   const onSubmit = (values: IExperiencesInfoStage) => {
-    const newExperiences = experiences.filter((item) => item.id !== id);
+    const newExperiences = experiences.filter((item) => item.id !== values.id);
 
     dispatch(
       updateUserInfoFetching({
-        experiences: [...newExperiences, { id: uniqueIDWitdhDate, ...values }],
+        experiences: [...newExperiences, { ...values, id: generateUUID() }],
       })
     );
   };
@@ -65,14 +61,12 @@ const UserExperiencesInfo: FC = () => {
   };
 
   const openModal = (id: string) => {
-    setID(id);
     const experienceInfo = experiences.find((item) => item.id === id);
-    reset({ id, ...experienceInfo });
+    reset({ ...experienceInfo });
     dispatch(changeEperiencesModalIsOpen(true));
   };
 
   const closeModal = () => {
-    setID(null);
     dispatch(changeEperiencesModalIsOpen(false));
     reset();
   };

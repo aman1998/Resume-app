@@ -10,15 +10,11 @@ export interface IMainInfo {
   id: string;
 }
 
-export interface IExperiencesInfo extends IExperiencesInfoStage {
-  id: string;
-}
-
 export interface IUserInfo {
   contacts: IContactsInfoStage;
   personal: IPersonalInfoStage;
   speciality: ISpecialityInfoStage;
-  experiences: IExperiencesInfo[];
+  experiences: IExperiencesInfoStage[];
 }
 
 export interface IUserState {
