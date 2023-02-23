@@ -23,8 +23,11 @@ export const monthSelectOptions = getDateOptions(months);
 export const days = range(31, 1);
 export const daysSelectOptions = getDateOptions(days);
 
-export const years = range(80, year - 96).reverse();
+export const years = range(96, year - 96).reverse();
 export const yearsSelectOptions = getDateOptions(years);
+
+export const birthdayYears = range(80, year - 96).reverse(); // можно только 16+
+export const birthdayYearsSelectOptions = getDateOptions(birthdayYears);
 
 export const uniqueIDWitdhDate = Date.now().toString(36) + Math.random().toString(36).substring(2);
 
