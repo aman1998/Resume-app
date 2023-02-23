@@ -3,10 +3,10 @@ import { FC } from 'react';
 import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
 
-import { IPersonalStageProps } from './types';
+import { TPersonalInfoProps } from './types';
 import { options } from './constants';
 
-const PersonalInfoStage: FC<IPersonalStageProps> = ({ control, errors }) => (
+const PersonalInfoStage: FC<TPersonalInfoProps> = ({ control, errors }) => (
   <div style={{ display: 'grid', flexDirection: 'column', gridGap: '10px' }}>
     <TextFieldControl
       labelText="Имя"
@@ -28,6 +28,7 @@ const PersonalInfoStage: FC<IPersonalStageProps> = ({ control, errors }) => (
     />
     <SelectControl control={control} name="gender" label="Пол" options={options} />
     <TextFieldControl
+      labelText="Дата рождения"
       control={control}
       type="date"
       name="birthday"

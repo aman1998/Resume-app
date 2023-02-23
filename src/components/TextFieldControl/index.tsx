@@ -1,11 +1,11 @@
 import { Controller } from 'react-hook-form';
 import { FC } from 'react';
 
-import { IInputControlProps } from '@components/TextFieldControl/types';
+import { TInputControlProps } from '@components/TextFieldControl/types';
 
 import TextField from '@UI/TextField';
 
-const TextFieldControl: FC<IInputControlProps> = ({
+const TextFieldControl: FC<TInputControlProps> = ({
   name = '',
   labelText,
   control,

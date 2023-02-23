@@ -4,7 +4,7 @@ import { query, where, getDocs, collection, Query, doc, setDoc } from 'firebase/
 import { IPayloadAction } from 'src/rootStore/types';
 import { database } from 'firebase-config';
 
-import { IPersonalInfoStage } from '@components/PersonalInfoStage/types';
+import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
 
 import { IMainInfo } from '@modules/UserInfo/store/types';
 import {

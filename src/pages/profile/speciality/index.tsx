@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
-const Speciality: FC = () => <div>speciality</div>;
+import UserSpecialityInfo from '@modules/UserInfo/components/UserSpecialityInfo';
+
+const Speciality: FC = () => <UserSpecialityInfo />;
 
 export default Speciality;

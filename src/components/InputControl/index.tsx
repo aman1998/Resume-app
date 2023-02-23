@@ -4,9 +4,9 @@ import { FormHelperText, InputLabel } from '@mui/material';
 
 import Input from '@UI/Input';
 
-import { IInputControlProps } from './types';
+import { TInputControlProps } from './types';
 
-const InputControl: FC<IInputControlProps> = ({ name = '', control, errorMessage, labelText }) => (
+const InputControl: FC<TInputControlProps> = ({ name = '', control, errorMessage, labelText }) => (
   <Controller
     name={name}
     control={control}

@@ -1,13 +1,12 @@
 import { SelectProps } from '@mui/material';
-import { Control } from 'react-hook-form';
+
+import { IControl } from '@common/types/controlTypes';
 
 export interface IOptions {
   value: string;
   label: string;
 }
 
-export interface ISelectControlProps extends SelectProps {
-  control: Control<any>;
+export interface ISelectControlProps extends SelectProps, IControl {
   options: IOptions[];
-  errorMessage?: string;
 }

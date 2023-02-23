@@ -1,10 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FC, useEffect, useMemo } from 'react';
+import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
-import PersonalInfoStage from '@components/PersonalInfoStage';
-import { IPersonalInfoStage } from '@components/PersonalInfoStage/types';
+import PersonalInfoStage from '@components/Stages/PersonalInfoStage';
+import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
 
 import { updateUserInfoFetching, userInfoFetching } from '@modules/UserInfo/store/reducers';
 import {
