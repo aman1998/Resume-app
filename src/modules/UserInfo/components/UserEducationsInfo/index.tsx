@@ -3,30 +3,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import UserExperiencesStage from '@components/Stages/ExperiencesStage';
 import Modal from '@components/Modal';
-import { IExperiencesInfoStage } from '@components/Stages/ExperiencesStage/types';
+import { IEducationsInfoStage } from '@components/Stages/EducationsInfoStage/types';
+import UserEducationsInfoStage from '@components/Stages/EducationsInfoStage';
 
 import { generateUUID } from '@common/constants/date';
 import UserInfoProvider from '@common/providers/UserInfoProvider';
 
 import {
-  experiencesInfoSelector,
-  experiencesModalIsOpenSelector,
+  educationsInfoSelector,
+  educationsModalIsOpenSelector,
   updateUserInfoFetchingSelector,
 } from '@modules/UserInfo/store/selectors';
 import {
-  changeExperiencesModalIsOpen,
+  changeEducationsModalIsOpen,
   updateUserInfoFetching,
 } from '@modules/UserInfo/store/reducers';
 
 import Button from '@UI/Button';
 
-import { experiencesSchema } from './validations';
+import { educationsSchema } from './validations';
 
-const UserExperiencesInfo: FC = () => {
-  const isOpenModal = useSelector(experiencesModalIsOpenSelector);
-  const experiences = useSelector(experiencesInfoSelector) || [];
+const UserEducationsInfo: FC = () => {
+  const isOpenModal = useSelector(educationsModalIsOpenSelector);
+  const educations = useSelector(educationsInfoSelector) || [];
   const loading = useSelector(updateUserInfoFetchingSelector);
 
   const dispatch = useDispatch();
@@ -36,45 +36,45 @@ const UserExperiencesInfo: FC = () => {
     formState: { errors },
     reset,
     handleSubmit,
-  } = useForm<IExperiencesInfoStage>({
+  } = useForm<IEducationsInfoStage>({
     mode: 'onChange',
-    resolver: yupResolver(experiencesSchema),
+    resolver: yupResolver(educationsSchema),
   });
 
-  const onSubmit = (values: IExperiencesInfoStage) => {
-    const newExperiences = experiences.filter((item) => item.id !== values.id);
+  const onSubmit = (values: IEducationsInfoStage) => {
+    const newEducations = educations.filter((item) => item.id !== values.id);
 
     dispatch(
       updateUserInfoFetching({
-        experiences: [...newExperiences, { ...values, id: generateUUID() }],
+        educations: [...newEducations, { ...values, id: generateUUID() }],
       })
     );
   };
 
   const deleteExperience = (id: string) => {
-    const newExperiences = experiences.filter((item) => item.id !== id);
+    const newEducations = educations.filter((item) => item.id !== id);
     dispatch(
       updateUserInfoFetching({
-        experiences: [...newExperiences],
+        educations: [...newEducations],
       })
     );
   };
 
   const openModal = (id: string) => {
-    const experienceInfo = experiences.find((item) => item.id === id);
+    const experienceInfo = educations.find((item) => item.id === id);
     reset({ ...experienceInfo });
-    dispatch(changeExperiencesModalIsOpen(true));
+    dispatch(changeEducationsModalIsOpen(true));
   };
 
   const closeModal = () => {
-    dispatch(changeExperiencesModalIsOpen(false));
+    dispatch(changeEducationsModalIsOpen(false));
     reset();
   };
 
   return (
     <UserInfoProvider>
       <section>
-        {experiences.map((item) => (
+        {educations.map((item) => (
           <div
             key={item.id}
             style={{
@@ -84,14 +84,15 @@ const UserExperiencesInfo: FC = () => {
               border: '1px solid black',
             }}
           >
-            <div>cpmpanyName: {item.companyName}</div>
-            <div>profession: {item.profession}</div>
-            <div>companyLocation: {item.companyLocation}</div>
+            <div>type: {item.type}</div>
+            <div>educationName: {item.educationName}</div>
+            <div>faculty: {item.faculty}</div>
+            <div>educationLocation: {item.educationLocation}</div>
             <div>startMonth: {item.startMonth}</div>
             <div>startYear: {item.startYear}</div>
             <div>endMonth: {item.endMonth}</div>
             <div>endYear: {item.endYear}</div>
-            <div>aboutWork: {item.aboutWork}</div>
+            <div>aboutEducation: {item.aboutEducation}</div>
             <Button onClick={() => openModal(item.id)} text="Изменить" />
             <Button
               onClick={() => deleteExperience(item.id)}
@@ -101,10 +102,10 @@ const UserExperiencesInfo: FC = () => {
             />
           </div>
         ))}
-        <Button text="Добавить" onClick={() => dispatch(changeExperiencesModalIsOpen(true))} />
+        <Button text="Добавить" onClick={() => dispatch(changeEducationsModalIsOpen(true))} />
         <Modal isOpen={isOpenModal} title="Опыт работы" onClose={closeModal}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <UserExperiencesStage control={control} errors={errors} />
+            <UserEducationsInfoStage control={control} errors={errors} />
             <Button text="Сохранить" type="submit" loading={!!loading} />
           </form>
         </Modal>
@@ -112,4 +113,4 @@ const UserExperiencesInfo: FC = () => {
     </UserInfoProvider>
   );
 };
-export default UserExperiencesInfo;
+export default UserEducationsInfo;

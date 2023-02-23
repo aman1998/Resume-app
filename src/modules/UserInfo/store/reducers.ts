@@ -11,6 +11,7 @@ const initialState: IUserState = {
   updateUserInfo: defaultState,
   isAuth: false,
   experiencesModalIsOpen: false,
+  educationsModalIsOpen: false,
 };
 
 const userSlice = createSlice({
@@ -21,12 +22,17 @@ const userSlice = createSlice({
       state.isAuth = action.payload;
     },
 
-    changeEperiencesModalIsOpen(state: IUserState, action: IPayloadAction<boolean>) {
+    changeExperiencesModalIsOpen(state: IUserState, action: IPayloadAction<boolean>) {
       state.experiencesModalIsOpen = action.payload;
+    },
+
+    changeEducationsModalIsOpen(state: IUserState, action: IPayloadAction<boolean>) {
+      state.educationsModalIsOpen = action.payload;
     },
 
     closeAllModal(state: IUserState) {
       state.experiencesModalIsOpen = false;
+      state.educationsModalIsOpen = false;
     },
 
     mainInfoFetching(state: IUserState) {
@@ -65,8 +71,8 @@ const userSlice = createSlice({
 export const {
   changeIsAuth,
 
-  changeEperiencesModalIsOpen,
-
+  changeExperiencesModalIsOpen,
+  changeEducationsModalIsOpen,
   closeAllModal,
 
   userInfoFetching,

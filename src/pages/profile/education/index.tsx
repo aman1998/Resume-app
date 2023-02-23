@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
-const Education: FC = () => <div>education</div>;
+import UserEducationsInfo from '@modules/UserInfo/components/UserEducationsInfo';
+
+const Education: FC = () => <UserEducationsInfo />;
 
 export default Education;

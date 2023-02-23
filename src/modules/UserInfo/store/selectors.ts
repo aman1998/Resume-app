@@ -13,6 +13,11 @@ export const experiencesModalIsOpenSelector = createSelector(
   (state: IUserState) => state.experiencesModalIsOpen
 );
 
+export const educationsModalIsOpenSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.educationsModalIsOpen
+);
+
 export const mainInfoSelector = createSelector(
   selectState,
   (state: IUserState) => state.mainInfo.data
@@ -34,6 +39,11 @@ export const userInfoSelector = createSelector(
 export const experiencesInfoSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.data?.experiences
+);
+
+export const educationsInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.userInfo.data?.educations
 );
 
 export const updateUserInfoFetchingSelector = createSelector(
