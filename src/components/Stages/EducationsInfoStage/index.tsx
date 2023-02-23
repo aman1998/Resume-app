@@ -10,7 +10,12 @@ import { educationTypeOptions } from './constants';
 
 const UserEducationsInfoStage: FC<TExperiencesInfoStageProps> = ({ control, errors }) => (
   <div style={{ display: 'grid', flexDirection: 'column', gridGap: '10px', padding: '10px' }}>
-    <SelectControl control={control} name="type" options={educationTypeOptions} />
+    <SelectControl
+      control={control}
+      name="type"
+      options={educationTypeOptions}
+      errorMessage={errors?.type?.message}
+    />
     <TextFieldControl
       control={control}
       errorMessage={errors?.educationName?.message}
@@ -29,8 +34,18 @@ const UserEducationsInfoStage: FC<TExperiencesInfoStageProps> = ({ control, erro
       name="educationLocation"
       labelText="Местоположение"
     />
-    <SelectControl control={control} name="startMonth" options={monthSelectOptions} />
-    <SelectControl control={control} name="startYear" options={yearsSelectOptions} />
+    <SelectControl
+      control={control}
+      name="startMonth"
+      options={monthSelectOptions}
+      errorMessage={errors?.startMonth?.message}
+    />
+    <SelectControl
+      control={control}
+      name="startYear"
+      options={yearsSelectOptions}
+      errorMessage={errors?.startYear?.message}
+    />
     <SelectControl control={control} name="endMonth" options={monthSelectOptions} />
     <SelectControl control={control} name="endYear" options={yearsSelectOptions} />
     <TextFieldControl

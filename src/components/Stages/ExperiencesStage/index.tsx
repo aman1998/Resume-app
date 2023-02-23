@@ -27,8 +27,18 @@ const UserExperiencesStage: FC<TExperiencesInfoStageProps> = ({ control, errors 
       name="companyLocation"
       labelText="Местоположение компании"
     />
-    <SelectControl control={control} name="startMonth" options={monthSelectOptions} />
-    <SelectControl control={control} name="startYear" options={yearsSelectOptions} />
+    <SelectControl
+      control={control}
+      name="startMonth"
+      options={monthSelectOptions}
+      errorMessage={errors?.startMonth?.message}
+    />
+    <SelectControl
+      control={control}
+      name="startYear"
+      options={yearsSelectOptions}
+      errorMessage={errors?.startYear?.message}
+    />
     <SelectControl control={control} name="endMonth" options={monthSelectOptions} />
     <SelectControl control={control} name="endYear" options={yearsSelectOptions} />
     <TextFieldControl

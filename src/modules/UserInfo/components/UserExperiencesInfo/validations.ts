@@ -5,4 +5,8 @@ export const experiencesSchema = Yup.object().shape({
   profession: Yup.string().required('Это поле обязательно'),
   companyLocation: Yup.string(),
   aboutWork: Yup.string().required('Это поле обязательно'),
+  startMonth: Yup.string().required('Это поле обязательно'),
+  startYear: Yup.string().required('Это поле обязательно'),
+  endMonth: Yup.string(),
+  endYear: Yup.string(),
 });
