@@ -50,7 +50,7 @@ const userSlice = createSlice({
     },
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    updateUserInfoFetching(state: IUserState, _) {
+    updateUserInfoFetching(state: IUserState, _, __) {
       state.updateUserInfo.fetching = true;
     },
     updateUserSuccess(state: IUserState, action: IPayloadAction<unknown>) {

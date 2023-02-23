@@ -6,7 +6,7 @@ import { database } from 'firebase-config';
 
 import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
 
-import { IMainInfo } from '@modules/UserInfo/store/types';
+import { IMainInfo, IUserInfo } from '@modules/UserInfo/store/types';
 import {
   userInfoSuccess,
   updateUserFailure,
@@ -17,7 +17,7 @@ import {
   closeAllModal,
 } from '@modules/UserInfo/store/reducers';
 
-import { mainInfoSelector } from './selectors';
+import { mainInfoSelector, userInfoSelector } from './selectors';
 
 function* userInfo() {
   try {
@@ -40,12 +40,13 @@ function* userInfo() {
 function* updateUserInfo(action: IPayloadAction<IPersonalInfoStage>) {
   try {
     const { id }: IMainInfo = yield select(mainInfoSelector);
+    const user: IUserInfo = yield select(userInfoSelector);
 
     const userRef = doc(database, 'users', id);
     yield setDoc(userRef, { id, ...action.payload }, { merge: true });
     yield put(updateUserSuccess({ id, text: 'success' }));
+    yield put(userInfoSuccess({ ...user, ...action.payload }));
     yield put(closeAllModal());
-    yield put(userInfoFetching());
   } catch (e) {
     yield put(updateUserFailure(e));
   }
