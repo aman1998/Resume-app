@@ -9,10 +9,14 @@ export interface IMainInfo {
   id: string;
 }
 
-export type TUserInfo = IPersonalInfoStage & ISpecialityInfoStage & IContactsInfoStage;
+export interface IUserInfo {
+  contacts: IContactsInfoStage;
+  personal: IPersonalInfoStage;
+  speciality: ISpecialityInfoStage;
+}
 
 export interface IUserState {
-  userInfo: TRequestHandler<TUserInfo>;
+  userInfo: TRequestHandler<IUserInfo>;
   updateUserInfo: TRequestHandler<unknown>;
   mainInfo: TRequestHandler<IMainInfo>;
   isAuth: boolean;

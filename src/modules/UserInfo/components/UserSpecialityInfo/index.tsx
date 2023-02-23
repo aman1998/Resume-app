@@ -41,11 +41,11 @@ const UserSpecialityInfo: FC = () => {
 
   useEffect(() => {
     reset({
-      profession: user?.profession,
-      salary: user?.salary,
-      salaryСurrency: user?.salaryСurrency || ECurrency.dollar,
-      relocatioReady: !!user?.relocatioReady,
-      remoteWorkingReady: !!user?.remoteWorkingReady,
+      profession: user?.speciality.profession,
+      salary: user?.speciality.salary,
+      salaryСurrency: user?.speciality.salaryСurrency || ECurrency.dollar,
+      relocatioReady: !!user?.speciality.relocatioReady,
+      remoteWorkingReady: !!user?.speciality.remoteWorkingReady,
     });
   }, [user, reset]);
 
@@ -54,7 +54,7 @@ const UserSpecialityInfo: FC = () => {
   }, [dispatch, user, isAuth]);
 
   const onSubmit = async (values: ISpecialityInfoStage) => {
-    dispatch(updateUserInfoFetching(values));
+    dispatch(updateUserInfoFetching({ speciality: values }));
   };
 
   return (

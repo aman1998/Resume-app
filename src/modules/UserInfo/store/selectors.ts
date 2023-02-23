@@ -17,13 +17,13 @@ export const userInfoFetchingSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.fetching
 );
-export const userInfoSelector = createSelector(
-  selectState,
-  (state: IUserState) => state.userInfo.data
-);
 export const userInfoFailureSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.failure
+);
+export const userInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.userInfo.data
 );
 
 export const updateUserInfoFetchingSelector = createSelector(

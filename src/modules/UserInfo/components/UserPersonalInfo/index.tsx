@@ -36,13 +36,13 @@ const UserPersonalInfo: FC = () => {
 
   useEffect(() => {
     reset({
-      firstname: user?.firstname,
-      lastname: user?.lastname,
-      surname: user?.surname,
-      gender: user?.gender || 'male',
-      birthday: user?.birthday,
-      location: user?.location,
-      aboutme: user?.aboutme,
+      firstname: user?.personal.firstname,
+      lastname: user?.personal.lastname,
+      surname: user?.personal.surname,
+      gender: user?.personal.gender || 'male',
+      birthday: user?.personal.birthday,
+      location: user?.personal.location,
+      aboutme: user?.personal.aboutme,
     });
   }, [user, reset]);
 
@@ -51,7 +51,7 @@ const UserPersonalInfo: FC = () => {
   }, [dispatch, user, isAuth]);
 
   const onSubmit = async (values: IPersonalInfoStage) => {
-    dispatch(updateUserInfoFetching(values));
+    dispatch(updateUserInfoFetching({ personal: values }));
   };
 
   return (

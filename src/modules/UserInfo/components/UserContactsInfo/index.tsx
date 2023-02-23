@@ -36,10 +36,10 @@ const UserContactsInfo: FC = () => {
 
   useEffect(() => {
     reset({
-      email: user?.email,
-      phone: user?.phone,
-      messenger: user?.messenger,
-      site: user?.site,
+      email: user?.contacts?.email,
+      phone: user?.contacts?.phone,
+      messenger: user?.contacts?.messenger,
+      site: user?.contacts?.site,
     });
   }, [user, reset]);
 
@@ -48,7 +48,7 @@ const UserContactsInfo: FC = () => {
   }, [dispatch, user, isAuth]);
 
   const onSubmit = async (values: IContactsInfoStage) => {
-    dispatch(updateUserInfoFetching(values));
+    dispatch(updateUserInfoFetching({ contacts: values }));
   };
 
   return (

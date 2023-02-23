@@ -41,7 +41,7 @@ function* updateUserInfo(action: IPayloadAction<IPersonalInfoStage>) {
     const { id }: IMainInfo = yield select(mainInfoSelector);
 
     const userRef = doc(database, 'users', id);
-    yield setDoc(userRef, { ...action.payload }, { merge: true });
+    yield setDoc(userRef, { id, ...action.payload }, { merge: true });
     yield put(updateUserSuccess({ id, text: 'success' }));
   } catch (e) {
     yield put(updateUserFailure(e));

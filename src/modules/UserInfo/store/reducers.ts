@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IPayloadAction } from 'src/rootStore/types';
 import { defaultState } from 'src/rootStore/constants';
 
-import { IMainInfo, IUserState, TUserInfo } from '@modules/UserInfo/store/types';
+import { IMainInfo, IUserState, IUserInfo } from '@modules/UserInfo/store/types';
 
 const initialState: IUserState = {
   mainInfo: defaultState,
@@ -33,7 +33,7 @@ const userSlice = createSlice({
     userInfoFetching(state: IUserState) {
       state.userInfo.fetching = true;
     },
-    userInfoSuccess(state: IUserState, action: IPayloadAction<TUserInfo>) {
+    userInfoSuccess(state: IUserState, action: IPayloadAction<IUserInfo>) {
       state.userInfo = { ...defaultState, data: action.payload };
     },
     userInfoFailure(state: IUserState, action) {
