@@ -12,6 +12,7 @@ export interface IMainInfo {
 }
 
 export interface IUserInfo {
+  id: string;
   contacts: IContactsInfoStage;
   personal: IPersonalInfoStage;
   speciality: ISpecialityInfoStage;

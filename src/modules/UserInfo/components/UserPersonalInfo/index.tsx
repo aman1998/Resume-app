@@ -1,7 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState, useRef, Ref } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import Image from 'next/image';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import PersonalInfoStage from '@components/Stages/PersonalInfoStage';
 import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
@@ -16,9 +18,13 @@ import {
 
 import Button from '@UI/Button';
 
+import InputFileControl from '../InputFileControl';
+
 import { userSchema } from './validations';
 
 const UserPersonalInfo: FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const updateUserLoading = useSelector(updateUserInfoFetchingSelector);
   const user = useSelector(userInfoSelector);
 
@@ -29,11 +35,11 @@ const UserPersonalInfo: FC = () => {
     control,
     reset,
     formState: { errors },
+    resetField,
   } = useForm<IPersonalInfoStage>({
     mode: 'onChange',
-    resolver: yupResolver(userSchema),
+    // resolver: yupResolver(userSchema),
   });
-
   useEffect(() => {
     reset({
       firstname: user?.personal.firstname,
@@ -43,18 +49,31 @@ const UserPersonalInfo: FC = () => {
       birthday: user?.personal.birthday,
       location: user?.personal.location,
       aboutme: user?.personal.aboutme,
+      photoUrl: user?.personal.photoUrl || '',
     });
   }, [user, reset]);
 
   const onSubmit = async (values: IPersonalInfoStage) => {
-    dispatch(updateUserInfoFetching({ personal: values }));
+    // need move to saga effects
+    const { file, ...others } = values;
+    if (file) {
+      setLoading(true);
+      const storage = getStorage();
+      const storageRef = ref(storage, `${user?.id}-images/avatar`); // file.name
+      await uploadBytes(storageRef, file);
+      const photoUrl = await getDownloadURL(storageRef);
+      setLoading(false);
+      dispatch(updateUserInfoFetching({ personal: { ...others, photoUrl } }));
+    } else {
+      dispatch(updateUserInfoFetching({ personal: others }));
+    }
   };
 
   return (
     <UserInfoProvider>
       <form onSubmit={handleSubmit(onSubmit)}>
         <PersonalInfoStage control={control} errors={errors} />
-        <Button type="submit" text="Сохранить" loading={updateUserLoading} />
+        <Button type="submit" text="Сохранить" loading={updateUserLoading || loading} />
       </form>
     </UserInfoProvider>
   );

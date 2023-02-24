@@ -12,7 +12,22 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware) =>
-    getDefaultMiddleware({ thunk: false }).prepend(sagaMiddleware),
+    getDefaultMiddleware({
+      thunk: false,
+      // serializableCheck: {
+      //   // Ignore these action types
+      //   ignoredActions: [
+      //     'user/updateUserFailure',
+      //     'user/updateUserInfoFetching',
+      //     'user/updateUserInfoSuccess',
+      //   ],
+      //   ignoredPaths: [
+      //     'user.updateUserInfo.failure',
+      //     'user.updateUserInfo.fetching',
+      //     'user.updateUserInfo.data',
+      //   ],
+      // },
+    }).prepend(sagaMiddleware),
 });
 
 const rootStore = (): Store => {

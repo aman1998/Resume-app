@@ -1,5 +1,17 @@
 import { put, takeLatest, all, select } from 'redux-saga/effects';
-import { query, where, getDocs, collection, Query, doc, setDoc } from 'firebase/firestore';
+import {
+  query,
+  where,
+  getDocs,
+  collection,
+  Query,
+  doc,
+  setDoc,
+  updateDoc,
+  deleteField,
+  FieldValue,
+  arrayRemove,
+} from 'firebase/firestore';
 
 import { IPayloadAction } from 'src/rootStore/types';
 import { database } from 'firebase-config';
@@ -8,12 +20,12 @@ import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
 
 import { IMainInfo, IUserInfo } from '@modules/UserInfo/store/types';
 import {
-  userInfoSuccess,
   updateUserFailure,
   updateUserInfoFetching,
   updateUserSuccess,
   userInfoFailure,
   userInfoFetching,
+  userInfoSuccess,
   closeAllModal,
 } from '@modules/UserInfo/store/reducers';
 
