@@ -17,7 +17,7 @@ import MaterialUIProvider from '@common/providers/MUIProvider';
 import { createEmotionCache } from '@utils/createEmotionCashe';
 
 const font = Roboto({
-  weight: '400',
+  weight: ['400', '500', '700', '900'],
   subsets: ['latin'],
 });
 

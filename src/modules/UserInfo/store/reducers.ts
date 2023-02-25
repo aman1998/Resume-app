@@ -65,6 +65,15 @@ const userSlice = createSlice({
     updateUserFailure(state: IUserState, action) {
       state.updateUserInfo = { ...defaultState, failure: action.payload };
     },
+
+    resetUserInfo(state: IUserState) {
+      state.mainInfo = defaultState;
+      state.userInfo = defaultState;
+      state.updateUserInfo = defaultState;
+      state.isAuth = false;
+      state.experiencesModalIsOpen = false;
+      state.educationsModalIsOpen = false;
+    },
   },
 });
 
@@ -86,6 +95,8 @@ export const {
   mainInfoFailure,
   mainInfoFetching,
   mainInfoSuccess,
+
+  resetUserInfo,
 } = userSlice.actions;
 
 export default userSlice.reducer;

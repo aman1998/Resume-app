@@ -24,9 +24,9 @@ const TextFieldControl: FC<TInputControlProps> = ({
         value={value}
         onChange={onChange}
         type={type}
-        label={labelText}
+        label={errorMessage || labelText}
         error={!!errorMessage}
-        helperText={errorMessage}
+        // helperText={errorMessage}
       />
     )}
   />

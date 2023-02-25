@@ -3,24 +3,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  typography: {
-    fontFamily: 'Montserrat, sans-serif',
-  },
-  components: {
-    MuiListItem: {
-      styleOverrides: {
-        root: {
-          width: 'unset',
-        },
-      },
+  palette: {
+    primary: {
+      light: '#B3D1FF',
+      main: '#307DF0',
+      dark: '#2D75E0;',
+      contrastText: '#fff',
     },
-    MuiListItemButton: {
-      styleOverrides: {
-        root: {
-          flexGrow: 'unset',
-        },
-      },
-    },
+    // secondary: {
+    //   light: '#ff7961',
+    //   main: '#f44336',
+    //   dark: '#ba000d',
+    //   contrastText: '#000',
+    // },
   },
 });
 

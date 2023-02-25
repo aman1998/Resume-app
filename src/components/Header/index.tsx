@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from 'firebase-config';
 
 import { isAuthSelector } from '@modules/UserInfo/store/selectors';
-import { changeIsAuth } from '@modules/UserInfo/store/reducers';
+import { resetUserInfo } from '@modules/UserInfo/store/reducers';
 
 import Button from '@UI/Button';
 
@@ -20,7 +20,7 @@ const Header: FC = () => {
 
   const logout = async () => {
     await signOut();
-    dispatch(changeIsAuth(false));
+    dispatch(resetUserInfo());
     push('/');
   };
   return <header>{isAuth && <Button onClick={logout} text="Выйти" />}</header>;

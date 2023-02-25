@@ -1,15 +1,17 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from '@components/Modal';
 
-import Button from '@UI/Button';
+import { sitename } from '@common/constants/app';
 
 import { authModalIsOpenSelector, authTypeSelector } from './store/selectors';
-import { changeAuthModalIsOpen, changeAuthType } from './store/reducers';
+import { changeAuthModalIsOpen } from './store/reducers';
 import SignIn from './components/SignIn';
 import { EAuthTypes } from './types';
 import SignUp from './components/SignUp';
+import styles from './styles.module.scss';
+import AuthFormText from './components/AuthFormText';
 
 const AuthForm: FC = () => {
   const isOpenModal = useSelector(authModalIsOpenSelector);
@@ -17,22 +19,26 @@ const AuthForm: FC = () => {
 
   const dispatch = useDispatch();
 
-  const handleForm = () => {
-    const newType = authType === EAuthTypes.signin ? EAuthTypes.signup : EAuthTypes.signin;
-    dispatch(changeAuthType(newType));
+  const getTitle = () => {
+    switch (authType) {
+      case EAuthTypes.signin:
+        return 'Вход в аккаунт';
+      case EAuthTypes.signup:
+        return 'Регистрация';
+      default:
+        return '';
+    }
   };
 
   return (
-    <Modal
-      isOpen={isOpenModal}
-      onClose={() => dispatch(changeAuthModalIsOpen(false))}
-      title={authType === EAuthTypes.signup ? 'Регистрация' : 'Авторизация'}
-    >
-      {authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}
-      <Button
-        text={authType === EAuthTypes.signin ? 'Регистрация' : 'Авторизация'}
-        onClick={handleForm}
-      />
+    <Modal isOpen={isOpenModal} onClose={() => dispatch(changeAuthModalIsOpen(false))}>
+      <div className={styles['auth-form']}>
+        <div className={styles['auth-form__logo']}>{sitename}</div>
+        <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
+        {authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}
+        <AuthFormText type={authType} />
+        <div></div>
+      </div>
     </Modal>
   );
 };
