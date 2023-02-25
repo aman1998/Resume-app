@@ -6,6 +6,19 @@ import { IUserState } from './types';
 
 const selectState = (state: IAppState) => state.user;
 
+export const authInfoFetchingSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.authInfo.fetching
+);
+export const authInfoFailureSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.authInfo.failure
+);
+export const authInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.authInfo.data
+);
+
 export const isAuthSelector = createSelector(selectState, (state: IUserState) => state.isAuth);
 
 export const experiencesModalIsOpenSelector = createSelector(

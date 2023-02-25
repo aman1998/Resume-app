@@ -33,7 +33,7 @@ const AuthForm: FC = () => {
   return (
     <Modal isOpen={isOpenModal} onClose={() => dispatch(changeAuthModalIsOpen(false))}>
       <div className={styles['auth-form']}>
-        <div className={styles['auth-form__logo']}>{sitename}</div>
+        <div className={styles['auth-form__logo']}>{sitename.toUpperCase()}</div>
         <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
         {authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}
         <AuthFormText type={authType} />

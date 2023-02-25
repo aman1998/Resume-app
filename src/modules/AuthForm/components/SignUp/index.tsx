@@ -9,6 +9,8 @@ import { auth } from 'firebase-config';
 
 import TextFieldControl from '@components/TextFieldControl';
 
+import { changeIsAuth } from '@modules/UserInfo/store/reducers';
+
 import Button from '@UI/Button';
 
 import { changeAuthModalIsOpen } from '../../store/reducers';
@@ -39,6 +41,7 @@ const SignUp: FC = () => {
       setLoading(true);
       const data = await createUserWithEmailAndPassword(email, password);
       if (data) {
+        dispatch(changeIsAuth(true));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
       }

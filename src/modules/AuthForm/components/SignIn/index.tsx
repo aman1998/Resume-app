@@ -9,6 +9,8 @@ import { auth } from 'firebase-config';
 
 import TextFieldControl from '@components/TextFieldControl';
 
+import { changeIsAuth, mainInfoSuccess } from '@modules/UserInfo/store/reducers';
+
 import Button from '@UI/Button';
 
 import { changeAuthModalIsOpen } from '../../store/reducers';
@@ -39,8 +41,10 @@ const SignIn: FC = () => {
       setLoading(true);
       const data = await signInWithEmailAndPassword(email, password);
       if (data) {
+        dispatch(changeIsAuth(true));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
+        dispatch(mainInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
       }
     } finally {
       setLoading(false);

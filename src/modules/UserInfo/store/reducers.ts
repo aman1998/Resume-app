@@ -3,13 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IPayloadAction } from 'src/rootStore/types';
 import { defaultState } from 'src/rootStore/constants';
 
-import { IMainInfo, IUserState, IUserInfo } from '@modules/UserInfo/store/types';
+import {
+  IMainInfo,
+  IUserState,
+  IUserInfo,
+  IUserInfoDefaultData,
+} from '@modules/UserInfo/store/types';
 
 const initialState: IUserState = {
+  authInfo: defaultState,
+  isAuth: false,
   mainInfo: defaultState,
   userInfo: defaultState,
   updateUserInfo: defaultState,
-  isAuth: false,
   experiencesModalIsOpen: false,
   educationsModalIsOpen: false,
 };
@@ -18,6 +24,16 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    authInfoFetching(state: IUserState) {
+      state.authInfo.fetching = true;
+    },
+    authInfoSuccess(state: IUserState, action: IPayloadAction<IUserInfoDefaultData>) {
+      state.authInfo = { ...defaultState, data: action.payload };
+    },
+    authInfoFailure(state: IUserState, action) {
+      state.authInfo = { ...defaultState, failure: action.payload };
+    },
+
     changeIsAuth(state: IUserState, action: IPayloadAction<boolean>) {
       state.isAuth = action.payload;
     },
@@ -59,7 +75,7 @@ const userSlice = createSlice({
     updateUserInfoFetching(state: IUserState, _) {
       state.updateUserInfo.fetching = true;
     },
-    updateUserSuccess(state: IUserState, action: IPayloadAction<unknown>) {
+    updateUserSuccess(state: IUserState, action: IPayloadAction<IUserInfoDefaultData>) {
       state.updateUserInfo = { ...defaultState, data: action.payload };
     },
     updateUserFailure(state: IUserState, action) {
@@ -78,6 +94,10 @@ const userSlice = createSlice({
 });
 
 export const {
+  authInfoFailure,
+  authInfoFetching,
+  authInfoSuccess,
+
   changeIsAuth,
 
   changeExperiencesModalIsOpen,

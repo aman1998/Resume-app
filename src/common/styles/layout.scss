@@ -6,6 +6,14 @@ html {
   font-size: $fs-rem-xl;
 }
 
+body {
+  background: $bg-main !important;
+}
+
+.main{
+  padding-top: 60px;
+}
+
 .container {
   width: 100%;
   max-width: $max-container-media;

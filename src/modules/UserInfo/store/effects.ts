@@ -1,17 +1,7 @@
-import { put, takeLatest, all, select } from 'redux-saga/effects';
-import {
-  query,
-  where,
-  getDocs,
-  collection,
-  Query,
-  doc,
-  setDoc,
-  updateDoc,
-  deleteField,
-  FieldValue,
-  arrayRemove,
-} from 'firebase/firestore';
+import router from 'next/router';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { put, takeLatest, all, select, call } from 'redux-saga/effects';
+import { query, where, getDocs, collection, Query, doc, setDoc } from 'firebase/firestore';
 
 import { IPayloadAction } from 'src/rootStore/types';
 import { database } from 'firebase-config';
@@ -20,6 +10,12 @@ import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
 
 import { IMainInfo, IUserInfo } from '@modules/UserInfo/store/types';
 import {
+  authInfoFailure,
+  authInfoFetching,
+  authInfoSuccess,
+  mainInfoSuccess,
+  changeIsAuth,
+  resetUserInfo,
   updateUserFailure,
   updateUserInfoFetching,
   updateUserSuccess,
@@ -30,6 +26,42 @@ import {
 } from '@modules/UserInfo/store/reducers';
 
 import { mainInfoSelector, userInfoSelector } from './selectors';
+
+const getAuthChannel = () => {
+  const auth = getAuth();
+
+  return new Promise((resolve, reject) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        resolve(user);
+      } else {
+        reject(new Error('Ops!'));
+      }
+    });
+  });
+};
+
+function* authInfo() {
+  try {
+    const user: User = yield call(getAuthChannel);
+
+    if (user) {
+      yield put(changeIsAuth(true));
+      yield put(authInfoSuccess({ id: user.uid, text: user.email || '' }));
+      yield put(mainInfoSuccess({ id: user.uid, email: user.email || '' }));
+    } else {
+      if (router.pathname !== '/') {
+        router.push('/');
+      }
+      put(resetUserInfo());
+    }
+  } catch (error) {
+    if (router.pathname !== '/') {
+      router.push('/');
+    }
+    yield put(authInfoFailure(error));
+  }
+}
 
 function* userInfo() {
   try {
@@ -67,6 +99,7 @@ function* updateUserInfo(action: IPayloadAction<IPersonalInfoStage>) {
 function* Saga(): Generator {
   yield all([takeLatest(updateUserInfoFetching.type, updateUserInfo)]);
   yield all([takeLatest(userInfoFetching.type, userInfo)]);
+  yield all([takeLatest(authInfoFetching.type, authInfo)]);
 }
 
 export default Saga;

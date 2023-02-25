@@ -8,9 +8,9 @@ import { wrapper } from 'src/rootStore/index';
 
 import MainLayout from '@components/Layouts/components/MainLayout';
 import HomeLayout from '@components/Layouts/components/HomeLayout';
+import Header from '@components/Header';
 
-import PrivateProvider from '@common/providers/PrivateProvider';
-import AuthContextProvider from '@common/providers/AuthContextProvider';
+import AuthProvider from '@common/providers/AuthProvider';
 import '@common/styles/main.scss';
 import MaterialUIProvider from '@common/providers/MUIProvider';
 
@@ -37,22 +37,35 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
       <CacheProvider value={emotionCache}>
         {/* провайдер темы */}
         <MaterialUIProvider>
-          <AuthContextProvider>
+          {/* <AuthProvider>
             {pathname === '/' ? (
               <HomeLayout>
                 <Component {...pageProps} />
               </HomeLayout>
             ) : (
-              <PrivateProvider>
-                <>
-                  <MainLayout>
-                    <Component {...pageProps} />
-                  </MainLayout>
-                </>
-              </PrivateProvider>
+              <>
+                <MainLayout>
+                  <Component {...pageProps} />
+                </MainLayout>
+              </>
             )}
-          </AuthContextProvider>
-          {/* ... */}
+          </AuthProvider> */}
+          <>
+            <Header />
+            <AuthProvider>
+              <main className="main">
+                {pathname === '/' ? (
+                  <Component {...pageProps} />
+                ) : (
+                  <>
+                    <MainLayout>
+                      <Component {...pageProps} />
+                    </MainLayout>
+                  </>
+                )}
+              </main>
+            </AuthProvider>
+          </>
         </MaterialUIProvider>
       </CacheProvider>
     </div>
