@@ -17,6 +17,25 @@ const theme = createTheme({
     //   contrastText: '#000',
     // },
   },
+  // typography: {
+  //   fontFamily: 'Montserrat, sans-serif',
+  // },
+  components: {
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          width: 'unset',
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          flexGrow: 'unset',
+        },
+      },
+    },
+  },
 });
 
 const MaterialUIProvider: FC<{ children: ReactNode }> = ({ children }) => (

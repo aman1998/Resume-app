@@ -7,7 +7,6 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import { wrapper } from 'src/rootStore/index';
 
 import MainLayout from '@components/Layouts/components/MainLayout';
-import HomeLayout from '@components/Layouts/components/HomeLayout';
 import Header from '@components/Header';
 
 import AuthProvider from '@common/providers/AuthProvider';
@@ -32,7 +31,7 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
   const { pathname } = useRouter();
 
   return (
-    <div className={font.className}>
+    <>
       {/* провайдер кэша */}
       <CacheProvider value={emotionCache}>
         {/* провайдер темы */}
@@ -50,7 +49,7 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
               </>
             )}
           </AuthProvider> */}
-          <>
+          <div className={font.className}>
             <Header />
             <AuthProvider>
               <main className="main">
@@ -65,10 +64,10 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
                 )}
               </main>
             </AuthProvider>
-          </>
+          </div>
         </MaterialUIProvider>
       </CacheProvider>
-    </div>
+    </>
   );
 };
 

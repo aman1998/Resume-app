@@ -43,6 +43,11 @@ const Header: FC = () => {
     push('/');
   };
 
+  const goToProfile = () => {
+    setAnchorEl(null);
+    push('/profile/personal');
+  };
+
   const handleAddClick = () => {
     dispatch(changeAuthModalIsOpen(true));
   };
@@ -72,6 +77,7 @@ const Header: FC = () => {
                 'aria-labelledby': 'basic-button',
               }}
             >
+              <MenuItem onClick={goToProfile}>Профиль</MenuItem>
               <MenuItem onClick={logout}>Выйти</MenuItem>
             </Menu>
           </>

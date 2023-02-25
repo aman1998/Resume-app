@@ -1,0 +1,57 @@
+import createEmotionServer from '@emotion/server/create-instance';
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
+
+import { createEmotionCache } from '@utils/createEmotionCashe';
+
+const MyDocument = ({ emotionStyleTags }: { emotionStyleTags: JSX.Element }): JSX.Element => (
+  <Html lang="en">
+    <Head>
+      <link rel="icon" href="data:." />
+      <meta name="emotion-insertion-point" content="" />
+      {emotionStyleTags}
+    </Head>
+    <body>
+      <Main />
+      <NextScript />
+    </body>
+  </Html>
+);
+
+// `getInitialProps` принадлежит `_document` (а не `_app`),
+// это совместимо с генерацией статического контента (SSG).
+MyDocument.getInitialProps = async (docContext: DocumentContext) => {
+  const originalRenderPage = docContext.renderPage;
+
+  // Кэш Emotion можно распределять между всеми запросами SSR для повышения производительности.
+  // Однако это может привести к глобальным побочным эффектам.
+  const cache = createEmotionCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
+
+  docContext.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App: any) =>
+        function EnhanceApp(props) {
+          return <App emotionCache={cache} {...props} />;
+        },
+    });
+
+  const docProps = await Document.getInitialProps(docContext);
+  // Важно. Это не позволяет Emotion рендерить невалидный HTML.
+  // См. https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
+  const emotionStyles = extractCriticalToChunks(docProps.html);
+  const emotionStyleTags = emotionStyles.styles.map((style) => (
+    <style
+      data-emotion={`${style.key} ${style.ids.join(' ')}`}
+      key={style.key}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: style.css }}
+    />
+  ));
+
+  return {
+    ...docProps,
+    emotionStyleTags,
+  };
+};
+
+export default MyDocument;

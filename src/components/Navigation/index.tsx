@@ -12,13 +12,11 @@ const Navigation: FC = () => {
     <nav>
       <ul>
         {links.map((item) => (
-          <li key={item.id}>
-            <MenuItem selected={pathname === item.link}>
-              <Link href={item.link} style={{ width: '100%' }}>
-                {item.title}
-              </Link>
-            </MenuItem>
-          </li>
+          <MenuItem key={item.id} selected={pathname === item.link}>
+            <Link href={item.link} style={{ width: '100%' }}>
+              {item.title}
+            </Link>
+          </MenuItem>
         ))}
       </ul>
     </nav>

@@ -59,7 +59,7 @@ function* authInfo() {
     if (router.pathname !== '/') {
       router.push('/');
     }
-    yield put(authInfoFailure(error));
+    yield put(authInfoFailure(String(error)));
   }
 }
 
