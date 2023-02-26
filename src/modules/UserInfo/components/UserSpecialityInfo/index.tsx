@@ -57,7 +57,14 @@ const UserSpecialityInfo: FC = () => {
     <UserInfoProvider>
       <form onSubmit={handleSubmit(onSubmit)}>
         <SpecialityInfoStage control={control} errors={errors} />
-        <Button text="Сохранить" type="submit" loading={updateUserLoading} />
+        <Button
+          text="Сохранить"
+          type="submit"
+          loading={updateUserLoading}
+          disabled={updateUserLoading}
+          variant="contained"
+          style={{ marginTop: 16, width: 120 }}
+        />
       </form>
     </UserInfoProvider>
   );

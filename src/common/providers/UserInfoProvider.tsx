@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FC, ReactNode, useEffect } from 'react';
 
+import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+
 import { isAuthSelector, userInfoSelector } from '@modules/UserInfo/store/selectors';
 import { userInfoFetching } from '@modules/UserInfo/store/reducers';
 
@@ -14,7 +16,7 @@ const UserInfoProvider: FC<{ children: ReactNode }> = ({ children }) => {
     if (!user && isAuth) dispatch(userInfoFetching());
   }, [dispatch, user, isAuth]);
 
-  return <>{children}</>;
+  return <UserInfoLayout>{children}</UserInfoLayout>;
 };
 
 export default UserInfoProvider;

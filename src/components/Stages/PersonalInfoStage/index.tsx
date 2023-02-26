@@ -3,7 +3,7 @@ import { FC } from 'react';
 import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
 
-import InputFileControl from '@modules/UserInfo/components/InputFileControl';
+import InputFileControl from '@components/InputFileControl';
 
 import { TPersonalInfoProps } from './types';
 import { options } from './constants';

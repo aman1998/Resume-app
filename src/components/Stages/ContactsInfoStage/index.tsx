@@ -11,6 +11,7 @@ const ContactsInfoStage: FC<TContactInfoStageProps> = ({ errors, control }) => (
       errorMessage={errors?.phone?.message}
       name="phone"
       labelText="Телефон"
+      placeholder="Телефон"
     />
     <TextFieldControl
       control={control}
@@ -18,18 +19,21 @@ const ContactsInfoStage: FC<TContactInfoStageProps> = ({ errors, control }) => (
       errorMessage={errors?.email?.message}
       name="email"
       labelText="Почта"
+      placeholder="Почта"
     />
     <TextFieldControl
       control={control}
       errorMessage={errors?.messenger?.message}
       name="messenger"
       labelText="Мессенджер"
+      placeholder="Мессенджер"
     />
     <TextFieldControl
       control={control}
       errorMessage={errors?.site?.message}
       name="site"
       labelText="Сайт"
+      placeholder="Сайт"
     />
   </div>
 );

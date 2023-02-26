@@ -101,11 +101,22 @@ const UserExperiencesInfo: FC = () => {
             />
           </div>
         ))}
-        <Button text="Добавить" onClick={() => dispatch(changeExperiencesModalIsOpen(true))} />
-        <Modal isOpen={isOpenModal} title="Опыт работы" onClose={closeModal}>
+        <Button
+          text="Добавить"
+          onClick={() => dispatch(changeExperiencesModalIsOpen(true))}
+          variant="contained"
+          style={{ marginTop: 16, width: 120 }}
+        />
+        <Modal isOpen={isOpenModal} onClose={closeModal}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <UserExperiencesStage control={control} errors={errors} />
-            <Button text="Сохранить" type="submit" loading={!!loading} />
+            <Button
+              text="Сохранить"
+              type="submit"
+              loading={!!loading}
+              variant="contained"
+              style={{ marginTop: 16, width: 120 }}
+            />
           </form>
         </Modal>
       </section>

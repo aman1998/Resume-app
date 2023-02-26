@@ -51,7 +51,14 @@ const UserContactsInfo: FC = () => {
     <UserInfoProvider>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ContactsInfoStage control={control} errors={errors} />
-        <Button type="submit" text="Сохранить" loading={updateUserLoading} />
+        <Button
+          type="submit"
+          text="Сохранить"
+          loading={updateUserLoading}
+          disabled={updateUserLoading}
+          variant="contained"
+          style={{ marginTop: 16, width: 120 }}
+        />
       </form>
     </UserInfoProvider>
   );

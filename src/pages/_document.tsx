@@ -7,6 +7,12 @@ const MyDocument = ({ emotionStyleTags }: { emotionStyleTags: JSX.Element }): JS
   <Html lang="en">
     <Head>
       <link rel="icon" href="data:." />
+      {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet"
+      /> */}
       <meta name="emotion-insertion-point" content="" />
       {emotionStyleTags}
     </Head>

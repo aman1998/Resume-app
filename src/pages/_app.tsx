@@ -1,24 +1,22 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { Roboto } from '@next/font/google';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+import { useDispatch } from 'react-redux';
 
 import { wrapper } from 'src/rootStore/index';
 
-import MainLayout from '@components/Layouts/components/MainLayout';
 import Header from '@components/Header';
 
-import AuthProvider from '@common/providers/AuthProvider';
+import PrivateProvider from '@common/providers/PrivateProvider';
 import '@common/styles/main.scss';
 import MaterialUIProvider from '@common/providers/MUIProvider';
+import { authPages } from '@common/constants/app';
+
+import { authInfoFetching } from '@modules/UserInfo/store/reducers';
 
 import { createEmotionCache } from '@utils/createEmotionCashe';
-
-const font = Roboto({
-  weight: ['400', '500', '700', '900'],
-  subsets: ['latin'],
-});
 
 // создаем клиентский кэш
 const clientSideEmotionCache = createEmotionCache();
@@ -30,40 +28,29 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
 }) => {
   const { pathname } = useRouter();
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authInfoFetching());
+  }, [dispatch]);
+
   return (
     <>
       {/* провайдер кэша */}
       <CacheProvider value={emotionCache}>
         {/* провайдер темы */}
         <MaterialUIProvider>
-          {/* <AuthProvider>
-            {pathname === '/' ? (
-              <HomeLayout>
-                <Component {...pageProps} />
-              </HomeLayout>
-            ) : (
-              <>
-                <MainLayout>
-                  <Component {...pageProps} />
-                </MainLayout>
-              </>
-            )}
-          </AuthProvider> */}
-          <div className={font.className}>
+          <div>
             <Header />
-            <AuthProvider>
-              <main className="main">
-                {pathname === '/' ? (
+            <main className="main">
+              {authPages.includes(pathname) ? (
+                <PrivateProvider>
                   <Component {...pageProps} />
-                ) : (
-                  <>
-                    <MainLayout>
-                      <Component {...pageProps} />
-                    </MainLayout>
-                  </>
-                )}
-              </main>
-            </AuthProvider>
+                </PrivateProvider>
+              ) : (
+                <Component {...pageProps} />
+              )}
+            </main>
           </div>
         </MaterialUIProvider>
       </CacheProvider>

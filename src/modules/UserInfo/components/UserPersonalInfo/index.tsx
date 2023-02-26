@@ -18,7 +18,7 @@ import {
 
 import Button from '@UI/Button';
 
-import InputFileControl from '../InputFileControl';
+import InputFileControl from '../../../../components/InputFileControl';
 
 import { userSchema } from './validations';
 
@@ -35,10 +35,9 @@ const UserPersonalInfo: FC = () => {
     control,
     reset,
     formState: { errors },
-    resetField,
   } = useForm<IPersonalInfoStage>({
     mode: 'onChange',
-    // resolver: yupResolver(userSchema),
+    resolver: yupResolver(userSchema),
   });
   useEffect(() => {
     reset({
@@ -73,7 +72,13 @@ const UserPersonalInfo: FC = () => {
     <UserInfoProvider>
       <form onSubmit={handleSubmit(onSubmit)}>
         <PersonalInfoStage control={control} errors={errors} />
-        <Button type="submit" text="Сохранить" loading={updateUserLoading || loading} />
+        <Button
+          type="submit"
+          text="Сохранить"
+          loading={updateUserLoading || loading}
+          variant="contained"
+          style={{ marginTop: 16, width: 120 }}
+        />
       </form>
     </UserInfoProvider>
   );
