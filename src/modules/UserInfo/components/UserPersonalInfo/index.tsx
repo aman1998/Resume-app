@@ -69,7 +69,7 @@ const UserPersonalInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider>
+    <UserInfoProvider title="Личная информация">
       <form onSubmit={handleSubmit(onSubmit)}>
         <PersonalInfoStage control={control} errors={errors} />
         <Button

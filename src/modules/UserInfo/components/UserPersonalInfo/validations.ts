@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+import { formatText, sizeText } from './../../../../components/InputFileControl/constants';
+
 // export const checkIfFilesAreTooBig = (files?: [File]): boolean => {
 //   let valid = true;
 //   if (files) {
@@ -34,15 +36,15 @@ export const userSchema = Yup.object().shape({
   gender: Yup.string(),
   birthday: Yup.string().required('Это поле обязательно'),
   file: Yup.mixed()
-    .required('Это поле обязательно')
+    // .required('Это поле обязательно')
     .test(
       'fileSize',
-      'File is too large',
-      (value: any) => value && value[0].size <= 1048576 // 1 MB
+      sizeText,
+      (value: any) => value && value.size <= 1048576 // 1 MB
     )
     .test(
       'fileType',
-      'Unsupported file type',
-      (value: any) => value && ['image/jpeg', 'image/png'].includes(value[0].type)
+      formatText,
+      (value: any) => value && ['image/jpeg', 'image/png'].includes(value.type)
     ),
 });

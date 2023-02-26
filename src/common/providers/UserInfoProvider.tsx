@@ -6,7 +6,7 @@ import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 import { isAuthSelector, userInfoSelector } from '@modules/UserInfo/store/selectors';
 import { userInfoFetching } from '@modules/UserInfo/store/reducers';
 
-const UserInfoProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const UserInfoProvider: FC<{ children: ReactNode; title: string }> = ({ children, title }) => {
   const user = useSelector(userInfoSelector);
   const isAuth = useSelector(isAuthSelector);
 
@@ -16,7 +16,7 @@ const UserInfoProvider: FC<{ children: ReactNode }> = ({ children }) => {
     if (!user && isAuth) dispatch(userInfoFetching());
   }, [dispatch, user, isAuth]);
 
-  return <UserInfoLayout>{children}</UserInfoLayout>;
+  return <UserInfoLayout title={title}>{children}</UserInfoLayout>;
 };
 
 export default UserInfoProvider;

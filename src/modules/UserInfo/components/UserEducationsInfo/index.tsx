@@ -72,7 +72,7 @@ const UserEducationsInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider>
+    <UserInfoProvider title="Образование">
       <section>
         {educations.map((item) => (
           <div

@@ -48,7 +48,7 @@ const UserContactsInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider>
+    <UserInfoProvider title="Контакты">
       <form onSubmit={handleSubmit(onSubmit)}>
         <ContactsInfoStage control={control} errors={errors} />
         <Button

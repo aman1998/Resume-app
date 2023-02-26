@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
-
 import InputFileControl from '@components/InputFileControl';
 
 import { TPersonalInfoProps } from './types';
@@ -10,7 +9,7 @@ import { options } from './constants';
 
 const PersonalInfoStage: FC<TPersonalInfoProps> = ({ control, errors }) => (
   <div style={{ display: 'grid', flexDirection: 'column', gridGap: '10px' }}>
-    <InputFileControl control={control} name="file" />
+    <InputFileControl control={control} name="file" errorMessage={errors?.file?.message} />
     <TextFieldControl
       labelText="Имя"
       control={control}

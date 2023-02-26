@@ -54,7 +54,7 @@ const UserSpecialityInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider>
+    <UserInfoProvider title="Специальность">
       <form onSubmit={handleSubmit(onSubmit)}>
         <SpecialityInfoStage control={control} errors={errors} />
         <Button
