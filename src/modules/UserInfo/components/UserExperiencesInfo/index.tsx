@@ -97,6 +97,7 @@ const UserExperiencesInfo: FC = () => {
               onClick={() => deleteExperience(item.id)}
               text="Удалить"
               loading={!!loading}
+              disabled={!!loading}
               color="error"
             />
           </div>
@@ -114,6 +115,7 @@ const UserExperiencesInfo: FC = () => {
               text="Сохранить"
               type="submit"
               loading={!!loading}
+              disabled={!!loading}
               variant="contained"
               style={{ marginTop: 16, width: 120 }}
             />

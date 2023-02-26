@@ -28,7 +28,7 @@ const PersonalInfoStage: FC<TPersonalInfoProps> = ({ control, errors }) => (
       name="surname"
       errorMessage={errors?.surname?.message}
     />
-    <SelectControl control={control} name="gender" label="Пол" options={options} />
+    <SelectControl control={control} name="gender" options={options} label="Пол" />
     <TextFieldControl
       labelText="Дата рождения"
       control={control}

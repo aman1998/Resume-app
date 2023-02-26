@@ -21,4 +21,4 @@ export interface IEducationsInfoStage {
   id: string;
 }
 
-export type TExperiencesInfoStageProps = IStage<IEducationsInfoStage>;
+export type TEducationsInfoStageProps = IStage<IEducationsInfoStage>;

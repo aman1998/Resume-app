@@ -1,4 +1,4 @@
-import { SelectProps } from '@mui/material';
+import { StandardTextFieldProps } from '@mui/material';
 
 import { IControl } from '@common/types/controlTypes';
 
@@ -7,6 +7,6 @@ export interface IOptions {
   label: string | number;
 }
 
-export interface ISelectControlProps extends SelectProps, IControl {
+export interface ISelectControlProps extends StandardTextFieldProps, IControl {
   options: IOptions[];
 }

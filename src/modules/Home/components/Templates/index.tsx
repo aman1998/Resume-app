@@ -23,7 +23,7 @@ const Templates: FC = () => {
 
   return (
     <section className={styles.templates}>
-      <h2 className={styles['templates__title']}>Выбрать шаблон</h2>
+      <h2 className={styles['templates__title']}>Шаблоны</h2>
       <div className={styles['templates__list']}>
         {templates.map((item) => (
           <div

@@ -98,6 +98,7 @@ const UserEducationsInfo: FC = () => {
               onClick={() => deleteExperience(item.id)}
               text="Удалить"
               loading={!!loading}
+              disabled={!!loading}
               color="error"
             />
           </div>

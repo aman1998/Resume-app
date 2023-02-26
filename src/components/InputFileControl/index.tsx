@@ -70,9 +70,16 @@ const InputFileControl: FC<TInputFileControlProps> = ({ control, name = '', erro
             <Button
               onClick={() => uploadInputRef.current && uploadInputRef.current.click()}
               variant="contained"
-              text="Upload"
+              text="Загрузить"
             />
-            {fileURL && <Button onClick={deleteHandler} text="Удалить" />}
+            {fileURL && (
+              <Button
+                style={{ marginLeft: 8 }}
+                onClick={deleteHandler}
+                text="Удалить"
+                color="error"
+              />
+            )}
           </div>
         </div>
       )}

@@ -1,0 +1,19 @@
+.experiences {
+    display: grid;
+    flex-direction: column;
+    grid-gap: 10px;
+    &__title {
+        margin-bottom: 8px;
+        font-size: 20px;
+        line-height: 22px;
+        font-weight: 700;
+    }
+    &__dates {
+        display: grid;
+        grid-template-columns: repeat(2, 200px);
+        grid-gap: 8px;
+    }
+    &__label {
+        font-weight: 700;
+    }
+}

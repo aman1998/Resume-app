@@ -5,11 +5,14 @@ import SelectControl from '@components/SelectControl';
 
 import { monthSelectOptions, yearsSelectOptions } from '@common/constants/date';
 
-import { TExperiencesInfoStageProps } from './types';
+import { TEducationsInfoStageProps } from './types';
 import { educationTypeOptions } from './constants';
+import styles from './educations.module.scss';
 
-const UserEducationsInfoStage: FC<TExperiencesInfoStageProps> = ({ control, errors }) => (
-  <div style={{ display: 'grid', flexDirection: 'column', gridGap: '10px', padding: '10px' }}>
+const UserEducationsInfoStage: FC<TEducationsInfoStageProps> = ({ control, errors }) => (
+  <div className={styles.educations}>
+    <h1 className={styles['educations__title']}>Опыт работы</h1>
+    <div className={styles['educations__label']}>Тип образования</div>
     <SelectControl
       control={control}
       name="type"
@@ -20,40 +23,62 @@ const UserEducationsInfoStage: FC<TExperiencesInfoStageProps> = ({ control, erro
       control={control}
       errorMessage={errors?.educationName?.message}
       name="educationName"
+      placeholder="Название учебного заведение"
       labelText="Название учебного заведение"
     />
     <TextFieldControl
       control={control}
       errorMessage={errors?.faculty?.message}
       name="faculty"
+      placeholder="Факультет"
       labelText="Факультет"
     />
     <TextFieldControl
       control={control}
       errorMessage={errors?.educationLocation?.message}
       name="educationLocation"
+      placeholder="Местоположение"
       labelText="Местоположение"
     />
-    <SelectControl
-      control={control}
-      name="startMonth"
-      options={monthSelectOptions}
-      errorMessage={errors?.startMonth?.message}
-    />
-    <SelectControl
-      control={control}
-      name="startYear"
-      options={yearsSelectOptions}
-      errorMessage={errors?.startYear?.message}
-    />
-    <SelectControl control={control} name="endMonth" options={monthSelectOptions} />
-    <SelectControl control={control} name="endYear" options={yearsSelectOptions} />
+    <div className={styles['educations__label']}>Начало работы</div>
+    <div className={styles['educations__dates']}>
+      <SelectControl
+        control={control}
+        name="startMonth"
+        options={monthSelectOptions}
+        className={styles['educations__select']}
+        errorMessage={errors?.startMonth?.message}
+      />
+      <SelectControl
+        control={control}
+        name="startYear"
+        options={yearsSelectOptions}
+        className={styles['educations__select']}
+        errorMessage={errors?.startYear?.message}
+      />
+    </div>
+    <div className={styles['educations__label']}>Окончание</div>
+    <div className={styles['educations__dates']}>
+      <SelectControl
+        control={control}
+        name="endMonth"
+        options={monthSelectOptions}
+        className={styles['educations__select']}
+      />
+      <SelectControl
+        control={control}
+        name="endYear"
+        options={yearsSelectOptions}
+        className={styles['educations__select']}
+      />
+    </div>
     <TextFieldControl
       multiline={true}
       rows={4}
       control={control}
       errorMessage={errors?.aboutEducation?.message}
       name="aboutEducation"
+      placeholder="Раскажите про учебу"
       labelText="Раскажите про учебу"
     />
   </div>
