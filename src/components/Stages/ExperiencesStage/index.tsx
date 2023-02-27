@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
+import TextListControl from '@components/TextListControl';
 
 import { monthSelectOptions, yearsSelectOptions } from '@common/constants/date';
 
@@ -64,6 +65,7 @@ const UserExperiencesStage: FC<TExperiencesInfoStageProps> = ({ control, errors 
         className={styles['experiences__select']}
       />
     </div>
+    <TextListControl />
     <TextFieldControl
       multiline={true}
       rows={4}

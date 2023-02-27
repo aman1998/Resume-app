@@ -1,7 +1,9 @@
+import { ModalProps } from '@mui/material';
 import { ReactNode } from 'react';
 
 export interface IModal {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  fullScreen?: boolean;
 }

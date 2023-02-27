@@ -2,7 +2,7 @@ import { FC, useState, MouseEvent } from 'react';
 import { useSignOut } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
+import { IconButton, Menu, MenuItem, Avatar } from '@mui/material';
 
 import { auth } from 'firebase-config';
 
