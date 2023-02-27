@@ -37,7 +37,7 @@ const AuthForm: FC = () => {
 
   return (
     <Modal isOpen={isOpenModal} onClose={() => dispatch(changeAuthModalIsOpen(false))}>
-      <SwitchTransition mode="out-in">
+      <SwitchTransition>
         <CSSTransition
           key={authType}
           nodeRef={nodeRef}
@@ -46,10 +46,10 @@ const AuthForm: FC = () => {
           }}
           classNames="fade"
         >
-          <div className={styles['auth-form']}>
+          <div className={styles['auth-form']} ref={nodeRef}>
             <div className={styles['auth-form__logo']}>{sitename.toUpperCase()}</div>
             <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
-            <div ref={nodeRef}>{authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}</div>
+            <div>{authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}</div>
             <AuthFormText type={authType} />
           </div>
         </CSSTransition>
