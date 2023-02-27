@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import Modal from '@components/Modal';
 
@@ -17,6 +18,10 @@ const AuthForm: FC = () => {
   const isOpenModal = useSelector(authModalIsOpenSelector);
   const authType = useSelector(authTypeSelector);
 
+  const signInRef = useRef<HTMLInputElement>(null);
+  const signUpRef = useRef<HTMLInputElement>(null);
+  const nodeRef = authType === EAuthTypes.signin ? signInRef : signUpRef;
+
   const dispatch = useDispatch();
 
   const getTitle = () => {
@@ -32,13 +37,23 @@ const AuthForm: FC = () => {
 
   return (
     <Modal isOpen={isOpenModal} onClose={() => dispatch(changeAuthModalIsOpen(false))}>
-      <div className={styles['auth-form']}>
-        <div className={styles['auth-form__logo']}>{sitename.toUpperCase()}</div>
-        <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
-        {authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}
-        <AuthFormText type={authType} />
-        <div></div>
-      </div>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={authType}
+          nodeRef={nodeRef}
+          addEndListener={(done) => {
+            if (nodeRef.current) nodeRef.current.addEventListener('transitionend', done, false);
+          }}
+          classNames="fade"
+        >
+          <div className={styles['auth-form']}>
+            <div className={styles['auth-form__logo']}>{sitename.toUpperCase()}</div>
+            <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
+            <div ref={nodeRef}>{authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}</div>
+            <AuthFormText type={authType} />
+          </div>
+        </CSSTransition>
+      </SwitchTransition>
     </Modal>
   );
 };
