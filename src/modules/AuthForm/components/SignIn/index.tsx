@@ -54,7 +54,8 @@ const SignIn: FC = () => {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <TextFieldControl
         name="email"
-        labelText="Email"
+        labelText="Почта"
+        placeholder="Почта"
         control={control}
         margin="normal"
         errorMessage={errors?.email?.message}
@@ -63,7 +64,8 @@ const SignIn: FC = () => {
 
       <TextFieldControl
         name="password"
-        labelText="Password"
+        labelText="Пароль"
+        placeholder="Пароль"
         type="password"
         control={control}
         margin="dense"

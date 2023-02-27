@@ -53,7 +53,8 @@ const SignUp: FC = () => {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <TextFieldControl
         name="email"
-        labelText="Email"
+        labelText="Почта"
+        placeholder="Почта"
         control={control}
         autoComplete="off"
         className={styles['form__field']}
@@ -62,7 +63,8 @@ const SignUp: FC = () => {
 
       <TextFieldControl
         name="password"
-        labelText="Password"
+        labelText="Пароль"
+        placeholder="Пароль"
         type="password"
         control={control}
         autoComplete="off"
@@ -72,7 +74,8 @@ const SignUp: FC = () => {
 
       <TextFieldControl
         name="confirm_password"
-        labelText="Password"
+        labelText="Подтвердите пароль"
+        placeholder="Подтвердите пароль"
         type="password"
         control={control}
         className={styles['form__field']}
