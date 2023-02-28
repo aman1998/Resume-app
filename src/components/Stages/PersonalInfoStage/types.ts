@@ -1,5 +1,3 @@
-import { ChangeEvent } from 'react';
-
 import { TNullable } from './../../../rootStore/types';
 import { IStage } from './../types';
 

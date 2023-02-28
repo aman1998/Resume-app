@@ -7,6 +7,17 @@ export const experiencesSchema = Yup.object().shape({
   aboutWork: Yup.string().required('Это поле обязательно'),
   startMonth: Yup.string().required('Это поле обязательно'),
   startYear: Yup.string().required('Это поле обязательно'),
+  skills: Yup.array()
+    .of(
+      Yup.object().shape({
+        id: Yup.string(),
+        text: Yup.string(),
+      })
+    )
+    .test({
+      message: 'Не больше 10 скиллов',
+      test: (arr) => arr && arr.length <= 10,
+    }),
   endMonth: Yup.string(),
   endYear: Yup.string(),
 });

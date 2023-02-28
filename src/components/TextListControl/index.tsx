@@ -1,45 +1,83 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { ChangeEvent, FC, useRef, useState } from 'react';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import { TransitionGroup } from 'react-transition-group';
-
-import { TNullable } from '@store/types';
+import { Controller, useFieldArray } from 'react-hook-form';
+import { FormHelperText, Chip } from '@mui/material';
 
 import TextField from '@UI/TextField';
 import Button from '@UI/Button';
 
-import TextItem from './components/TextItem';
+import { TTextListControlProps } from './types';
+import styles from './list.module.scss';
 
-const TextListControl: FC = () => {
-  const [list, setList] = useState<string[]>([]);
-  const [listItem, setListItem] = useState<TNullable<string>>(null);
+// need remove validation outside component to yup
+
+const TextListControl: FC<TTextListControlProps> = ({
+  control,
+  name,
+  errorMessage,
+  labelText,
+  ...props
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name,
+  });
+
+  const [listItem, setListItem] = useState<string>('');
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => setListItem(e.target.value);
 
+  const checkIsDuplicate = fields.some((item) => item.text === listItem);
+
   const addItem = () => {
-    if (listItem && !list.some((item) => item === listItem)) {
-      setList([...list, listItem]);
-      setListItem(null);
+    if (listItem && !checkIsDuplicate) {
+      append({ text: listItem });
+      setListItem('');
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
     }
   };
 
-  const handleRemoveList = (item: string) => {
-    setList((prev) => [...prev.filter((i) => i !== item)]);
-  };
-
   return (
-    <div>
-      <div>
-        <TextField onChange={onChange} type="text" value={listItem} />
-        <Button text="Добавить" onClick={addItem} />
+    <div className={styles.list}>
+      <div className={styles['list__value']}>
+        <Controller
+          name={name}
+          control={control}
+          defaultValue={''}
+          render={() => (
+            <TextField
+              {...props}
+              label={labelText}
+              className={styles['list__text-field']}
+              inputRef={inputRef}
+              onChange={onChange}
+              type="text"
+              value={listItem}
+            />
+          )}
+        />
+        <Button
+          className={styles['list__btn']}
+          variant="contained"
+          text="Добавить"
+          disabled={checkIsDuplicate || fields.length >= 10}
+          onClick={addItem}
+        />
       </div>
       <List>
         <TransitionGroup>
-          {list.map((item) => (
-            <Collapse key={item}>
-              <TextItem item={item} handleRemoveList={handleRemoveList} />
+          {fields.map((item, index) => (
+            <Collapse key={item.id} className={styles['list__collapse']}>
+              <Chip label={item.text} onDelete={() => remove(index)} className={styles.chip} />
             </Collapse>
           ))}
+          {!!errorMessage && <FormHelperText error>{errorMessage}</FormHelperText>}
         </TransitionGroup>
       </List>
     </div>

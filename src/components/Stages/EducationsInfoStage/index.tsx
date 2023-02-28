@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
+import TextListControl from '@components/TextListControl';
 
 import { monthSelectOptions, yearsSelectOptions } from '@common/constants/date';
 
@@ -72,6 +73,8 @@ const UserEducationsInfoStage: FC<TEducationsInfoStageProps> = ({ control, error
         className={styles['educations__select']}
       />
     </div>
+    <div className={styles['educations__label']}>Навыки</div>
+    <TextListControl control={control} name="skills" errorMessage={errors?.skills?.message} />
     <TextFieldControl
       multiline={true}
       rows={4}

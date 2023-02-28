@@ -1,3 +1,5 @@
+import { ISkills } from '@common/types/controlTypes';
+
 import { IStage } from './../types';
 
 export enum ECurrency {
@@ -12,6 +14,7 @@ export interface ISpecialityInfoStage {
   salaryСurrency: ECurrency;
   relocatioReady: boolean;
   remoteWorkingReady: boolean;
+  skills: ISkills[];
 }
 
 export type TSpecialityInfoStageProps = IStage<ISpecialityInfoStage>;

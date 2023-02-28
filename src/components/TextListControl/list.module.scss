@@ -1,0 +1,13 @@
+.list {
+    &__value {
+        display: flex;
+        align-items: center;
+    }
+    &__btn {
+        margin-left: 8px;
+        height: 56px;
+    }
+    .chip {
+        margin-bottom: 4px;
+    }
+}

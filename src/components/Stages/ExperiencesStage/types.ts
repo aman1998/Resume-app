@@ -1,3 +1,5 @@
+import { ISkills } from '@common/types/controlTypes';
+
 import { IStage } from '../types';
 
 export interface IExperiencesInfoStage {
@@ -10,6 +12,7 @@ export interface IExperiencesInfoStage {
   endMonth: string;
   endYear: string;
   id: string;
+  skills: ISkills[];
 }
 
 export type TExperiencesInfoStageProps = IStage<IExperiencesInfoStage>;

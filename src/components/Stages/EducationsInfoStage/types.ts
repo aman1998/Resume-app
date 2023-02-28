@@ -1,3 +1,5 @@
+import { ISkills } from '@common/types/controlTypes';
+
 import { IStage } from '../types';
 
 export enum EEducationTypes {
@@ -19,6 +21,7 @@ export interface IEducationsInfoStage {
   endMonth: string;
   endYear: string;
   id: string;
+  skills: ISkills[];
 }
 
 export type TEducationsInfoStageProps = IStage<IEducationsInfoStage>;
