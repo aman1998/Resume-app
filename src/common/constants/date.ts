@@ -49,3 +49,13 @@ export const generateUUID = (): string => {
     return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
   });
 };
+
+export const getIntervalDates = (
+  startMonth: string,
+  startYear: string,
+  endMonth?: string,
+  endYear?: string
+): string => {
+  if (!endMonth || !endYear) return `${startMonth} ${startYear} - по настоящему времени`;
+  return `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
+};

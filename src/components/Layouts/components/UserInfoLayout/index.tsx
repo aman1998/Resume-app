@@ -10,7 +10,7 @@ import { ILayoutProps } from '../../types';
 
 import styles from './layout.module.scss';
 
-const UserInfoLayout: FC<ILayoutProps> = ({ children, title }) => {
+const UserInfoLayout: FC<ILayoutProps> = ({ children, title, getButton }) => {
   const user = useSelector(userInfoSelector);
   const isAuth = useSelector(isAuthSelector);
 
@@ -28,7 +28,10 @@ const UserInfoLayout: FC<ILayoutProps> = ({ children, title }) => {
         <Navigation />
       </aside>
       <div className={styles['layout__content']}>
-        <div className={styles['layout__title']}>{title}</div>
+        <div className={styles['layout__header']}>
+          <div className={styles['layout__title']}>{title}</div>
+          {!!getButton && getButton()}
+        </div>
         <div>{children}</div>
       </div>
     </div>

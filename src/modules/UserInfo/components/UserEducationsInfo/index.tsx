@@ -80,35 +80,37 @@ const UserEducationsInfo: FC = () => {
         <Skeleton variant="rectangular" width="100%" height="80vh" />
       ) : (
         <section>
-          {educations.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                display: 'grid',
-                flexDirection: 'column',
-                gridGap: '10px',
-                border: '1px solid black',
-              }}
-            >
-              <div>type: {item.type}</div>
-              <div>educationName: {item.educationName}</div>
-              <div>faculty: {item.faculty}</div>
-              <div>educationLocation: {item.educationLocation}</div>
-              <div>startMonth: {item.startMonth}</div>
-              <div>startYear: {item.startYear}</div>
-              <div>endMonth: {item.endMonth}</div>
-              <div>endYear: {item.endYear}</div>
-              <div>aboutEducation: {item.aboutEducation}</div>
-              <Button onClick={() => openModal(item.id)} text="Изменить" />
-              <Button
-                onClick={() => deleteExperience(item.id)}
-                text="Удалить"
-                loading={!!loading}
-                disabled={!!loading}
-                color="error"
-              />
-            </div>
-          ))}
+          {[...educations]
+            .sort((a, b) => Number(b.startYear) - Number(a.startYear))
+            .map((item) => (
+              <div
+                key={item.id}
+                style={{
+                  display: 'grid',
+                  flexDirection: 'column',
+                  gridGap: '10px',
+                  border: '1px solid black',
+                }}
+              >
+                <div>type: {item.type}</div>
+                <div>educationName: {item.educationName}</div>
+                <div>faculty: {item.faculty}</div>
+                <div>educationLocation: {item.educationLocation}</div>
+                <div>startMonth: {item.startMonth}</div>
+                <div>startYear: {item.startYear}</div>
+                <div>endMonth: {item.endMonth}</div>
+                <div>endYear: {item.endYear}</div>
+                <div>aboutEducation: {item.aboutEducation}</div>
+                <Button onClick={() => openModal(item.id)} text="Изменить" />
+                <Button
+                  onClick={() => deleteExperience(item.id)}
+                  text="Удалить"
+                  loading={!!loading}
+                  disabled={!!loading}
+                  color="error"
+                />
+              </div>
+            ))}
           <Button
             text="Добавить"
             onClick={() => dispatch(changeEducationsModalIsOpen(true))}

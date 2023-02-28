@@ -9,7 +9,11 @@ import { auth } from 'firebase-config';
 
 import TextFieldControl from '@components/TextFieldControl';
 
-import { authInfoSuccess, changeIsAuth } from '@modules/UserInfo/store/reducers';
+import {
+  authInfoSuccess,
+  changeIsAuth,
+  updateUserInfoFetching,
+} from '@modules/UserInfo/store/reducers';
 
 import Button from '@UI/Button';
 

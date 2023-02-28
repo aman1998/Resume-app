@@ -25,6 +25,7 @@ import {
 import Button from '@UI/Button';
 
 import { experiencesSchema } from './validations';
+import ExperienceItem from './components/ExperienceItem';
 
 const UserExperiencesInfo: FC = () => {
   const isOpenModal = useSelector(experiencesModalIsOpenSelector);
@@ -54,66 +55,31 @@ const UserExperiencesInfo: FC = () => {
     );
   };
 
-  const deleteExperience = (id: string) => {
-    const newExperiences = experiences.filter((item) => item.id !== id);
-    dispatch(
-      updateUserInfoFetching({
-        experiences: [...newExperiences],
-      })
-    );
-  };
-
-  const openModal = (id: string) => {
-    const experienceInfo = experiences.find((item) => item.id === id);
-    reset({ ...experienceInfo });
-    dispatch(changeExperiencesModalIsOpen(true));
-  };
-
   const closeModal = () => {
     dispatch(changeExperiencesModalIsOpen(false));
     reset();
   };
 
   return (
-    <UserInfoLayout title="Опыт работы">
+    <UserInfoLayout
+      title="Опыт работы"
+      getButton={() => (
+        <Button
+          text="Добавить"
+          variant="text"
+          onClick={() => dispatch(changeExperiencesModalIsOpen(true))}
+        />
+      )}
+    >
       {userInfoLoading ? (
         <Skeleton variant="rectangular" width="100%" height="80vh" />
       ) : (
         <section>
-          {experiences.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                display: 'grid',
-                flexDirection: 'column',
-                gridGap: '10px',
-                border: '1px solid black',
-              }}
-            >
-              <div>cpmpanyName: {item.companyName}</div>
-              <div>profession: {item.profession}</div>
-              <div>companyLocation: {item.companyLocation}</div>
-              <div>startMonth: {item.startMonth}</div>
-              <div>startYear: {item.startYear}</div>
-              <div>endMonth: {item.endMonth}</div>
-              <div>endYear: {item.endYear}</div>
-              <div>aboutWork: {item.aboutWork}</div>
-              <Button onClick={() => openModal(item.id)} text="Изменить" />
-              <Button
-                onClick={() => deleteExperience(item.id)}
-                text="Удалить"
-                loading={!!loading}
-                disabled={!!loading}
-                color="error"
-              />
-            </div>
-          ))}
-          <Button
-            text="Добавить"
-            onClick={() => dispatch(changeExperiencesModalIsOpen(true))}
-            variant="contained"
-            style={{ marginTop: 16, width: 120 }}
-          />
+          {[...experiences]
+            .sort((a, b) => Number(b.startYear) - Number(a.startYear))
+            .map((item) => (
+              <ExperienceItem key={item.id} item={item} reset={reset} />
+            ))}
           <Modal isOpen={isOpenModal} onClose={closeModal}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <UserExperiencesStage control={control} errors={errors} />

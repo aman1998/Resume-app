@@ -10,15 +10,4 @@ export const educationsSchema = Yup.object().shape({
   startYear: Yup.string().required('Это поле обязательно'),
   endMonth: Yup.string(),
   endYear: Yup.string(),
-  skills: Yup.array()
-    .of(
-      Yup.object().shape({
-        id: Yup.string(),
-        text: Yup.string(),
-      })
-    )
-    .test({
-      message: 'Не больше 10 скиллов',
-      test: (arr) => arr && arr.length <= 10,
-    }),
 });

@@ -1,0 +1,40 @@
+.item {
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ededed;
+    &__company-name {
+        text-align: center;
+        margin-bottom: 8px;
+        font-size: 24px;
+        line-height: 26px;
+        color: #999;
+    }
+    &__profession {
+        margin-bottom: 4px;
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+    &__date {
+        margin-bottom: 2px;
+        font-size: 14px;
+        line-height: 16px;
+        font-style: italic;
+    }
+    &__company-location {
+        margin-bottom: 16px;
+        font-size: 14px;
+        line-height: 16px;
+        font-style: italic;
+    }
+    &__about {
+        margin-bottom: 16px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+    &__skills {
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 4px;
+        margin-bottom: 16px;
+    }
+}
