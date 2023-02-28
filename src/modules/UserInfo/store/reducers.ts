@@ -4,16 +4,15 @@ import { IPayloadAction } from 'src/rootStore/types';
 import { defaultState } from 'src/rootStore/constants';
 
 import {
-  IMainInfo,
   IUserState,
   IUserInfo,
   IUserInfoDefaultData,
+  IAuthInfo,
 } from '@modules/UserInfo/store/types';
 
 const initialState: IUserState = {
   authInfo: defaultState,
   isAuth: false,
-  mainInfo: defaultState,
   userInfo: defaultState,
   updateUserInfo: defaultState,
   experiencesModalIsOpen: false,
@@ -27,7 +26,7 @@ const userSlice = createSlice({
     authInfoFetching(state: IUserState) {
       state.authInfo.fetching = true;
     },
-    authInfoSuccess(state: IUserState, action: IPayloadAction<IUserInfoDefaultData>) {
+    authInfoSuccess(state: IUserState, action: IPayloadAction<IAuthInfo>) {
       state.authInfo = { ...defaultState, data: action.payload };
     },
     authInfoFailure(state: IUserState, action) {
@@ -49,16 +48,6 @@ const userSlice = createSlice({
     closeAllModal(state: IUserState) {
       state.experiencesModalIsOpen = false;
       state.educationsModalIsOpen = false;
-    },
-
-    mainInfoFetching(state: IUserState) {
-      state.mainInfo.fetching = true;
-    },
-    mainInfoSuccess(state: IUserState, action: IPayloadAction<IMainInfo>) {
-      state.mainInfo = { ...defaultState, data: action.payload };
-    },
-    mainInfoFailure(state: IUserState, action) {
-      state.mainInfo = { ...defaultState, failure: action.payload };
     },
 
     userInfoFetching(state: IUserState) {
@@ -83,7 +72,6 @@ const userSlice = createSlice({
     },
 
     resetUserInfo(state: IUserState) {
-      state.mainInfo = defaultState;
       state.userInfo = defaultState;
       state.updateUserInfo = defaultState;
       state.isAuth = false;
@@ -111,10 +99,6 @@ export const {
   updateUserFailure,
   updateUserInfoFetching,
   updateUserSuccess,
-
-  mainInfoFailure,
-  mainInfoFetching,
-  mainInfoSuccess,
 
   resetUserInfo,
 } = userSlice.actions;

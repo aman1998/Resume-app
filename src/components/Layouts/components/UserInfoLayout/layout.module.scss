@@ -13,7 +13,7 @@
         background: #ffffff;
         border-radius: 16px;
         position: relative;
-        min-height: calc(100vh - 76px);
+        min-height: calc(100vh - 76px); // header height + layout margin top -> need refactoring use variables
 
     }
     &__title {

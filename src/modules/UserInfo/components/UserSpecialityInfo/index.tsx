@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SpecialityInfoStage from '@components/Stages/SpecialityInfoStage';
 import { ECurrency, ISpecialityInfoStage } from '@components/Stages/SpecialityInfoStage/types';
 import UserSpecialitySkeleton from '@components/Skeletons/UserSpecialitySkeleton';
-
-import UserInfoProvider from '@common/providers/UserInfoProvider';
+import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import {
   updateUserInfoFetchingSelector,
@@ -58,7 +57,7 @@ const UserSpecialityInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider title="Специальность">
+    <UserInfoLayout title="Специальность">
       {userInfoLoading ? (
         <UserSpecialitySkeleton />
       ) : (
@@ -74,7 +73,7 @@ const UserSpecialityInfo: FC = () => {
           />
         </form>
       )}
-    </UserInfoProvider>
+    </UserInfoLayout>
   );
 };
 

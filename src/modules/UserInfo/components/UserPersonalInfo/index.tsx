@@ -7,8 +7,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import PersonalInfoStage from '@components/Stages/PersonalInfoStage';
 import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
 import UserPersonalSkeleton from '@components/Skeletons/UserPersonalSkeleton';
-
-import UserInfoProvider from '@common/providers/UserInfoProvider';
+import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 import {
@@ -69,7 +68,7 @@ const UserPersonalInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider title="Личная информация">
+    <UserInfoLayout title="Личная информация">
       {userInfoLoading ? (
         <UserPersonalSkeleton />
       ) : (
@@ -84,7 +83,7 @@ const UserPersonalInfo: FC = () => {
           />
         </form>
       )}
-    </UserInfoProvider>
+    </UserInfoLayout>
   );
 };
 

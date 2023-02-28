@@ -31,11 +31,6 @@ export const educationsModalIsOpenSelector = createSelector(
   (state: IUserState) => state.educationsModalIsOpen
 );
 
-export const mainInfoSelector = createSelector(
-  selectState,
-  (state: IUserState) => state.mainInfo.data
-);
-
 export const userInfoFetchingSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.fetching

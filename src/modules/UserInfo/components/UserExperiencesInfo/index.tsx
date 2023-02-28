@@ -7,9 +7,9 @@ import { Skeleton } from '@mui/material';
 import UserExperiencesStage from '@components/Stages/ExperiencesStage';
 import Modal from '@components/Modal';
 import { IExperiencesInfoStage } from '@components/Stages/ExperiencesStage/types';
+import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { generateUUID } from '@common/constants/date';
-import UserInfoProvider from '@common/providers/UserInfoProvider';
 
 import {
   experiencesInfoSelector,
@@ -75,7 +75,7 @@ const UserExperiencesInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider title="Опыт работы">
+    <UserInfoLayout title="Опыт работы">
       {userInfoLoading ? (
         <Skeleton variant="rectangular" width="100%" height="80vh" />
       ) : (
@@ -129,7 +129,7 @@ const UserExperiencesInfo: FC = () => {
           </Modal>
         </section>
       )}
-    </UserInfoProvider>
+    </UserInfoLayout>
   );
 };
 export default UserExperiencesInfo;

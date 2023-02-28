@@ -11,7 +11,7 @@ export interface IUserInfoDefaultData {
   text: string;
 }
 
-export interface IMainInfo {
+export interface IAuthInfo {
   email: string;
   id: string;
 }
@@ -28,8 +28,7 @@ export interface IUserInfo {
 export interface IUserState {
   userInfo: TRequestHandler<IUserInfo>;
   updateUserInfo: TRequestHandler<unknown>;
-  authInfo: TRequestHandler<unknown>;
-  mainInfo: TRequestHandler<IMainInfo>;
+  authInfo: TRequestHandler<IAuthInfo>;
   isAuth: boolean;
   experiencesModalIsOpen: boolean;
   educationsModalIsOpen: boolean;

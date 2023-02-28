@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IContactsInfoStage } from '@components/Stages/ContactsInfoStage/types';
 import ContactsInfoStage from '@components/Stages/ContactsInfoStage';
 import UserContactsSceleton from '@components/Skeletons/UserContactSkeleton';
-
-import UserInfoProvider from '@common/providers/UserInfoProvider';
+import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 import {
@@ -51,7 +50,7 @@ const UserContactsInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider title="Контакты">
+    <UserInfoLayout title="Контакты">
       {userInfoLoading ? (
         <UserContactsSceleton />
       ) : (
@@ -67,7 +66,7 @@ const UserContactsInfo: FC = () => {
           />
         </form>
       )}
-    </UserInfoProvider>
+    </UserInfoLayout>
   );
 };
 

@@ -7,9 +7,9 @@ import Skeleton from '@mui/material/Skeleton';
 import Modal from '@components/Modal';
 import { IEducationsInfoStage } from '@components/Stages/EducationsInfoStage/types';
 import UserEducationsInfoStage from '@components/Stages/EducationsInfoStage';
+import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { generateUUID } from '@common/constants/date';
-import UserInfoProvider from '@common/providers/UserInfoProvider';
 
 import {
   educationsInfoSelector,
@@ -75,7 +75,7 @@ const UserEducationsInfo: FC = () => {
   };
 
   return (
-    <UserInfoProvider title="Образование">
+    <UserInfoLayout title="Образование">
       {userInfoLoading ? (
         <Skeleton variant="rectangular" width="100%" height="80vh" />
       ) : (
@@ -130,7 +130,7 @@ const UserEducationsInfo: FC = () => {
           </Modal>
         </section>
       )}
-    </UserInfoProvider>
+    </UserInfoLayout>
   );
 };
 export default UserEducationsInfo;

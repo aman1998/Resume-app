@@ -8,12 +8,11 @@ import { database } from 'firebase-config';
 
 import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
 
-import { IMainInfo, IUserInfo } from '@modules/UserInfo/store/types';
+import { IAuthInfo, IUserInfo } from '@modules/UserInfo/store/types';
 import {
   authInfoFailure,
   authInfoFetching,
   authInfoSuccess,
-  mainInfoSuccess,
   changeIsAuth,
   resetUserInfo,
   updateUserFailure,
@@ -25,7 +24,7 @@ import {
   closeAllModal,
 } from '@modules/UserInfo/store/reducers';
 
-import { mainInfoSelector, userInfoSelector } from './selectors';
+import { authInfoSelector, userInfoSelector } from './selectors';
 
 const getAuthChannel = () => {
   const auth = getAuth();
@@ -47,8 +46,7 @@ function* authInfo() {
 
     if (user) {
       yield put(changeIsAuth(true));
-      yield put(authInfoSuccess({ id: user.uid, text: user.email || '' }));
-      yield put(mainInfoSuccess({ id: user.uid, email: user.email || '' }));
+      yield put(authInfoSuccess({ id: user.uid, email: user.email || '' }));
     } else {
       if (router.pathname !== '/') {
         router.push('/');
@@ -65,7 +63,7 @@ function* authInfo() {
 
 function* userInfo() {
   try {
-    const { id }: IMainInfo = yield select(mainInfoSelector);
+    const { id }: IAuthInfo = yield select(authInfoSelector);
 
     const usersRef: Query<unknown> = yield collection(database, 'users');
 
@@ -83,7 +81,7 @@ function* userInfo() {
 
 function* updateUserInfo(action: IPayloadAction<IPersonalInfoStage>) {
   try {
-    const { id }: IMainInfo = yield select(mainInfoSelector);
+    const { id }: IAuthInfo = yield select(authInfoSelector);
     const user: IUserInfo = yield select(userInfoSelector);
 
     const userRef = doc(database, 'users', id);

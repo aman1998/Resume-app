@@ -8,7 +8,7 @@ import { auth } from 'firebase-config';
 
 import Logo from '@components/Logo';
 
-import { authInfoFetchingSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
+import { authInfoFailureSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
 import { resetUserInfo } from '@modules/UserInfo/store/reducers';
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
 
@@ -29,7 +29,7 @@ const Header: FC = () => {
   };
 
   const isAuth = useSelector(isAuthSelector);
-  const loading = useSelector(authInfoFetchingSelector);
+  const authError = useSelector(authInfoFailureSelector);
 
   const [signOut] = useSignOut(auth);
 
@@ -56,7 +56,7 @@ const Header: FC = () => {
     <header className={styles.header}>
       <div className={`container ${styles['header__container']}`}>
         <Logo />
-        {isAuth && !loading && (
+        {isAuth && (
           <>
             <IconButton
               onClick={handleClick}
@@ -82,7 +82,7 @@ const Header: FC = () => {
             </Menu>
           </>
         )}
-        {!isAuth && !loading && <Button text="Войти" variant="outlined" onClick={handleAddClick} />}
+        {!!authError && <Button text="Войти" variant="outlined" onClick={handleAddClick} />}
       </div>
     </header>
   );
