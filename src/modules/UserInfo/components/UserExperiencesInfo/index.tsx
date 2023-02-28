@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Skeleton } from '@mui/material';
 
 import UserExperiencesStage from '@components/Stages/ExperiencesStage';
 import Modal from '@components/Modal';
@@ -14,6 +15,7 @@ import {
   experiencesInfoSelector,
   experiencesModalIsOpenSelector,
   updateUserInfoFetchingSelector,
+  userInfoFetchingSelector,
 } from '@modules/UserInfo/store/selectors';
 import {
   changeExperiencesModalIsOpen,
@@ -26,6 +28,7 @@ import { experiencesSchema } from './validations';
 
 const UserExperiencesInfo: FC = () => {
   const isOpenModal = useSelector(experiencesModalIsOpenSelector);
+  const userInfoLoading = useSelector(userInfoFetchingSelector);
   const experiences = useSelector(experiencesInfoSelector) || [];
   const loading = useSelector(updateUserInfoFetchingSelector);
 
@@ -73,55 +76,59 @@ const UserExperiencesInfo: FC = () => {
 
   return (
     <UserInfoProvider title="Опыт работы">
-      <section>
-        {experiences.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              display: 'grid',
-              flexDirection: 'column',
-              gridGap: '10px',
-              border: '1px solid black',
-            }}
-          >
-            <div>cpmpanyName: {item.companyName}</div>
-            <div>profession: {item.profession}</div>
-            <div>companyLocation: {item.companyLocation}</div>
-            <div>startMonth: {item.startMonth}</div>
-            <div>startYear: {item.startYear}</div>
-            <div>endMonth: {item.endMonth}</div>
-            <div>endYear: {item.endYear}</div>
-            <div>aboutWork: {item.aboutWork}</div>
-            <Button onClick={() => openModal(item.id)} text="Изменить" />
-            <Button
-              onClick={() => deleteExperience(item.id)}
-              text="Удалить"
-              loading={!!loading}
-              disabled={!!loading}
-              color="error"
-            />
-          </div>
-        ))}
-        <Button
-          text="Добавить"
-          onClick={() => dispatch(changeExperiencesModalIsOpen(true))}
-          variant="contained"
-          style={{ marginTop: 16, width: 120 }}
-        />
-        <Modal isOpen={isOpenModal} onClose={closeModal}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <UserExperiencesStage control={control} errors={errors} />
-            <Button
-              text="Сохранить"
-              type="submit"
-              loading={!!loading}
-              disabled={!!loading}
-              variant="contained"
-              style={{ marginTop: 16, width: 120 }}
-            />
-          </form>
-        </Modal>
-      </section>
+      {userInfoLoading ? (
+        <Skeleton variant="rectangular" width="100%" height="80vh" />
+      ) : (
+        <section>
+          {experiences.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                display: 'grid',
+                flexDirection: 'column',
+                gridGap: '10px',
+                border: '1px solid black',
+              }}
+            >
+              <div>cpmpanyName: {item.companyName}</div>
+              <div>profession: {item.profession}</div>
+              <div>companyLocation: {item.companyLocation}</div>
+              <div>startMonth: {item.startMonth}</div>
+              <div>startYear: {item.startYear}</div>
+              <div>endMonth: {item.endMonth}</div>
+              <div>endYear: {item.endYear}</div>
+              <div>aboutWork: {item.aboutWork}</div>
+              <Button onClick={() => openModal(item.id)} text="Изменить" />
+              <Button
+                onClick={() => deleteExperience(item.id)}
+                text="Удалить"
+                loading={!!loading}
+                disabled={!!loading}
+                color="error"
+              />
+            </div>
+          ))}
+          <Button
+            text="Добавить"
+            onClick={() => dispatch(changeExperiencesModalIsOpen(true))}
+            variant="contained"
+            style={{ marginTop: 16, width: 120 }}
+          />
+          <Modal isOpen={isOpenModal} onClose={closeModal}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <UserExperiencesStage control={control} errors={errors} />
+              <Button
+                text="Сохранить"
+                type="submit"
+                loading={!!loading}
+                disabled={!!loading}
+                variant="contained"
+                style={{ marginTop: 16, width: 120 }}
+              />
+            </form>
+          </Modal>
+        </section>
+      )}
     </UserInfoProvider>
   );
 };

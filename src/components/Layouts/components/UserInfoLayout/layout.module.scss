@@ -13,6 +13,8 @@
         background: #ffffff;
         border-radius: 16px;
         position: relative;
+        min-height: calc(100vh - 76px);
+
     }
     &__title {
         margin-bottom: 16px;

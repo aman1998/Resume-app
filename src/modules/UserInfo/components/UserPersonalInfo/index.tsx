@@ -1,24 +1,23 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FC, useEffect, useState, useRef, Ref } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import Image from 'next/image';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import PersonalInfoStage from '@components/Stages/PersonalInfoStage';
 import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
+import UserPersonalSkeleton from '@components/Skeletons/UserPersonalSkeleton';
 
 import UserInfoProvider from '@common/providers/UserInfoProvider';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 import {
   updateUserInfoFetchingSelector,
+  userInfoFetchingSelector,
   userInfoSelector,
 } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
-
-import InputFileControl from '../../../../components/InputFileControl';
 
 import { userSchema } from './validations';
 
@@ -26,6 +25,7 @@ const UserPersonalInfo: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const updateUserLoading = useSelector(updateUserInfoFetchingSelector);
+  const userInfoLoading = useSelector(userInfoFetchingSelector);
   const user = useSelector(userInfoSelector);
 
   const dispatch = useDispatch();
@@ -70,16 +70,20 @@ const UserPersonalInfo: FC = () => {
 
   return (
     <UserInfoProvider title="Личная информация">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <PersonalInfoStage control={control} errors={errors} />
-        <Button
-          type="submit"
-          text="Сохранить"
-          loading={updateUserLoading || loading}
-          variant="contained"
-          style={{ marginTop: 16, width: 120 }}
-        />
-      </form>
+      {userInfoLoading ? (
+        <UserPersonalSkeleton />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <PersonalInfoStage control={control} errors={errors} />
+          <Button
+            type="submit"
+            text="Сохранить"
+            loading={updateUserLoading || loading}
+            variant="contained"
+            style={{ marginTop: 16, width: 120 }}
+          />
+        </form>
+      )}
     </UserInfoProvider>
   );
 };

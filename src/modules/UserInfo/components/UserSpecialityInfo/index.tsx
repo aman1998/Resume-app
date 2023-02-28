@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SpecialityInfoStage from '@components/Stages/SpecialityInfoStage';
 import { ECurrency, ISpecialityInfoStage } from '@components/Stages/SpecialityInfoStage/types';
+import UserSpecialitySkeleton from '@components/Skeletons/UserSpecialitySkeleton';
 
 import UserInfoProvider from '@common/providers/UserInfoProvider';
 
 import {
   updateUserInfoFetchingSelector,
+  userInfoFetchingSelector,
   userInfoSelector,
 } from '@modules/UserInfo/store/selectors';
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
@@ -20,6 +22,7 @@ import { specialitySchema } from './validations';
 
 const UserSpecialityInfo: FC = () => {
   const updateUserLoading = useSelector(updateUserInfoFetchingSelector);
+  const userInfoLoading = useSelector(userInfoFetchingSelector);
   const user = useSelector(userInfoSelector);
 
   const dispatch = useDispatch();
@@ -56,17 +59,21 @@ const UserSpecialityInfo: FC = () => {
 
   return (
     <UserInfoProvider title="Специальность">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <SpecialityInfoStage control={control} errors={errors} />
-        <Button
-          text="Сохранить"
-          type="submit"
-          loading={updateUserLoading}
-          disabled={updateUserLoading}
-          variant="contained"
-          style={{ marginTop: 16, width: 120 }}
-        />
-      </form>
+      {userInfoLoading ? (
+        <UserSpecialitySkeleton />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <SpecialityInfoStage control={control} errors={errors} />
+          <Button
+            text="Сохранить"
+            type="submit"
+            loading={updateUserLoading}
+            disabled={updateUserLoading}
+            variant="contained"
+            style={{ marginTop: 16, width: 120 }}
+          />
+        </form>
+      )}
     </UserInfoProvider>
   );
 };

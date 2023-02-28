@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Skeleton from '@mui/material/Skeleton';
 
 import Modal from '@components/Modal';
 import { IEducationsInfoStage } from '@components/Stages/EducationsInfoStage/types';
@@ -14,6 +15,7 @@ import {
   educationsInfoSelector,
   educationsModalIsOpenSelector,
   updateUserInfoFetchingSelector,
+  userInfoFetchingSelector,
 } from '@modules/UserInfo/store/selectors';
 import {
   changeEducationsModalIsOpen,
@@ -27,6 +29,7 @@ import { educationsSchema } from './validations';
 const UserEducationsInfo: FC = () => {
   const isOpenModal = useSelector(educationsModalIsOpenSelector);
   const educations = useSelector(educationsInfoSelector) || [];
+  const userInfoLoading = useSelector(userInfoFetchingSelector);
   const loading = useSelector(updateUserInfoFetchingSelector);
 
   const dispatch = useDispatch();
@@ -73,56 +76,60 @@ const UserEducationsInfo: FC = () => {
 
   return (
     <UserInfoProvider title="Образование">
-      <section>
-        {educations.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              display: 'grid',
-              flexDirection: 'column',
-              gridGap: '10px',
-              border: '1px solid black',
-            }}
-          >
-            <div>type: {item.type}</div>
-            <div>educationName: {item.educationName}</div>
-            <div>faculty: {item.faculty}</div>
-            <div>educationLocation: {item.educationLocation}</div>
-            <div>startMonth: {item.startMonth}</div>
-            <div>startYear: {item.startYear}</div>
-            <div>endMonth: {item.endMonth}</div>
-            <div>endYear: {item.endYear}</div>
-            <div>aboutEducation: {item.aboutEducation}</div>
-            <Button onClick={() => openModal(item.id)} text="Изменить" />
-            <Button
-              onClick={() => deleteExperience(item.id)}
-              text="Удалить"
-              loading={!!loading}
-              disabled={!!loading}
-              color="error"
-            />
-          </div>
-        ))}
-        <Button
-          text="Добавить"
-          onClick={() => dispatch(changeEducationsModalIsOpen(true))}
-          variant="contained"
-          style={{ marginTop: 16, width: 120 }}
-        />
-        <Modal isOpen={isOpenModal} onClose={closeModal}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <UserEducationsInfoStage control={control} errors={errors} />
-            <Button
-              text="Сохранить"
-              type="submit"
-              loading={!!loading}
-              disabled={!!loading}
-              variant="contained"
-              style={{ marginTop: 16, width: 120 }}
-            />
-          </form>
-        </Modal>
-      </section>
+      {userInfoLoading ? (
+        <Skeleton variant="rectangular" width="100%" height="80vh" />
+      ) : (
+        <section>
+          {educations.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                display: 'grid',
+                flexDirection: 'column',
+                gridGap: '10px',
+                border: '1px solid black',
+              }}
+            >
+              <div>type: {item.type}</div>
+              <div>educationName: {item.educationName}</div>
+              <div>faculty: {item.faculty}</div>
+              <div>educationLocation: {item.educationLocation}</div>
+              <div>startMonth: {item.startMonth}</div>
+              <div>startYear: {item.startYear}</div>
+              <div>endMonth: {item.endMonth}</div>
+              <div>endYear: {item.endYear}</div>
+              <div>aboutEducation: {item.aboutEducation}</div>
+              <Button onClick={() => openModal(item.id)} text="Изменить" />
+              <Button
+                onClick={() => deleteExperience(item.id)}
+                text="Удалить"
+                loading={!!loading}
+                disabled={!!loading}
+                color="error"
+              />
+            </div>
+          ))}
+          <Button
+            text="Добавить"
+            onClick={() => dispatch(changeEducationsModalIsOpen(true))}
+            variant="contained"
+            style={{ marginTop: 16, width: 120 }}
+          />
+          <Modal isOpen={isOpenModal} onClose={closeModal}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <UserEducationsInfoStage control={control} errors={errors} />
+              <Button
+                text="Сохранить"
+                type="submit"
+                loading={!!loading}
+                disabled={!!loading}
+                variant="contained"
+                style={{ marginTop: 16, width: 120 }}
+              />
+            </form>
+          </Modal>
+        </section>
+      )}
     </UserInfoProvider>
   );
 };

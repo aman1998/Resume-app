@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IContactsInfoStage } from '@components/Stages/ContactsInfoStage/types';
 import ContactsInfoStage from '@components/Stages/ContactsInfoStage';
+import UserContactsSceleton from '@components/Skeletons/UserContactSkeleton';
 
 import UserInfoProvider from '@common/providers/UserInfoProvider';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 import {
   updateUserInfoFetchingSelector,
+  userInfoFetchingSelector,
   userInfoSelector,
 } from '@modules/UserInfo/store/selectors';
 
@@ -20,6 +22,7 @@ import { contactsSchema } from './validations';
 
 const UserContactsInfo: FC = () => {
   const updateUserLoading = useSelector(updateUserInfoFetchingSelector);
+  const userInfoLoading = useSelector(userInfoFetchingSelector);
   const user = useSelector(userInfoSelector);
 
   const dispatch = useDispatch();
@@ -49,17 +52,21 @@ const UserContactsInfo: FC = () => {
 
   return (
     <UserInfoProvider title="Контакты">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <ContactsInfoStage control={control} errors={errors} />
-        <Button
-          type="submit"
-          text="Сохранить"
-          loading={updateUserLoading}
-          disabled={updateUserLoading}
-          variant="contained"
-          style={{ marginTop: 16, width: 120 }}
-        />
-      </form>
+      {userInfoLoading ? (
+        <UserContactsSceleton />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <ContactsInfoStage control={control} errors={errors} />
+          <Button
+            type="submit"
+            text="Сохранить"
+            loading={updateUserLoading}
+            disabled={updateUserLoading}
+            variant="contained"
+            style={{ marginTop: 16, width: 120 }}
+          />
+        </form>
+      )}
     </UserInfoProvider>
   );
 };
