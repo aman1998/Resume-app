@@ -8,6 +8,14 @@ export enum EEducationTypes {
   others = 'others',
 }
 
+export enum EEducationTypesRu {
+  higher = 'Высшее образование',
+  college = 'Колледж',
+  technical = 'Техникум',
+  courses = 'Курсы',
+  others = 'другое',
+}
+
 export interface IEducationsInfoStage {
   type: EEducationTypes;
   educationName: string;

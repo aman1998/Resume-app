@@ -6,7 +6,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import PersonalInfoStage from '@components/Stages/PersonalInfoStage';
 import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
-import UserPersonalSkeleton from '@components/Skeletons/UserPersonalSkeleton';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
@@ -18,6 +17,7 @@ import {
 
 import Button from '@UI/Button';
 
+import UserPersonalSkeleton from './components/Skeleton';
 import { userSchema } from './validations';
 
 const UserPersonalInfo: FC = () => {

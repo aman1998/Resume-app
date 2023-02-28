@@ -1,0 +1,47 @@
+.item {
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ededed;
+    &__name {
+        text-align: center;
+        margin-bottom: 2px;
+        font-size: 24px;
+        line-height: 26px;
+        color: #999;
+    }
+    &__type {
+        text-align: center;
+        margin-bottom: 8px;
+        font-size: 14px;
+        line-height: 16px;
+        font-style: italic;
+    }
+    &__faculty {
+        margin-bottom: 2px;
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+    &__date {
+        margin-bottom: 2px;
+        font-size: 14px;
+        line-height: 16px;
+        font-style: italic;
+    }
+    &__location {
+        margin-bottom: 16px;
+        font-size: 14px;
+        line-height: 16px;
+        font-style: italic;
+    }
+    &__about {
+        margin-bottom: 16px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+    &__skills {
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 4px;
+        margin-bottom: 16px;
+    }
+}

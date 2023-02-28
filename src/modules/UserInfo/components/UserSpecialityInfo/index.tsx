@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SpecialityInfoStage from '@components/Stages/SpecialityInfoStage';
 import { ECurrency, ISpecialityInfoStage } from '@components/Stages/SpecialityInfoStage/types';
-import UserSpecialitySkeleton from '@components/Skeletons/UserSpecialitySkeleton';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import {
@@ -17,6 +16,7 @@ import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 
 import Button from '@UI/Button';
 
+import UserSpecialitySkeleton from './components/Skeleton';
 import { specialitySchema } from './validations';
 
 const UserSpecialityInfo: FC = () => {

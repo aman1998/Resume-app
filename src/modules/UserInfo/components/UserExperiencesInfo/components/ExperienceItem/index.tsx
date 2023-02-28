@@ -42,9 +42,7 @@ const ExperienceItem: FC<IExperienceItemProps> = ({ item, reset }) => {
 
   return (
     <div className={styles.item}>
-      <div className={styles['item__company-name']}>
-        <span>{item.companyName}</span>
-      </div>
+      <div className={styles['item__company-name']}>{item.companyName}</div>
       <div className={styles['item__profession']}>{item.profession}</div>
       <div className={styles['item__date']}>
         {getIntervalDates(item.startMonth, item.startYear, item.endMonth, item.endYear)}

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IContactsInfoStage } from '@components/Stages/ContactsInfoStage/types';
 import ContactsInfoStage from '@components/Stages/ContactsInfoStage';
-import UserContactsSceleton from '@components/Skeletons/UserContactSkeleton';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
@@ -17,6 +16,7 @@ import {
 
 import Button from '@UI/Button';
 
+import UserContactsSceleton from './components/Skeleton';
 import { contactsSchema } from './validations';
 
 const UserContactsInfo: FC = () => {

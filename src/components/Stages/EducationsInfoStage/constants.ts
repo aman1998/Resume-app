@@ -1,24 +1,24 @@
-import { EEducationTypes } from './types';
+import { EEducationTypes, EEducationTypesRu } from './types';
 
 export const educationTypeOptions = [
   {
-    label: 'Высшее образование',
+    label: EEducationTypesRu.higher,
     value: EEducationTypes.higher,
   },
   {
-    label: 'Техникум',
+    label: EEducationTypesRu.technical,
     value: EEducationTypes.technical,
   },
   {
-    label: 'Колледж',
+    label: EEducationTypesRu.college,
     value: EEducationTypes.college,
   },
   {
-    label: 'Курсы',
+    label: EEducationTypesRu.courses,
     value: EEducationTypes.courses,
   },
   {
-    label: 'Другое',
+    label: EEducationTypesRu.others,
     value: EEducationTypes.others,
   },
 ];

@@ -26,6 +26,7 @@ import Button from '@UI/Button';
 
 import { experiencesSchema } from './validations';
 import ExperienceItem from './components/ExperienceItem';
+import UserExperienceSkeleton from './components/Skeleton';
 
 const UserExperiencesInfo: FC = () => {
   const isOpenModal = useSelector(experiencesModalIsOpenSelector);
@@ -57,22 +58,20 @@ const UserExperiencesInfo: FC = () => {
 
   const closeModal = () => {
     dispatch(changeExperiencesModalIsOpen(false));
-    reset();
+  };
+
+  const openModal = () => {
+    reset({});
+    dispatch(changeExperiencesModalIsOpen(true));
   };
 
   return (
     <UserInfoLayout
       title="Опыт работы"
-      getButton={() => (
-        <Button
-          text="Добавить"
-          variant="text"
-          onClick={() => dispatch(changeExperiencesModalIsOpen(true))}
-        />
-      )}
+      getButton={() => <Button text="Добавить" variant="text" onClick={openModal} />}
     >
       {userInfoLoading ? (
-        <Skeleton variant="rectangular" width="100%" height="80vh" />
+        <UserExperienceSkeleton />
       ) : (
         <section>
           {[...experiences]

@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { getIntervalDates } from '@common/constants/date';
+
 import {
   changeEducationsModalIsOpen,
   updateUserInfoFetching,
@@ -12,7 +14,11 @@ import {
 
 import Button from '@UI/Button';
 
+import { getEducationType } from '@utils/resumeUtils';
+
 import { IEducationItemProps } from '../types';
+
+import styles from './item.module.scss';
 
 const EducationItem: FC<IEducationItemProps> = ({ item, reset }) => {
   const educations = useSelector(educationsInfoSelector) || [];
@@ -36,23 +42,17 @@ const EducationItem: FC<IEducationItemProps> = ({ item, reset }) => {
   };
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        flexDirection: 'column',
-        gridGap: '10px',
-        border: '1px solid black',
-      }}
-    >
-      <div>type: {item.type}</div>
-      <div>educationName: {item.educationName}</div>
-      <div>faculty: {item.faculty}</div>
-      <div>educationLocation: {item.educationLocation}</div>
-      <div>startMonth: {item.startMonth}</div>
-      <div>startYear: {item.startYear}</div>
-      <div>endMonth: {item.endMonth}</div>
-      <div>endYear: {item.endYear}</div>
-      <div>aboutEducation: {item.aboutEducation}</div>
+    <div className={styles.item}>
+      <div className={styles['item__name']}>{item.educationName}</div>
+      <div className={styles['item__type']}>{getEducationType(item.type)}</div>
+      <div className={styles['item__faculty']}>{item.faculty}</div>
+      <div className={styles['item__date']}>
+        {getIntervalDates(item.startMonth, item.startYear, item.endMonth, item.endYear)}
+      </div>
+      <div className={styles['item__location']}>
+        Местоположение: <span>{item.educationLocation}</span>
+      </div>
+      <div className={styles['item__about']}>{item.aboutEducation}</div>
       <Button onClick={() => openModal(item.id)} text="Изменить" />
       <Button
         onClick={() => deleteEducation(item.id)}

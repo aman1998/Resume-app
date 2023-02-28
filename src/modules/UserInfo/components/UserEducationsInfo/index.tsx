@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Skeleton from '@mui/material/Skeleton';
 
 import Modal from '@components/Modal';
 import { IEducationsInfoStage } from '@components/Stages/EducationsInfoStage/types';
@@ -24,7 +23,9 @@ import {
 
 import Button from '@UI/Button';
 
+import UserEducationSkeleton from './components/Skeleton';
 import { educationsSchema } from './validations';
+import EducationItem from './components/EducationItem';
 
 const UserEducationsInfo: FC = () => {
   const isOpenModal = useSelector(educationsModalIsOpenSelector);
@@ -54,69 +55,36 @@ const UserEducationsInfo: FC = () => {
     );
   };
 
-  const deleteExperience = (id: string) => {
-    const newEducations = educations.filter((item) => item.id !== id);
-    dispatch(
-      updateUserInfoFetching({
-        educations: [...newEducations],
-      })
-    );
+  const closeModal = () => {
+    dispatch(changeEducationsModalIsOpen(false));
   };
 
-  const openModal = (id: string) => {
-    const experienceInfo = educations.find((item) => item.id === id);
-    reset({ ...experienceInfo });
+  const openModal = () => {
+    reset({});
     dispatch(changeEducationsModalIsOpen(true));
   };
 
-  const closeModal = () => {
-    dispatch(changeEducationsModalIsOpen(false));
-    reset();
-  };
-
   return (
-    <UserInfoLayout title="Образование">
+    <UserInfoLayout
+      title="Образование"
+      getButton={() => (
+        <Button
+          text="Добавить"
+          onClick={openModal}
+          variant="contained"
+          style={{ marginTop: 16, width: 120 }}
+        />
+      )}
+    >
       {userInfoLoading ? (
-        <Skeleton variant="rectangular" width="100%" height="80vh" />
+        <UserEducationSkeleton />
       ) : (
         <section>
           {[...educations]
             .sort((a, b) => Number(b.startYear) - Number(a.startYear))
             .map((item) => (
-              <div
-                key={item.id}
-                style={{
-                  display: 'grid',
-                  flexDirection: 'column',
-                  gridGap: '10px',
-                  border: '1px solid black',
-                }}
-              >
-                <div>type: {item.type}</div>
-                <div>educationName: {item.educationName}</div>
-                <div>faculty: {item.faculty}</div>
-                <div>educationLocation: {item.educationLocation}</div>
-                <div>startMonth: {item.startMonth}</div>
-                <div>startYear: {item.startYear}</div>
-                <div>endMonth: {item.endMonth}</div>
-                <div>endYear: {item.endYear}</div>
-                <div>aboutEducation: {item.aboutEducation}</div>
-                <Button onClick={() => openModal(item.id)} text="Изменить" />
-                <Button
-                  onClick={() => deleteExperience(item.id)}
-                  text="Удалить"
-                  loading={!!loading}
-                  disabled={!!loading}
-                  color="error"
-                />
-              </div>
+              <EducationItem key={item.id} item={item} reset={reset} />
             ))}
-          <Button
-            text="Добавить"
-            onClick={() => dispatch(changeEducationsModalIsOpen(true))}
-            variant="contained"
-            style={{ marginTop: 16, width: 120 }}
-          />
           <Modal isOpen={isOpenModal} onClose={closeModal}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <UserEducationsInfoStage control={control} errors={errors} />
