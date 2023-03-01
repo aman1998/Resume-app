@@ -4,7 +4,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Modal from '@components/Modal';
-import { IEducationsInfoStage } from '@components/Stages/EducationsInfoStage/types';
+import {
+  EEducationTypes,
+  IEducationsInfoStage,
+} from '@components/Stages/EducationsInfoStage/types';
 import UserEducationsInfoStage from '@components/Stages/EducationsInfoStage';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
@@ -60,7 +63,7 @@ const UserEducationsInfo: FC = () => {
   };
 
   const openModal = () => {
-    reset({});
+    reset({ type: EEducationTypes.higher });
     dispatch(changeEducationsModalIsOpen(true));
   };
 

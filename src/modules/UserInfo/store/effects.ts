@@ -24,6 +24,8 @@ import {
   closeAllModal,
 } from '@modules/UserInfo/store/reducers';
 
+import { showNotification, ENotificationType } from '@utils/notifications';
+
 import { authInfoSelector, userInfoSelector } from './selectors';
 
 const getAuthChannel = () => {
@@ -50,12 +52,14 @@ function* authInfo() {
     } else {
       if (router.pathname !== '/') {
         router.push('/');
+        showNotification(ENotificationType.error, 'Не удалось войти в аккаунт');
       }
       put(resetUserInfo());
     }
   } catch (error) {
     if (router.pathname !== '/') {
       router.push('/');
+      showNotification(ENotificationType.error, 'Не удалось войти в аккаунт');
     }
     yield put(authInfoFailure(String(error)));
   }
@@ -86,6 +90,7 @@ function* updateUserInfo(action: IPayloadAction<IPersonalInfoStage>) {
 
     const userRef = doc(database, 'users', id);
     yield setDoc(userRef, { id, ...action.payload }, { merge: true });
+    showNotification(ENotificationType.success, 'Данные обновлены!');
     yield put(updateUserSuccess({ id, text: 'success' }));
     yield put(userInfoSuccess({ ...user, ...action.payload }));
     yield put(closeAllModal());

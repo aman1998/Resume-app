@@ -12,8 +12,8 @@ import styles from './educations.module.scss';
 
 const UserEducationsInfoStage: FC<TEducationsInfoStageProps> = ({ control, errors }) => (
   <div className={styles.educations}>
-    <h1 className={styles['educations__title']}>Опыт работы</h1>
-    <div className={styles['educations__label']}>Тип образования</div>
+    <h1 className={styles['educations__title']}>Образование</h1>
+    <div className={styles['educations__label']}>Тип</div>
     <SelectControl
       control={control}
       name="type"
@@ -41,7 +41,7 @@ const UserEducationsInfoStage: FC<TEducationsInfoStageProps> = ({ control, error
       placeholder="Местоположение"
       labelText="Местоположение"
     />
-    <div className={styles['educations__label']}>Начало работы</div>
+    <div className={styles['educations__label']}>Начало учебы</div>
     <div className={styles['educations__dates']}>
       <SelectControl
         control={control}

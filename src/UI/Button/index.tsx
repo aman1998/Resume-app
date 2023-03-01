@@ -7,9 +7,9 @@ import { IButton } from './types';
 
 const Button: FC<IButton> = ({ text, loading = false, ...props }) => (
   <MUIButton className={styles.button} {...props}>
-    {loading && (
+    {/* {loading && (
       <CircularProgress className={styles['button__circular-progress']} color="inherit" />
-    )}
+    )} */}
     <span>{text}</span>
   </MUIButton>
 );

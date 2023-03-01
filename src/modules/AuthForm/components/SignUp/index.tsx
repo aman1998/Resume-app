@@ -17,6 +17,8 @@ import {
 
 import Button from '@UI/Button';
 
+import { ENotificationType, showNotification } from '@utils/notifications';
+
 import { changeAuthModalIsOpen } from '../../store/reducers';
 
 import { ISignUp } from './types';
@@ -50,6 +52,9 @@ const SignUp: FC = () => {
         dispatch(updateUserInfoFetching({}));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
+        showNotification(ENotificationType.success, 'Вы успешно вошли!');
+      } else {
+        showNotification(ENotificationType.error, 'Произошла ошибка!');
       }
     } finally {
       setLoading(false);

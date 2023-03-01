@@ -13,16 +13,20 @@ import { changeIsAuth, authInfoSuccess } from '@modules/UserInfo/store/reducers'
 
 import Button from '@UI/Button';
 
+import { ENotificationType, showNotification } from '@utils/notifications';
+
 import { changeAuthModalIsOpen } from '../../store/reducers';
 
 import { TSignIn } from './types';
 import { signInSchema } from './validations';
 import styles from './styles.module.scss';
 
+// need remove to saga in future and delete react-firebase-hooks
+
 const SignIn: FC = () => {
   const [loading, setLoading] = useState(false);
 
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, error] = useSignInWithEmailAndPassword(auth);
 
   const dispatch = useDispatch();
   const { push } = useRouter();
@@ -45,7 +49,12 @@ const SignIn: FC = () => {
         dispatch(authInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
+        showNotification(ENotificationType.success, 'Вы успешно вошли!');
+      } else {
+        showNotification(ENotificationType.error, 'Неверные данные!');
       }
+    } catch (e) {
+      console.error('error ->', e);
     } finally {
       setLoading(false);
     }
