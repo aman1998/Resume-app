@@ -13,4 +13,6 @@ export interface IPersonalInfoStage {
   file: TNullable<File>;
 }
 
-export type TPersonalInfoProps = IStage<IPersonalInfoStage>;
+export type TPersonalInfoProps = {
+  handleResetFile: () => void;
+} & IStage<IPersonalInfoStage>;

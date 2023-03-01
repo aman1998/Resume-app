@@ -10,7 +10,12 @@ import { TInputFileControlProps } from './type';
 import styles from './file.module.scss';
 import { formatText, sizeText } from './constants';
 
-const InputFileControl: FC<TInputFileControlProps> = ({ control, name = '', errorMessage }) => {
+const InputFileControl: FC<TInputFileControlProps> = ({
+  control,
+  name = '',
+  errorMessage,
+  handleResetFile,
+}) => {
   const uploadInputRef = useRef<HTMLInputElement>(null);
 
   const [fileURL, setFileURL] = useState('');
@@ -29,6 +34,7 @@ const InputFileControl: FC<TInputFileControlProps> = ({ control, name = '', erro
   function deleteHandler() {
     URL.revokeObjectURL(fileURL);
     setFileURL('');
+    handleResetFile();
   }
 
   return (

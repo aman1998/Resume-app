@@ -46,9 +46,10 @@ const SignUp: FC = () => {
       const data = await createUserWithEmailAndPassword(email, password);
       if (data) {
         dispatch(changeIsAuth(true));
+        dispatch(authInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
+        dispatch(updateUserInfoFetching({}));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
-        dispatch(authInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
       }
     } finally {
       setLoading(false);

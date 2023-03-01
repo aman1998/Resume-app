@@ -8,7 +8,7 @@ import { auth } from 'firebase-config';
 
 import Logo from '@components/Logo';
 
-import { authInfoFailureSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
+import { authInfoFetchingSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
 import { resetUserInfo } from '@modules/UserInfo/store/reducers';
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
 
@@ -29,7 +29,7 @@ const Header: FC = () => {
   };
 
   const isAuth = useSelector(isAuthSelector);
-  const authError = useSelector(authInfoFailureSelector);
+  const loading = useSelector(authInfoFetchingSelector);
 
   const [signOut] = useSignOut(auth);
 
@@ -38,9 +38,10 @@ const Header: FC = () => {
 
   const logout = async () => {
     await signOut();
-    setAnchorEl(null);
-    dispatch(resetUserInfo());
-    push('/');
+    push('/').finally(() => {
+      setAnchorEl(null);
+      dispatch(resetUserInfo());
+    });
   };
 
   const goToProfile = () => {
@@ -82,7 +83,7 @@ const Header: FC = () => {
             </Menu>
           </>
         )}
-        {!!authError && <Button text="Войти" variant="outlined" onClick={handleAddClick} />}
+        {!isAuth && !loading && <Button text="Войти" variant="outlined" onClick={handleAddClick} />}
       </div>
     </header>
   );

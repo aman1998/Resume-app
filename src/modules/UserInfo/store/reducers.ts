@@ -11,7 +11,7 @@ import {
 } from '@modules/UserInfo/store/types';
 
 const initialState: IUserState = {
-  authInfo: defaultState,
+  authInfo: { ...defaultState, fetching: true }, // probably need refactoring
   isAuth: false,
   userInfo: defaultState,
   updateUserInfo: defaultState,

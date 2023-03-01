@@ -18,6 +18,6 @@ export const experiencesSchema = Yup.object().shape({
       message: 'Не больше 10 скиллов',
       test: (arr) => arr && arr.length <= 10,
     }),
-  endMonth: Yup.string(),
-  endYear: Yup.string(),
+  endMonth: Yup.string().nullable(),
+  endYear: Yup.string().nullable(),
 });

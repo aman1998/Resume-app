@@ -1,12 +1,12 @@
 import { FC, ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { authInfoFetchingSelector } from '@modules/UserInfo/store/selectors';
+import { authInfoFetchingSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
 
 const PrivateProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const loading = useSelector(authInfoFetchingSelector);
+  const isAuth = useSelector(isAuthSelector);
 
-  return <>{!loading && children}</>;
+  return <>{isAuth && children}</>;
 };
 
 export default PrivateProvider;

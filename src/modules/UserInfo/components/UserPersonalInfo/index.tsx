@@ -34,25 +34,32 @@ const UserPersonalInfo: FC = () => {
     control,
     reset,
     formState: { errors },
+    getValues,
+    setValue,
   } = useForm<IPersonalInfoStage>({
     mode: 'onChange',
     resolver: yupResolver(userSchema),
   });
   useEffect(() => {
     reset({
-      firstname: user?.personal.firstname,
-      lastname: user?.personal.lastname,
-      surname: user?.personal.surname,
-      gender: user?.personal.gender || 'male',
-      birthday: user?.personal.birthday,
-      location: user?.personal.location,
-      aboutme: user?.personal.aboutme,
-      photoUrl: user?.personal.photoUrl || '',
+      firstname: user?.personal?.firstname,
+      lastname: user?.personal?.lastname,
+      surname: user?.personal?.surname,
+      gender: user?.personal?.gender || 'male',
+      birthday: user?.personal?.birthday,
+      location: user?.personal?.location,
+      aboutme: user?.personal?.aboutme,
+      photoUrl: user?.personal?.photoUrl || '',
     });
   }, [user, reset]);
 
+  const handleResetFile = () => {
+    setValue('file', null);
+    setValue('photoUrl', '');
+  };
+
   const onSubmit = async (values: IPersonalInfoStage) => {
-    // need move to saga effects
+    // need move to saga effects in future
     const { file, ...others } = values;
     if (file) {
       setLoading(true);
@@ -73,10 +80,11 @@ const UserPersonalInfo: FC = () => {
         <UserPersonalSkeleton />
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <PersonalInfoStage control={control} errors={errors} />
+          <PersonalInfoStage control={control} errors={errors} handleResetFile={handleResetFile} />
           <Button
             type="submit"
             text="Сохранить"
+            disabled={updateUserLoading || loading}
             loading={updateUserLoading || loading}
             variant="contained"
             style={{ marginTop: 16, width: 120 }}

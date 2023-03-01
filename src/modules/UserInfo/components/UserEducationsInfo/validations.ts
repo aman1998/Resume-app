@@ -8,6 +8,6 @@ export const educationsSchema = Yup.object().shape({
   type: Yup.string().required('Это поле обязательно'),
   startMonth: Yup.string().required('Это поле обязательно'),
   startYear: Yup.string().required('Это поле обязательно'),
-  endMonth: Yup.string(),
-  endYear: Yup.string(),
+  endMonth: Yup.string().nullable(),
+  endYear: Yup.string().nullable(),
 });

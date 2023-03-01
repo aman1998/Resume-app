@@ -1,7 +1,6 @@
-import { FC, useEffect, useLayoutEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import { Roboto } from '@next/font/google';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { useDispatch } from 'react-redux';
 
@@ -30,7 +29,7 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
 
   const dispatch = useDispatch();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(authInfoFetching());
   }, [dispatch]);
 

@@ -42,9 +42,9 @@ const SignIn: FC = () => {
       const data = await signInWithEmailAndPassword(email, password);
       if (data) {
         dispatch(changeIsAuth(true));
+        dispatch(authInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
-        dispatch(authInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
       }
     } finally {
       setLoading(false);

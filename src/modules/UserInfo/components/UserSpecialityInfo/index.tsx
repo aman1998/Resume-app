@@ -43,12 +43,12 @@ const UserSpecialityInfo: FC = () => {
 
   useEffect(() => {
     reset({
-      profession: user?.speciality.profession,
-      salary: user?.speciality.salary,
-      salaryСurrency: user?.speciality.salaryСurrency || ECurrency.dollar,
-      relocatioReady: !!user?.speciality.relocatioReady,
-      remoteWorkingReady: !!user?.speciality.remoteWorkingReady,
-      skills: user?.speciality.skills,
+      profession: user?.speciality?.profession,
+      salary: user?.speciality?.salary,
+      salaryСurrency: user?.speciality?.salaryСurrency || ECurrency.dollar,
+      relocatioReady: !!user?.speciality?.relocatioReady,
+      remoteWorkingReady: !!user?.speciality?.remoteWorkingReady,
+      skills: user?.speciality?.skills || [],
     });
   }, [user, reset]);
 
