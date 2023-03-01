@@ -96,6 +96,7 @@ function* updateUserInfo(action: IPayloadAction<IPersonalInfoStage>) {
     yield put(closeAllModal());
   } catch (e) {
     yield put(updateUserFailure(e));
+    showNotification(ENotificationType.error, 'Произошла ошибка, повторите снова');
   }
 }
 
