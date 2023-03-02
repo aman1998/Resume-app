@@ -6,7 +6,7 @@ import { createEmotionCache } from '@utils/createEmotionCashe';
 const MyDocument = ({ emotionStyleTags }: { emotionStyleTags: JSX.Element }): JSX.Element => (
   <Html lang="en">
     <Head>
-      <link rel="icon" href="data:." />
+      {/* <link rel="icon" href="data:." /> */}
       {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
