@@ -67,7 +67,7 @@ const Header: FC = () => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+              <Avatar sx={{ width: 32, height: 32 }}>R</Avatar>
             </IconButton>
             <Menu
               id="basic-menu"

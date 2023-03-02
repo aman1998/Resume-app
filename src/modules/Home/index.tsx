@@ -12,7 +12,6 @@ import Steps from './components/Steps';
 const Home: FC = () => (
   <>
     <div className="container" style={{ marginTop: 48 }}>
-      <Seo seoTitle="Резюме. Бесплатные шаблоны на любой вкус" />
       <HomeHeader />
       <Steps />
       <Templates />

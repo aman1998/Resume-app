@@ -1,4 +1,4 @@
-export const sitename = 'Resume';
+export const sitename = 'Resumenator';
 
 export const authPages = [
   '/profile/personal',

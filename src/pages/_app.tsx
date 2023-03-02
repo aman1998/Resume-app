@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { wrapper } from 'src/rootStore/index';
 
 import Header from '@components/Header';
+import Seo from '@components/SEO';
 
 import PrivateProvider from '@common/providers/PrivateProvider';
 import '@common/styles/main.scss';
@@ -40,6 +41,7 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
         {/* провайдер темы */}
         <MaterialUIProvider>
           <div>
+            <Seo seoTitle="Резюме. Бесплатные шаблоны на любой вкус" />
             <Header />
             <main className="main">
               {authPages.includes(pathname) ? (
