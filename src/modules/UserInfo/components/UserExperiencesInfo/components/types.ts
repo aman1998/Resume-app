@@ -1,4 +1,4 @@
-import { IExperiencesInfoStage } from '@components/Stages/ExperiencesStage/types';
+import { IExperiencesInfoStage } from '@components/stages/ExperiencesStage/types';
 
 export interface IExperienceItemProps {
   reset: (val: object) => void;

@@ -1,10 +1,10 @@
 import { TRequestHandler } from 'src/rootStore/types';
 
-import { IContactsInfoStage } from '@components/Stages/ContactsInfoStage/types';
-import { ISpecialityInfoStage } from '@components/Stages/SpecialityInfoStage/types';
-import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
-import { IExperiencesInfoStage } from '@components/Stages/ExperiencesStage/types';
-import { IEducationsInfoStage } from '@components/Stages/EducationsInfoStage/types';
+import { IContactsInfoStage } from '@components/stages/ContactsInfoStage/types';
+import { ISpecialityInfoStage } from '@components/stages/SpecialityInfoStage/types';
+import { IPersonalInfoStage } from '@components/stages/PersonalInfoStage/types';
+import { IExperiencesInfoStage } from '@components/stages/ExperiencesStage/types';
+import { IEducationsInfoStage } from '@components/stages/EducationsInfoStage/types';
 
 export interface IUserInfoDefaultData {
   id: string;

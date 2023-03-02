@@ -56,6 +56,6 @@ export const getIntervalDates = (
   endMonth?: string,
   endYear?: string
 ): string => {
-  if (!endMonth || !endYear) return `${startMonth} ${startYear} - по настоящему времени`;
+  if (!endMonth || !endYear) return `${startMonth} ${startYear} - н.в.`;
   return `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
 };

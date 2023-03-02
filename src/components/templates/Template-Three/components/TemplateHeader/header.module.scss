@@ -1,0 +1,28 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #000;
+    &__fullname {
+        margin-bottom: 2px;
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+    &__profession {
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 700;
+        font-style: italic;
+    }
+    &__email {
+        margin-bottom: 2px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+    &__location {
+        font-size: 14px;
+        line-height: 16px;
+    }
+}

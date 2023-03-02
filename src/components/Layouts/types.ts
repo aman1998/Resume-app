@@ -2,6 +2,6 @@ import { ReactNode } from 'react';
 
 export interface ILayoutProps {
   children: ReactNode;
-  title: string;
+  title?: string;
   getButton?: () => JSX.Element;
 }

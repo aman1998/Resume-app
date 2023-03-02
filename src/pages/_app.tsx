@@ -36,12 +36,12 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
 
   return (
     <>
+      <Seo seoTitle="Резюме. Бесплатные шаблоны на любой вкус" />
       {/* провайдер кэша */}
       <CacheProvider value={emotionCache}>
         {/* провайдер темы */}
         <MaterialUIProvider>
           <div>
-            <Seo seoTitle="Резюме. Бесплатные шаблоны на любой вкус" />
             <Header />
             <main className="main">
               {authPages.includes(pathname) ? (

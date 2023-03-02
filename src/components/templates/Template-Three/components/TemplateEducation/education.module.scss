@@ -1,0 +1,29 @@
+.education {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #d7d3d3;
+    &__infos {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+    &__title {
+        margin-right: 64px;
+        width: 150px;
+        font-weight: 700;
+    }
+    &__name, &__faculty {
+        font-weight: 700;
+    }
+    &__location, &__years {
+        font-size: 14px;
+        line-height: 16px;
+        font-style: italic;
+    }
+}

@@ -3,8 +3,8 @@ import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IContactsInfoStage } from '@components/Stages/ContactsInfoStage/types';
-import ContactsInfoStage from '@components/Stages/ContactsInfoStage';
+import { IContactsInfoStage } from '@components/stages/ContactsInfoStage/types';
+import ContactsInfoStage from '@components/stages/ContactsInfoStage';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';

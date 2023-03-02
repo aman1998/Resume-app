@@ -7,7 +7,8 @@
         z-index: 99;
     }
     &__content {
-        left: 216px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 12px;
         max-width: 800px;
         background: #ffffff;

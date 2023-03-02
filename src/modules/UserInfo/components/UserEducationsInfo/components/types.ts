@@ -1,4 +1,4 @@
-import { IEducationsInfoStage } from '@components/Stages/EducationsInfoStage/types';
+import { IEducationsInfoStage } from '@components/stages/EducationsInfoStage/types';
 
 export interface IEducationItemProps {
   reset: (val: object) => void;

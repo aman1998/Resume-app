@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Skeleton } from '@mui/material';
 
-import UserExperiencesStage from '@components/Stages/ExperiencesStage';
+import UserExperiencesStage from '@components/stages/ExperiencesStage';
 import Modal from '@components/Modal';
-import { IExperiencesInfoStage } from '@components/Stages/ExperiencesStage/types';
+import { IExperiencesInfoStage } from '@components/stages/ExperiencesStage/types';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { generateUUID } from '@common/constants/date';

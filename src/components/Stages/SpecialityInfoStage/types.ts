@@ -1,6 +1,6 @@
 import { ISkills } from '@common/types/controlTypes';
 
-import { IStage } from './../types';
+import { IStage } from '../types';
 
 export enum ECurrency {
   dollar = 'dollar',

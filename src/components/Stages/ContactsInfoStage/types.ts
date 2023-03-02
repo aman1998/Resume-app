@@ -1,4 +1,4 @@
-import { IStage } from './../types';
+import { IStage } from '../types';
 export interface IContactsInfoStage {
   email: string;
   phone: string;

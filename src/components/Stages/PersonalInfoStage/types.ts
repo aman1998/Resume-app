@@ -1,5 +1,6 @@
-import { TNullable } from './../../../rootStore/types';
-import { IStage } from './../types';
+import { TNullable } from '../../../rootStore/types';
+
+import { IStage } from '../types';
 
 export interface IPersonalInfoStage {
   firstname: string;

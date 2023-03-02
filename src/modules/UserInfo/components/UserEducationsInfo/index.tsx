@@ -7,8 +7,8 @@ import Modal from '@components/Modal';
 import {
   EEducationTypes,
   IEducationsInfoStage,
-} from '@components/Stages/EducationsInfoStage/types';
-import UserEducationsInfoStage from '@components/Stages/EducationsInfoStage';
+} from '@components/stages/EducationsInfoStage/types';
+import UserEducationsInfoStage from '@components/stages/EducationsInfoStage';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { generateUUID } from '@common/constants/date';
@@ -71,12 +71,7 @@ const UserEducationsInfo: FC = () => {
     <UserInfoLayout
       title="Образование"
       getButton={() => (
-        <Button
-          text="Добавить"
-          onClick={openModal}
-          variant="contained"
-          style={{ marginTop: 16, width: 120 }}
-        />
+        <Button text="Добавить" onClick={openModal} style={{ marginTop: 16, width: 120 }} />
       )}
     >
       {userInfoLoading ? (

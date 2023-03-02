@@ -28,10 +28,12 @@ const UserInfoLayout: FC<ILayoutProps> = ({ children, title, getButton }) => {
         <Navigation />
       </aside>
       <div className={styles['layout__content']}>
-        <div className={styles['layout__header']}>
-          <div className={styles['layout__title']}>{title}</div>
-          {!!getButton && getButton()}
-        </div>
+        {title && (
+          <div className={styles['layout__header']}>
+            <div className={styles['layout__title']}>{title}</div>
+            {!!getButton && getButton()}
+          </div>
+        )}
         <div>{children}</div>
       </div>
     </div>

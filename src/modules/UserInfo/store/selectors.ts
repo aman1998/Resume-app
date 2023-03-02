@@ -54,6 +54,16 @@ export const educationsInfoSelector = createSelector(
   (state: IUserState) => state.userInfo.data?.educations
 );
 
+export const specialityInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.userInfo.data?.speciality
+);
+
+export const contactsInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.userInfo.data?.contacts
+);
+
 export const updateUserInfoFetchingSelector = createSelector(
   selectState,
   (state: IUserState) => state.updateUserInfo.fetching

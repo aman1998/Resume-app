@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-import PersonalInfoStage from '@components/Stages/PersonalInfoStage';
-import { IPersonalInfoStage } from '@components/Stages/PersonalInfoStage/types';
+import PersonalInfoStage from '@components/stages/PersonalInfoStage';
+import { IPersonalInfoStage } from '@components/stages/PersonalInfoStage/types';
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
