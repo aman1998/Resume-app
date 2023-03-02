@@ -10,6 +10,7 @@ export interface IPersonalInfoStage {
   birthday: string;
   location: string;
   aboutme: string;
+  nationality: string;
   photoUrl?: string;
   file: TNullable<File>;
 }

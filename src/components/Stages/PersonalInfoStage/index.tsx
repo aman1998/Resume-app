@@ -45,8 +45,29 @@ const PersonalInfoStage: FC<TPersonalInfoProps> = ({ control, errors, handleRese
       errorMessage={errors?.birthday?.message}
       InputLabelProps={{ shrink: true }}
     />
-    <TextFieldControl labelText="Местоположение" control={control} name="location" />
-    <TextFieldControl labelText="Про себя" control={control} name="aboutme" multiline rows={4} />
+    <TextFieldControl
+      labelText="Гражданство"
+      control={control}
+      name="nationality"
+      errorMessage={errors?.nationality?.message}
+      placeholder="Гражданство"
+    />
+    <TextFieldControl
+      labelText="Местоположение"
+      placeholder="Местоположение"
+      control={control}
+      errorMessage={errors?.location?.message}
+      name="location"
+    />
+    <TextFieldControl
+      labelText="Про себя"
+      placeholder="Про себя"
+      control={control}
+      errorMessage={errors?.aboutme?.message}
+      name="aboutme"
+      multiline
+      rows={4}
+    />
   </div>
 );
 

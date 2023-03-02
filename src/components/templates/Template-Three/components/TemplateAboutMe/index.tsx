@@ -3,19 +3,12 @@ import { useSelector } from 'react-redux';
 
 import { userInfoSelector } from '@modules/UserInfo/store/selectors';
 
-import styles from './about.module.scss';
+import TemplateSimple from '../TemplateSimple';
 
 const TemplateAboutMe: FC = () => {
   const user = useSelector(userInfoSelector);
 
-  if (!user?.personal.aboutme) return <></>;
-
-  return (
-    <div className={styles.about}>
-      <div className={styles['about__title']}>Про себя</div>
-      <div className={styles['about__text']}>{user?.personal.aboutme}</div>
-    </div>
-  );
+  return <TemplateSimple title="Про себя" text={user?.personal?.aboutme || 'Не указано'} />;
 };
 
 export default TemplateAboutMe;

@@ -2,9 +2,8 @@ import { FC } from 'react';
 
 import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
-import TextListControl from '@components/TextListControl';
 
-import { monthSelectOptions, yearsSelectOptions } from '@common/constants/date';
+import { yearsSelectOptions } from '@common/constants/date';
 
 import { TEducationsInfoStageProps } from './types';
 import { educationTypeOptions } from './constants';
@@ -41,30 +40,14 @@ const UserEducationsInfoStage: FC<TEducationsInfoStageProps> = ({ control, error
       placeholder="Местоположение"
       labelText="Местоположение"
     />
-    <div className={styles['educations__label']}>Начало учебы</div>
+    <div className={styles['educations__label']}>Годы обучения</div>
     <div className={styles['educations__dates']}>
-      <SelectControl
-        control={control}
-        name="startMonth"
-        options={monthSelectOptions}
-        className={styles['educations__select']}
-        errorMessage={errors?.startMonth?.message}
-      />
       <SelectControl
         control={control}
         name="startYear"
         options={yearsSelectOptions}
         className={styles['educations__select']}
         errorMessage={errors?.startYear?.message}
-      />
-    </div>
-    <div className={styles['educations__label']}>Окончание</div>
-    <div className={styles['educations__dates']}>
-      <SelectControl
-        control={control}
-        name="endMonth"
-        options={monthSelectOptions}
-        className={styles['educations__select']}
       />
       <SelectControl
         control={control}
@@ -73,6 +56,7 @@ const UserEducationsInfoStage: FC<TEducationsInfoStageProps> = ({ control, error
         className={styles['educations__select']}
       />
     </div>
+    <div className={styles['educations__dates']}></div>
     <TextFieldControl
       multiline={true}
       rows={4}

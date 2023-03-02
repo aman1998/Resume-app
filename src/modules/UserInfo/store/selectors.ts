@@ -44,6 +44,11 @@ export const userInfoSelector = createSelector(
   (state: IUserState) => state.userInfo.data
 );
 
+export const personalInfoSelector = createSelector(
+  selectState,
+  (state: IUserState) => state.userInfo.data?.personal
+);
+
 export const experiencesInfoSelector = createSelector(
   selectState,
   (state: IUserState) => state.userInfo.data?.experiences

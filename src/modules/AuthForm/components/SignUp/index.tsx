@@ -52,7 +52,7 @@ const SignUp: FC = () => {
         dispatch(updateUserInfoFetching({}));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
-        showNotification(ENotificationType.success, 'Вы успешно вошли!');
+        showNotification(ENotificationType.success, 'Вы успешно вошли в аккаунт!');
       } else {
         showNotification(ENotificationType.error, 'Произошла ошибка!');
       }

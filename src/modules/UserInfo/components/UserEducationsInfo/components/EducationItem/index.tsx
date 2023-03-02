@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getIntervalDates } from '@common/constants/date';
+import { getIntervalYears } from '@common/constants/date';
 
 import {
   changeEducationsModalIsOpen,
@@ -46,9 +46,7 @@ const EducationItem: FC<IEducationItemProps> = ({ item, reset }) => {
       <div className={styles['item__name']}>{item.educationName}</div>
       <div className={styles['item__type']}>{getEducationType(item.type)}</div>
       <div className={styles['item__faculty']}>{item.faculty}</div>
-      <div className={styles['item__date']}>
-        {getIntervalDates(item.startMonth, item.startYear, item.endMonth, item.endYear)}
-      </div>
+      <div className={styles['item__date']}>{getIntervalYears(item.startYear, item.endYear)}</div>
       <div className={styles['item__location']}>
         Местоположение: <span>{item.educationLocation}</span>
       </div>

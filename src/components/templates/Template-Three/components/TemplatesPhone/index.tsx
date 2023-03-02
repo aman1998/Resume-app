@@ -8,9 +8,7 @@ import TemplateSimple from '../TemplateSimple';
 const TemplatePhone: FC = () => {
   const info = useSelector(contactsInfoSelector);
 
-  if (!info?.phone) return <></>;
-
-  return <TemplateSimple title="Телефон" text={info.phone} />;
+  return <TemplateSimple title="Телефон" text={info?.phone || 'Не указано'} />;
 };
 
 export default TemplatePhone;

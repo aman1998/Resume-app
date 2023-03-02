@@ -15,15 +15,15 @@
     }
     &__title {
         margin-right: 64px;
+        font-size: 16px;
+        line-height: 18px;
         width: 150px;
         font-weight: 700;
     }
     &__name, &__faculty {
         font-weight: 700;
     }
-    &__location, &__years, &__profession, &__about {
-        font-size: 14px;
-        line-height: 16px;
+    &__location, &__years, &__profession {
         font-style: italic;
     }
     &__years {

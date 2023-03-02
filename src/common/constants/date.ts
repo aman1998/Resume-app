@@ -59,3 +59,8 @@ export const getIntervalDates = (
   if (!endMonth || !endYear) return `${startMonth} ${startYear} - н.в.`;
   return `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
 };
+
+export const getIntervalYears = (startYear: string, endYear?: string): string => {
+  if (!endYear) return `${startYear} - н.в.`;
+  return `${startYear} - ${endYear}`;
+};

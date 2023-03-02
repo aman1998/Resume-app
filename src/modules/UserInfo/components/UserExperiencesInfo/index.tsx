@@ -88,7 +88,7 @@ const UserExperiencesInfo: FC = () => {
                 loading={!!loading}
                 disabled={!!loading}
                 variant="contained"
-                style={{ marginTop: 16, width: 120 }}
+                style={{ marginTop: 16, width: 'max-content' }}
               />
             </form>
           </Modal>

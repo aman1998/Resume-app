@@ -17,7 +17,7 @@ export const getEducationType = (type: string): EEducationTypesRu => {
   }
 };
 
-export const getGenderType = (type: string): string => {
+export const getGenderType = (type: string | undefined): string => {
   switch (type) {
     case 'male':
       return 'Мужской';
@@ -39,4 +39,9 @@ export const getSalaryType = (type: ECurrency): string => {
     default:
       return '';
   }
+};
+
+export const getFullName = (lastname?: string, firstname?: string, surname?: string): string => {
+  if (!firstname || !lastname) return 'ФИО';
+  return `${lastname} ${firstname} ${surname}`;
 };

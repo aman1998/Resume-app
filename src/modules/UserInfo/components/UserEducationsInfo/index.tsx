@@ -71,7 +71,11 @@ const UserEducationsInfo: FC = () => {
     <UserInfoLayout
       title="Образование"
       getButton={() => (
-        <Button text="Добавить" onClick={openModal} style={{ marginTop: 16, width: 120 }} />
+        <Button
+          text="Добавить"
+          onClick={openModal}
+          style={{ marginTop: 16, width: 'max-content' }}
+        />
       )}
     >
       {userInfoLoading ? (
@@ -92,7 +96,7 @@ const UserEducationsInfo: FC = () => {
                 loading={!!loading}
                 disabled={!!loading}
                 variant="contained"
-                style={{ marginTop: 16, width: 120 }}
+                style={{ marginTop: 16, width: 'max-content' }}
               />
             </form>
           </Modal>

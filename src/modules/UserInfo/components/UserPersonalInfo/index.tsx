@@ -50,6 +50,7 @@ const UserPersonalInfo: FC = () => {
       location: user?.personal?.location,
       aboutme: user?.personal?.aboutme,
       photoUrl: user?.personal?.photoUrl || '',
+      nationality: user?.personal?.nationality,
     });
   }, [user, reset]);
 
@@ -87,7 +88,7 @@ const UserPersonalInfo: FC = () => {
             disabled={updateUserLoading || loading}
             loading={updateUserLoading || loading}
             variant="contained"
-            style={{ marginTop: 16, width: 120 }}
+            style={{ marginTop: 16, width: 'max-content' }}
           />
         </form>
       )}

@@ -20,4 +20,8 @@ export const experiencesSchema = Yup.object().shape({
     }),
   endMonth: Yup.string().nullable(),
   endYear: Yup.string().nullable(),
+  // endYear: Yup.string().when('endMonth', (endMonth, schema) => {
+  //   if (endMonth && endMonth[0]) return schema.required('Это поле обязательно');
+  //   return schema.nullable();
+  // }),
 });

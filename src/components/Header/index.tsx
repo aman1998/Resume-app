@@ -14,6 +14,8 @@ import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
 
 import Button from '@UI/Button';
 
+import { ENotificationType, showNotification } from '@utils/notifications';
+
 import styles from './header.module.scss';
 
 const Header: FC = () => {
@@ -41,6 +43,7 @@ const Header: FC = () => {
     push('/').finally(() => {
       setAnchorEl(null);
       dispatch(resetUserInfo());
+      showNotification(ENotificationType.success, 'Вы успешно вышли из аккаунта!');
     });
   };
 

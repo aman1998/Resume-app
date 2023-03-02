@@ -3,11 +3,12 @@ import * as Yup from 'yup';
 import { formatText, sizeText } from './../../../../components/InputFileControl/constants';
 
 export const userSchema = Yup.object().shape({
-  firstname: Yup.string().required('Это поле обязательно').nullable(),
-  lastname: Yup.string().required('Это поле обязательно').nullable(),
+  firstname: Yup.string().required('Это поле обязательно'),
+  lastname: Yup.string().required('Это поле обязательно'),
   surname: Yup.string().nullable(),
-  location: Yup.string().required('Это поле обязательно').nullable(),
-  aboutme: Yup.string().nullable(),
+  location: Yup.string().required('Это поле обязательно'),
+  aboutme: Yup.string().required('Это поле обязательно'),
+  nationality: Yup.string().required('Это поле обязательно'),
   gender: Yup.string(),
   birthday: Yup.string().required('Это поле обязательно'),
   file: Yup.mixed()

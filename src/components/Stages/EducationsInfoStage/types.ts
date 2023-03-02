@@ -22,9 +22,7 @@ export interface IEducationsInfoStage {
   faculty: string;
   educationLocation: string;
   aboutEducation: string;
-  startMonth: string;
   startYear: string;
-  endMonth: string;
   endYear: string;
   id: string;
 }

@@ -49,7 +49,7 @@ const SignIn: FC = () => {
         dispatch(authInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
         push('/profile/personal');
         dispatch(changeAuthModalIsOpen(false));
-        showNotification(ENotificationType.success, 'Вы успешно вошли!');
+        showNotification(ENotificationType.success, 'Вы успешно вошли в аккаунт!');
       } else {
         showNotification(ENotificationType.error, 'Неверные данные!');
       }

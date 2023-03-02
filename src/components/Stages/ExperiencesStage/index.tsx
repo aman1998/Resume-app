@@ -57,12 +57,14 @@ const UserExperiencesStage: FC<TExperiencesInfoStageProps> = ({ control, errors 
         name="endMonth"
         options={monthSelectOptions}
         className={styles['experiences__select']}
+        errorMessage={errors?.endMonth?.message}
       />
       <SelectControl
         control={control}
         name="endYear"
         options={yearsSelectOptions}
         className={styles['experiences__select']}
+        errorMessage={errors?.endYear?.message}
       />
     </div>
     <div className={styles['experiences__label']}>Технологии</div>

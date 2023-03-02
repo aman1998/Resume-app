@@ -1,18 +1,18 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { userInfoSelector } from '@modules/UserInfo/store/selectors';
+import { personalInfoSelector, userInfoSelector } from '@modules/UserInfo/store/selectors';
 
 import { getGenderType } from '@utils/resumeUtils';
 
 import TemplateSimple from '../TemplateSimple';
 
 const TemplateGender: FC = () => {
-  const user = useSelector(userInfoSelector);
+  const info = useSelector(personalInfoSelector);
 
-  if (!user?.personal.gender) return <></>;
-
-  return <TemplateSimple title="Пол" text={getGenderType(user.personal.gender)} />;
+  return (
+    <TemplateSimple title="Пол" text={info?.gender ? getGenderType(info.gender) : 'Не указано'} />
+  );
 };
 
 export default TemplateGender;

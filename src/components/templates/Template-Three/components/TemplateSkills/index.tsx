@@ -9,15 +9,16 @@ import styles from './skills.module.scss';
 const TemplateSkills: FC = () => {
   const skills = useSelector(specialityInfoSelector)?.skills || [];
 
-  if (!skills.length) return <></>;
-
   return (
     <div className={styles.skills}>
       <div className={styles['skills__title']}>Технологии</div>
       <div className={styles['skills__list']}>
-        {skills.map((item, index) => (
-          <Chip key={index} label={item.text} className={styles['skills__chip']} />
-        ))}
+        {skills.length
+          ? skills.map((item, index) => (
+              // eslint-disable-next-line react/jsx-indent
+              <Chip key={index} label={item.text} className={styles['skills__chip']} />
+            ))
+          : 'Не указано'}
       </div>
     </div>
   );

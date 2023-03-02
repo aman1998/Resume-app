@@ -69,7 +69,7 @@ const UserSpecialityInfo: FC = () => {
             loading={updateUserLoading}
             disabled={updateUserLoading}
             variant="contained"
-            style={{ marginTop: 16, width: 120 }}
+            style={{ marginTop: 16, width: 'max-content' }}
           />
         </form>
       )}

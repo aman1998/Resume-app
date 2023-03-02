@@ -8,9 +8,7 @@ import TemplateSimple from '../TemplateSimple';
 const TemplateBirdthday: FC = () => {
   const user = useSelector(userInfoSelector);
 
-  if (!user?.personal.birthday) return <></>;
-
-  return <TemplateSimple title="День рождения" text={user.personal.birthday} />;
+  return <TemplateSimple title="День рождения" text={user?.personal?.birthday || 'Не указано'} />;
 };
 
 export default TemplateBirdthday;
