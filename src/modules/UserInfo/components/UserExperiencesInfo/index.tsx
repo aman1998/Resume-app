@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Skeleton } from '@mui/material';
 
 import UserExperiencesStage from '@components/stages/ExperiencesStage';
 import Modal from '@components/Modal';

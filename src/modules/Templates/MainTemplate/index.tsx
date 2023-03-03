@@ -4,7 +4,7 @@ import ReactToPrint from 'react-to-print';
 
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 
-import { personalInfoSelector } from '@modules/UserInfo/store/selectors';
+import { personalInfoSelector, userInfoFetchingSelector } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
 
@@ -20,6 +20,7 @@ import { IMainTemplateProps } from './types';
 
 const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = true }) => {
   const info = useSelector(personalInfoSelector);
+  const loading = useSelector(userInfoFetchingSelector);
 
   const componentRef = useRef<HTMLInputElement>(null);
 
@@ -41,24 +42,26 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
         />
       )}
     >
-      <section
-        className={styles.template}
-        style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}
-        ref={componentRef}
-      >
-        <div className={styles['template__sidebar']}>
-          <TemplateSidebar withColors={withColors} />
-        </div>
-        <div className={styles['template__right']}>
-          <div className={styles['template__fullname']}>
-            {getFullName(info?.lastname, info?.firstname, info?.surname)}
+      {!loading && (
+        <section
+          className={styles.template}
+          style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}
+          ref={componentRef}
+        >
+          <div className={styles['template__sidebar']}>
+            <TemplateSidebar withColors={withColors} />
           </div>
-          <TemplatePersonalInfo withColors={withColors} />
-          <TemplateExperiencesInfo withColors={withColors} />
-          <TemplateEducationsInfo withColors={withColors} />
-          <TemplateAboutInfo withColors={withColors} />
-        </div>
-      </section>
+          <div className={styles['template__right']}>
+            <div className={styles['template__fullname']}>
+              {getFullName(info?.lastname, info?.firstname, info?.surname)}
+            </div>
+            <TemplatePersonalInfo withColors={withColors} />
+            <TemplateExperiencesInfo withColors={withColors} />
+            <TemplateEducationsInfo withColors={withColors} />
+            <TemplateAboutInfo withColors={withColors} />
+          </div>
+        </section>
+      )}
     </UserInfoLayout>
   );
 };

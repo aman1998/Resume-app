@@ -12,7 +12,7 @@ import Seo from '@components/SEO';
 import PrivateProvider from '@common/providers/PrivateProvider';
 import '@common/styles/main.scss';
 import MaterialUIProvider from '@common/providers/MUIProvider';
-import { authPages } from '@common/constants/app';
+import { privatePages } from '@common/constants/app';
 
 import { authInfoFetching } from '@modules/UserInfo/store/reducers';
 
@@ -44,7 +44,7 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
           <div>
             <Header />
             <main className="main">
-              {authPages.includes(pathname) ? (
+              {privatePages.includes(pathname) ? (
                 <PrivateProvider>
                   <Component {...pageProps} />
                 </PrivateProvider>

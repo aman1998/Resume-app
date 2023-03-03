@@ -1,7 +1,10 @@
 import { FC, useRef } from 'react';
 import ReactToPrint from 'react-to-print';
+import { useSelector } from 'react-redux';
 
 import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+
+import { userInfoFetchingSelector } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
 
@@ -18,6 +21,8 @@ import TemplatePhone from './components/TemplatesPhone';
 import TemplateNationality from './components/TemplateNationality';
 
 const BaseTemplate: FC = () => {
+  const loading = useSelector(userInfoFetchingSelector);
+
   const componentRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -38,18 +43,20 @@ const BaseTemplate: FC = () => {
         />
       )}
     >
-      <section className={styles.template} ref={componentRef}>
-        <TemplateHeader />
-        <TemplateAboutMe />
-        <TemplateGender />
-        <TemplateNationality />
-        <TemplateBirdthday />
-        <TemplateEducation />
-        <TemplateSalary />
-        <TemplateExperience />
-        <TemplateSkills />
-        <TemplatePhone />
-      </section>
+      {!loading && (
+        <section className={styles.template} ref={componentRef}>
+          <TemplateHeader />
+          <TemplateAboutMe />
+          <TemplateGender />
+          <TemplateNationality />
+          <TemplateBirdthday />
+          <TemplateEducation />
+          <TemplateSalary />
+          <TemplateExperience />
+          <TemplateSkills />
+          <TemplatePhone />
+        </section>
+      )}
     </UserInfoLayout>
   );
 };
