@@ -17,28 +17,26 @@ const TemplateExperiencesInfo: FC<{ withColors: boolean }> = ({ withColors }) =>
     <div className={styles.experiences}>
       <InfoHeader title="Работа" withColors={withColors} />
       {!!experiences?.length &&
-        [...experiences]
-          .sort((a, b) => Number(a.startYear) - Number(b.startYear))
-          .map((item) => (
-            <div key={item.id} className={styles['experiences-item']}>
-              <div className={styles['experiences__circle']} />
-              <div>
-                <InfoItem title="Должность" text={item.profession} />
-                <InfoItem title="Компания" text={item.companyName} />
-                <InfoItem title="Местоположение" text={item.companyName} />
-                <InfoItem
-                  title="Годы работы"
-                  text={getIntervalDates(
-                    item.startMonth,
-                    item.startYear,
-                    item.endMonth,
-                    item.endYear
-                  )}
-                />
-                <InfoItem title="Про работу" text={item.aboutWork} />
-              </div>
+        experiences.map((item) => (
+          <div key={item.id} className={styles['experiences-item']}>
+            <div className={styles['experiences__circle']} />
+            <div>
+              <InfoItem title="Должность" text={item.profession} />
+              <InfoItem title="Компания" text={item.companyName} />
+              <InfoItem title="Местоположение" text={item.companyName} />
+              <InfoItem
+                title="Годы работы"
+                text={getIntervalDates(
+                  item.startMonth,
+                  item.startYear,
+                  item.endMonth,
+                  item.endYear
+                )}
+              />
+              <InfoItem title="Про работу" text={item.aboutWork} />
             </div>
-          ))}
+          </div>
+        ))}
     </div>
   );
 };

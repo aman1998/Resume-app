@@ -73,11 +73,9 @@ const UserExperiencesInfo: FC = () => {
         <UserExperienceSkeleton />
       ) : (
         <section>
-          {[...experiences]
-            .sort((a, b) => Number(a.startYear) - Number(b.startYear))
-            .map((item) => (
-              <ExperienceItem key={item.id} item={item} reset={reset} />
-            ))}
+          {experiences.map((item) => (
+            <ExperienceItem key={item.id} item={item} reset={reset} />
+          ))}
           <Modal isOpen={isOpenModal} onClose={closeModal}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <UserExperiencesStage control={control} errors={errors} />

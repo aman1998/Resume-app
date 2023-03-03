@@ -54,7 +54,22 @@ const userSlice = createSlice({
       state.userInfo.fetching = true;
     },
     userInfoSuccess(state: IUserState, action: IPayloadAction<IUserInfo>) {
-      state.userInfo = { ...defaultState, data: action.payload };
+      const { educations, experiences } = action.payload;
+
+      const sortedEducations = educations?.length
+        ? educations.sort((a, b) => Number(a.startYear) - Number(b.startYear))
+        : [];
+      const sortedExperiences = experiences?.length
+        ? experiences.sort((a, b) => Number(a.startYear) - Number(b.startYear))
+        : [];
+
+      const newData = {
+        ...action.payload,
+        educations: sortedEducations,
+        experiences: sortedExperiences,
+      };
+
+      state.userInfo = { ...defaultState, data: newData };
     },
     userInfoFailure(state: IUserState, action) {
       state.userInfo = { ...defaultState, failure: action.payload };

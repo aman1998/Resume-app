@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -15,28 +16,21 @@ const TemplateExperience: FC = () => {
       <div className={styles['experience__title']}>Опыт работы</div>
       <div className={styles['experience__infos']}>
         {experiences.length
-          ? [...experiences]
-              .sort((a, b) => Number(a.startYear) - Number(b.startYear))
-              .map((item) => (
-                <div key={item.id} className={styles['experience__info']}>
-                  <div className={styles['experience__info-left']}>
-                    <div className={styles['experience__name']}>{item.companyName}</div>
-                    <div className={styles['experience__profession']}>{item.profession}</div>
-                    <div className={styles['experience__location']}>{item.companyLocation}</div>
-                    <div className={styles['experience__about']}>{item.aboutWork}</div>
-                  </div>
-                  <div className={styles['experience__right']}>
-                    <div className={styles['experience__years']}>
-                      {getIntervalDates(
-                        item.startMonth,
-                        item.startYear,
-                        item.endMonth,
-                        item.endYear
-                      )}
-                    </div>
+          ? experiences.map((item) => (
+              <div key={item.id} className={styles['experience__info']}>
+                <div className={styles['experience__info-left']}>
+                  <div className={styles['experience__name']}>{item.companyName}</div>
+                  <div className={styles['experience__profession']}>{item.profession}</div>
+                  <div className={styles['experience__location']}>{item.companyLocation}</div>
+                  <div className={styles['experience__about']}>{item.aboutWork}</div>
+                </div>
+                <div className={styles['experience__right']}>
+                  <div className={styles['experience__years']}>
+                    {getIntervalDates(item.startMonth, item.startYear, item.endMonth, item.endYear)}
                   </div>
                 </div>
-              ))
+              </div>
+            ))
           : 'Не указано'}
       </div>
     </div>

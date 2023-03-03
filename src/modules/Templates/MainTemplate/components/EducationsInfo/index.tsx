@@ -15,19 +15,14 @@ const TemplateEducationsInfo: FC<{ withColors: boolean }> = ({ withColors }) => 
     <div>
       <InfoHeader title="Образование" withColors={withColors} />
       {!!educations?.length &&
-        [...educations]
-          .sort((a, b) => Number(a.startYear) - Number(b.startYear))
-          .map((item) => (
-            <div key={item.id} style={{ marginBottom: 16 }}>
-              <InfoItem title="Тип образования" text={item.type} />
-              <InfoItem title="Учебное заведение" text={item.educationName} />
-              <InfoItem title="Факультет" text={item.faculty} />
-              <InfoItem
-                title="Годы обучения"
-                text={getIntervalYears(item.startYear, item.endYear)}
-              />
-            </div>
-          ))}
+        educations.map((item) => (
+          <div key={item.id} style={{ marginBottom: 16 }}>
+            <InfoItem title="Тип образования" text={item.type} />
+            <InfoItem title="Учебное заведение" text={item.educationName} />
+            <InfoItem title="Факультет" text={item.faculty} />
+            <InfoItem title="Годы обучения" text={getIntervalYears(item.startYear, item.endYear)} />
+          </div>
+        ))}
       {/* <InfoItem title="Гражданство" text={info?.nationality || 'Не указано'} /> */}
     </div>
   );

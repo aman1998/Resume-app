@@ -82,11 +82,9 @@ const UserEducationsInfo: FC = () => {
         <UserEducationSkeleton />
       ) : (
         <section>
-          {[...educations]
-            .sort((a, b) => Number(a.startYear) - Number(b.startYear))
-            .map((item) => (
-              <EducationItem key={item.id} item={item} reset={reset} />
-            ))}
+          {educations.map((item) => (
+            <EducationItem key={item.id} item={item} reset={reset} />
+          ))}
           <Modal isOpen={isOpenModal} onClose={closeModal}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <UserEducationsInfoStage control={control} errors={errors} />
