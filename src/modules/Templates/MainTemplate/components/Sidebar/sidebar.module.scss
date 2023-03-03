@@ -11,9 +11,13 @@
         }
     }
     &__not-image {
-        width: 220px;
-        height: 180px;
+        width: 210px;
+        height: 210px;
         background: #565555;
+        &--colors {
+            width: 220px;
+            height: 220px;
+        }
     }
     &__info {
         padding: 8px;
