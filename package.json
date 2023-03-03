@@ -20,6 +20,7 @@
     "@emotion/styled": "^11.10.6",
     "@hookform/resolvers": "^2.9.11",
     "@mui/material": "^5.11.9",
+    "@next/font": "^13.2.3",
     "@reduxjs/toolkit": "^1.9.2",
     "@types/react-transition-group": "^4.4.5",
     "classnames": "^2.3.2",

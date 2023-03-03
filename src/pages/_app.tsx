@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { useDispatch } from 'react-redux';
+import { Cambo } from '@next/font/google';
 
 import { wrapper } from 'src/rootStore/index';
 
@@ -20,6 +21,9 @@ import { createEmotionCache } from '@utils/createEmotionCashe';
 
 // создаем клиентский кэш
 const clientSideEmotionCache = createEmotionCache();
+const fontScript = Cambo({
+  weight: '400',
+});
 
 const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
   Component,
@@ -40,8 +44,8 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
       {/* провайдер кэша */}
       <CacheProvider value={emotionCache}>
         {/* провайдер темы */}
-        <MaterialUIProvider>
-          <div>
+        <div className={fontScript.className}>
+          <MaterialUIProvider>
             <Header />
             <main className="main">
               {privatePages.includes(pathname) ? (
@@ -52,8 +56,8 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
                 <Component {...pageProps} />
               )}
             </main>
-          </div>
-        </MaterialUIProvider>
+          </MaterialUIProvider>
+        </div>
       </CacheProvider>
     </>
   );
