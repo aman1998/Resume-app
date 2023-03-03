@@ -10,7 +10,7 @@ import Button from '@UI/Button';
 
 import { getFullName } from '@utils/resumeUtils';
 
-import styles from './popular-template.module.scss';
+import styles from './main-template.module.scss';
 import TemplateSidebar from './components/Sidebar';
 import TemplatePersonalInfo from './components/PersonalInfo';
 import TemplateEducationsInfo from './components/EducationsInfo';
