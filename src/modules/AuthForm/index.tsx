@@ -1,10 +1,11 @@
 import { FC, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import Image from 'next/image';
+
+import favicon from 'public/android-chrome-96x96.png';
 
 import Modal from '@components/Modal';
-
-import { sitename } from '@common/constants/app';
 
 import { authModalIsOpenSelector, authTypeSelector } from './store/selectors';
 import { changeAuthModalIsOpen } from './store/reducers';
@@ -47,7 +48,9 @@ const AuthForm: FC = () => {
           classNames="fade"
         >
           <div className={styles['auth-form']} ref={nodeRef}>
-            <div className={styles['auth-form__logo']}>{sitename.toUpperCase()}</div>
+            <div className={styles['auth-form__logo']}>
+              {<Image alt="icon" src={favicon.src} width={50} height={50} />}
+            </div>
             <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
             <div>{authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}</div>
             <AuthFormText type={authType} />
