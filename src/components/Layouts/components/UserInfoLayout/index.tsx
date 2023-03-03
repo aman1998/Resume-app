@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FC, useEffect } from 'react';
+import classNames from 'classnames';
 
 import Navigation from '@components/Navigation';
 
@@ -10,7 +11,12 @@ import { ILayoutProps } from '../../types';
 
 import styles from './layout.module.scss';
 
-const UserInfoLayout: FC<ILayoutProps> = ({ children, title, getButton }) => {
+const UserInfoLayout: FC<ILayoutProps> = ({
+  children,
+  title,
+  getButton,
+  widthHeaderMargin = true,
+}) => {
   const user = useSelector(userInfoSelector);
   const isAuth = useSelector(isAuthSelector);
 
@@ -29,7 +35,11 @@ const UserInfoLayout: FC<ILayoutProps> = ({ children, title, getButton }) => {
       </aside>
       <div className={styles['layout__content']}>
         {title && (
-          <div className={styles['layout__header']}>
+          <div
+            className={classNames(styles['layout__header'], {
+              [styles['layout__header--margin']]: widthHeaderMargin,
+            })}
+          >
             <div className={styles['layout__title']}>{title}</div>
             {!!getButton && getButton()}
           </div>

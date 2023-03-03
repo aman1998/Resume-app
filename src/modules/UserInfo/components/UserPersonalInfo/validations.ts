@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { formatText, sizeText } from './../../../../components/InputFileControl/constants';
+import { formatText, sizeText } from '../../../../components/InputFileControl/constants';
 
 export const userSchema = Yup.object().shape({
   firstname: Yup.string().required('Это поле обязательно'),

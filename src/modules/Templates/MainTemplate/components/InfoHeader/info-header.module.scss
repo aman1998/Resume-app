@@ -2,7 +2,10 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    border-bottom: 2px solid rgb(233, 241, 233);
+    border-bottom: 1px solid #d7d3d3;
+    &--colors {
+        border-bottom: 2px solid rgb(233, 241, 233);
+    } 
     &__popular-type {
         margin-right: 8px;
         width: 30px;

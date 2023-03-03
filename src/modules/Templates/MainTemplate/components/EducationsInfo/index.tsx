@@ -1,20 +1,19 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
-
 import { getIntervalYears } from '@common/constants/date';
 
+import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
 import { educationsInfoSelector } from '@modules/UserInfo/store/selectors';
 
 import InfoItem from '../InfoItem';
 
-const TemplateEducationsInfo: FC = () => {
+const TemplateEducationsInfo: FC<{ withColors: boolean }> = ({ withColors }) => {
   const educations = useSelector(educationsInfoSelector);
 
   return (
     <div>
-      <InfoHeader title="Образование" />
+      <InfoHeader title="Образование" withColors={withColors} />
       {!!educations?.length &&
         [...educations]
           .sort((a, b) => Number(a.startYear) - Number(b.startYear))

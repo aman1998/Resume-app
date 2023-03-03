@@ -18,14 +18,15 @@ import TemplateExperiencesInfo from './components/ExperiencesInfo';
 import TemplateAboutInfo from './components/AboutInfo';
 import { IMainTemplateProps } from './types';
 
-const PopularTemplate: FC<IMainTemplateProps> = ({ isReverse }) => {
+const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = true }) => {
   const info = useSelector(personalInfoSelector);
 
   const componentRef = useRef<HTMLInputElement>(null);
 
   return (
     <UserInfoLayout
-      title="Популярный шаблон"
+      widthHeaderMargin={false}
+      title={title}
       getButton={() => (
         <ReactToPrint
           trigger={() => (
@@ -46,20 +47,20 @@ const PopularTemplate: FC<IMainTemplateProps> = ({ isReverse }) => {
         ref={componentRef}
       >
         <div className={styles['template__sidebar']}>
-          <TemplateSidebar />
+          <TemplateSidebar withColors={withColors} />
         </div>
         <div className={styles['template__right']}>
           <div className={styles['template__fullname']}>
             {getFullName(info?.lastname, info?.firstname, info?.surname)}
           </div>
-          <TemplatePersonalInfo />
-          <TemplateExperiencesInfo />
-          <TemplateEducationsInfo />
-          <TemplateAboutInfo />
+          <TemplatePersonalInfo withColors={withColors} />
+          <TemplateExperiencesInfo withColors={withColors} />
+          <TemplateEducationsInfo withColors={withColors} />
+          <TemplateAboutInfo withColors={withColors} />
         </div>
       </section>
     </UserInfoLayout>
   );
 };
 
-export default PopularTemplate;
+export default MainTemplate;

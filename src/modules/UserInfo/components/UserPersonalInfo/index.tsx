@@ -34,7 +34,6 @@ const UserPersonalInfo: FC = () => {
     control,
     reset,
     formState: { errors },
-    getValues,
     setValue,
   } = useForm<IPersonalInfoStage>({
     mode: 'onChange',

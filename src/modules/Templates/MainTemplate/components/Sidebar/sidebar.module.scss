@@ -1,7 +1,15 @@
 .sidebar {
     width: 220px;
     height: 100%;
-    background: #d0f3fd;
+    border-right: 1px solid #d7d3d3;
+    &--colors {
+        background: rgb(233, 241, 233);
+        border-right: none;
+        .sidebar__info {
+            background: #999595;
+            color: #ffffff;
+        }
+    }
     &__not-image {
         width: 220px;
         height: 180px;
@@ -9,8 +17,6 @@
     }
     &__info {
         padding: 8px;
-        color: #ffffff;
-        background: #999595;
     }
     .info-item {
         display: flex;

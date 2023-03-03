@@ -22,6 +22,7 @@ const BaseTemplate: FC = () => {
 
   return (
     <UserInfoLayout
+      widthHeaderMargin={false}
       title="Базовый шаблон"
       getButton={() => (
         <ReactToPrint

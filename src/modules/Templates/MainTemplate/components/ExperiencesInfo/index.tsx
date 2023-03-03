@@ -10,12 +10,12 @@ import InfoItem from '../InfoItem';
 
 import styles from './experiences.module.scss';
 
-const TemplateExperiencesInfo: FC = () => {
+const TemplateExperiencesInfo: FC<{ withColors: boolean }> = ({ withColors }) => {
   const experiences = useSelector(experiencesInfoSelector);
 
   return (
     <div className={styles.experiences}>
-      <InfoHeader title="Работа" />
+      <InfoHeader title="Работа" withColors={withColors} />
       {!!experiences?.length &&
         [...experiences]
           .sort((a, b) => Number(a.startYear) - Number(b.startYear))

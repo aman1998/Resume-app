@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
+import classNames from 'classnames';
 
 import { userInfoSelector } from '@modules/UserInfo/store/selectors';
 
@@ -8,13 +9,18 @@ import { getSalaryType } from '@utils/resumeUtils';
 
 import styles from './sidebar.module.scss';
 
-const TemplateSidebar: FC = () => {
+const TemplateSidebar: FC<{ withColors: boolean }> = ({ withColors }) => {
   const user = useSelector(userInfoSelector);
 
   return (
-    <div className={styles.sidebar}>
+    <div className={classNames(styles.sidebar, { [styles['sidebar--colors']]: withColors })}>
       {user?.personal.photoUrl ? (
-        <Image src={user.personal.photoUrl} width={220} height={200} alt="avatar" />
+        <Image
+          src={user.personal.photoUrl}
+          width={withColors ? 220 : 210}
+          height={withColors ? 220 : 210}
+          alt="avatar"
+        />
       ) : (
         <div className={styles['sidebar__not-image']} />
       )}
