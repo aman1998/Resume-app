@@ -83,7 +83,7 @@ const UserEducationsInfo: FC = () => {
       ) : (
         <section>
           {[...educations]
-            .sort((a, b) => Number(b.startYear) - Number(a.startYear))
+            .sort((a, b) => Number(a.startYear) - Number(b.startYear))
             .map((item) => (
               <EducationItem key={item.id} item={item} reset={reset} />
             ))}

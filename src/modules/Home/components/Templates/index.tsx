@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
-import { isAuthSelector } from '@modules/UserInfo/store/selectors';
+import { authInfoFetchingSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
 
@@ -12,6 +12,7 @@ import { templates } from './constants';
 
 const Templates: FC = () => {
   const isAuth = useSelector(isAuthSelector);
+  const loading = useSelector(authInfoFetchingSelector);
 
   const dispatch = useDispatch();
   const { push } = useRouter();
@@ -40,6 +41,7 @@ const Templates: FC = () => {
               className={styles['template__btn']}
               variant="contained"
               onClick={handleAddClick}
+              style={{ pointerEvents: loading ? 'none' : 'auto' }}
               text="Создать резюме"
             />
           </div>

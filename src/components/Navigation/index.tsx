@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import { links } from './constants';
+import { links, templatesLinks } from './constants';
 
 const Navigation: FC = () => {
   const { pathname } = useRouter();
@@ -12,6 +12,15 @@ const Navigation: FC = () => {
     <nav>
       <ul>
         {links.map((item) => (
+          <MenuItem key={item.id} selected={pathname === item.link}>
+            <Link href={item.link} style={{ width: '100%' }}>
+              {item.title}
+            </Link>
+          </MenuItem>
+        ))}
+      </ul>
+      <ul style={{ marginTop: 32 }}>
+        {templatesLinks.map((item) => (
           <MenuItem key={item.id} selected={pathname === item.link}>
             <Link href={item.link} style={{ width: '100%' }}>
               {item.title}

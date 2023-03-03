@@ -67,7 +67,7 @@ const UserExperiencesStage: FC<TExperiencesInfoStageProps> = ({ control, errors 
         errorMessage={errors?.endYear?.message}
       />
     </div>
-    <div className={styles['experiences__label']}>Технологии</div>
+    <div className={styles['experiences__label']}>Навыки</div>
     <TextListControl control={control} name="skills" errorMessage={errors?.skills?.message} />
     <TextFieldControl
       multiline={true}

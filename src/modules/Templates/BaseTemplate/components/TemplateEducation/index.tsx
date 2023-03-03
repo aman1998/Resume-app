@@ -14,7 +14,7 @@ const TemplateEducation: FC = () => {
       <div className={styles['education__infos']}>
         {educations.length
           ? [...educations]
-              .sort((a, b) => Number(b.startYear) - Number(a.startYear))
+              .sort((a, b) => Number(a.startYear) - Number(b.startYear))
               .map((item) => (
                 <div key={item.id} className={styles['education__info']}>
                   <div className={styles['education__info-left']}>

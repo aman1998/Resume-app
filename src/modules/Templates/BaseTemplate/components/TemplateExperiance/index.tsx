@@ -16,7 +16,7 @@ const TemplateExperience: FC = () => {
       <div className={styles['experience__infos']}>
         {experiences.length
           ? [...experiences]
-              .sort((a, b) => Number(b.startYear) - Number(a.startYear))
+              .sort((a, b) => Number(a.startYear) - Number(b.startYear))
               .map((item) => (
                 <div key={item.id} className={styles['experience__info']}>
                   <div className={styles['experience__info-left']}>

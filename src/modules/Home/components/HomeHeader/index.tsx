@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
-import { isAuthSelector } from '@modules/UserInfo/store/selectors';
+import { authInfoFetchingSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
 
@@ -11,6 +11,7 @@ import styles from './header.module.scss';
 
 const HomeHeader: FC = () => {
   const isAuth = useSelector(isAuthSelector);
+  const loading = useSelector(authInfoFetchingSelector);
 
   const dispatch = useDispatch();
   const { push } = useRouter();
@@ -39,6 +40,7 @@ const HomeHeader: FC = () => {
         </h2>
         <Button
           className={styles['bg-content__btn']}
+          style={{ pointerEvents: loading ? 'none' : 'auto' }}
           text="Создать резюме"
           variant="contained"
           onClick={handleAddClick}

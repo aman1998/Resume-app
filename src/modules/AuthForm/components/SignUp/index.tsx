@@ -25,6 +25,7 @@ import { ISignUp } from './types';
 import { signUpSchema } from './validations';
 import styles from './styles.module.scss';
 
+// need remove to saga in future and delete react-firebase-hooks
 const SignUp: FC = () => {
   const [loading, setLoading] = useState(false);
 

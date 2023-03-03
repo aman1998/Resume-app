@@ -75,7 +75,7 @@ const UserExperiencesInfo: FC = () => {
       ) : (
         <section>
           {[...experiences]
-            .sort((a, b) => Number(b.startYear) - Number(a.startYear))
+            .sort((a, b) => Number(a.startYear) - Number(b.startYear))
             .map((item) => (
               <ExperienceItem key={item.id} item={item} reset={reset} />
             ))}

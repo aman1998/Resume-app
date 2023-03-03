@@ -35,7 +35,7 @@ const SpecialityInfoStage: FC<TSpecialityInfoStageProps> = ({ control, errors })
     <TextListControl
       control={control}
       name="skills"
-      labelText="Технологии"
+      labelText="Навыки"
       errorMessage={errors?.skills?.message}
     />
     <CheckboxControl control={control} name="relocatioReady" labelText="Готов к переезду" />

@@ -22,7 +22,6 @@ import { signInSchema } from './validations';
 import styles from './styles.module.scss';
 
 // need remove to saga in future and delete react-firebase-hooks
-
 const SignIn: FC = () => {
   const [loading, setLoading] = useState(false);
 

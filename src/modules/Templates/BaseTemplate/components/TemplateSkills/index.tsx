@@ -11,7 +11,7 @@ const TemplateSkills: FC = () => {
 
   return (
     <div className={styles.skills}>
-      <div className={styles['skills__title']}>Технологии</div>
+      <div className={styles['skills__title']}>Навыки</div>
       <div className={styles['skills__list']}>
         {skills.length
           ? skills.map((item, index) => (

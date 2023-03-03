@@ -6,7 +6,7 @@ import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
 import Button from '@UI/Button';
 
 import TemplateHeader from './components/TemplateHeader';
-import styles from './template-three.module.scss';
+import styles from './base-template.module.scss';
 import TemplateEducation from './components/TemplateEducation';
 import TemplateExperience from './components/TemplateExperiance';
 import TemplateSkills from './components/TemplateSkills';
@@ -17,7 +17,7 @@ import TemplateSalary from './components/TemplateSalary';
 import TemplatePhone from './components/TemplatesPhone';
 import TemplateNationality from './components/TemplateNationality';
 
-const TemplateThree: FC = () => {
+const BaseTemplate: FC = () => {
   const componentRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -53,4 +53,4 @@ const TemplateThree: FC = () => {
   );
 };
 
-export default TemplateThree;
+export default BaseTemplate;
