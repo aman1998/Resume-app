@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getIntervalDates } from '@utils/date';
-
 import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
 import { experiencesInfoSelector } from '@modules/UserInfo/store/selectors';
+
+import { getIntervalDates } from '@utils/date';
 
 import InfoItem from '../InfoItem';
 

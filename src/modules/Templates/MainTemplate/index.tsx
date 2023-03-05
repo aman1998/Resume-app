@@ -17,6 +17,7 @@ import TemplateEducationsInfo from './components/EducationsInfo';
 import TemplateExperiencesInfo from './components/ExperiencesInfo';
 import TemplateAboutInfo from './components/AboutInfo';
 import { IMainTemplateProps } from './types';
+import MainTemplateSkeleton from './components/Skeleton';
 
 const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = true }) => {
   const info = useSelector(personalInfoSelector);
@@ -42,7 +43,9 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
         />
       )}
     >
-      {!loading && (
+      {loading ? (
+        <MainTemplateSkeleton isReverse={!!isReverse} />
+      ) : (
         <section
           className={styles.template}
           style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}

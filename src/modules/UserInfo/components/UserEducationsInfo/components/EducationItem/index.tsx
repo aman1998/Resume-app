@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getIntervalYears } from '@utils/date';
-
 import {
   changeEducationsModalIsOpen,
   updateUserInfoFetching,
@@ -14,6 +12,7 @@ import {
 
 import Button from '@UI/Button';
 
+import { getIntervalYears } from '@utils/date';
 import { getEducationType } from '@utils/resumeUtils';
 
 import { IEducationItemProps } from '../types';

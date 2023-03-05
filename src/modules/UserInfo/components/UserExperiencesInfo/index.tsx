@@ -8,8 +8,6 @@ import Modal from '@components/Modal';
 import { IExperiencesInfoStage } from '@components/stages/ExperiencesStage/types';
 import UserInfoLayout from '@components/UserInfoLayout';
 
-import { generateUUID } from '@utils/date';
-
 import {
   experiencesInfoSelector,
   experiencesModalIsOpenSelector,
@@ -22,6 +20,8 @@ import {
 } from '@modules/UserInfo/store/reducers';
 
 import Button from '@UI/Button';
+
+import { generateUUID } from '@utils/date';
 
 import { experiencesSchema } from './validations';
 import ExperienceItem from './components/ExperienceItem';

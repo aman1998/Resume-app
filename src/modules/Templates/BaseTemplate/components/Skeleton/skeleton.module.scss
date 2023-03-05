@@ -1,0 +1,9 @@
+.skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    &__item {
+        margin-bottom: -20px; // need fix in future
+        height: 60px;
+    }
+}

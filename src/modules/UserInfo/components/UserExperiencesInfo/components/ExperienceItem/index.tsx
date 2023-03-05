@@ -2,8 +2,6 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chip } from '@mui/material';
 
-import { getIntervalDates } from '@utils/date';
-
 import {
   changeExperiencesModalIsOpen,
   updateUserInfoFetching,
@@ -14,6 +12,8 @@ import {
 } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
+
+import { getIntervalDates } from '@utils/date';
 
 import { IExperienceItemProps } from '../types';
 

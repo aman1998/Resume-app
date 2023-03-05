@@ -17,8 +17,8 @@ const Templates: FC = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
 
-  const handleAddClick = () => {
-    if (isAuth) push('/profile/personal');
+  const handleAddClick = (link: string): void => {
+    if (isAuth) push(link);
     else dispatch(changeAuthModalIsOpen(true));
   };
 
@@ -40,9 +40,9 @@ const Templates: FC = () => {
             <Button
               className={styles['template__btn']}
               variant="contained"
-              onClick={handleAddClick}
+              onClick={() => handleAddClick(item.link)}
               style={{ pointerEvents: loading ? 'none' : 'auto' }}
-              text="Создать резюме"
+              text="Выбрать шаблон"
             />
           </div>
         ))}

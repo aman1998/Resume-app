@@ -11,8 +11,6 @@ import {
 import UserEducationsInfoStage from '@components/stages/EducationsInfoStage';
 import UserInfoLayout from '@components/UserInfoLayout';
 
-import { generateUUID } from '@utils/date';
-
 import {
   educationsInfoSelector,
   educationsModalIsOpenSelector,
@@ -25,6 +23,8 @@ import {
 } from '@modules/UserInfo/store/reducers';
 
 import Button from '@UI/Button';
+
+import { generateUUID } from '@utils/date';
 
 import UserEducationSkeleton from './components/Skeleton';
 import { educationsSchema } from './validations';

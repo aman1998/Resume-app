@@ -19,6 +19,7 @@ import TemplateGender from './components/TemplateGender';
 import TemplateSalary from './components/TemplateSalary';
 import TemplatePhone from './components/TemplatesPhone';
 import TemplateNationality from './components/TemplateNationality';
+import BaseTemplateSkeleton from './components/Skeleton';
 
 const BaseTemplate: FC = () => {
   const loading = useSelector(userInfoFetchingSelector);
@@ -43,7 +44,9 @@ const BaseTemplate: FC = () => {
         />
       )}
     >
-      {!loading && (
+      {loading ? (
+        <BaseTemplateSkeleton />
+      ) : (
         <section className={styles.template} ref={componentRef}>
           <TemplateHeader />
           <TemplateAboutMe />
