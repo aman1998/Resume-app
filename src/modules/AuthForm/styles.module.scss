@@ -22,5 +22,10 @@
         font-weight: 900;
         font-size: 22px;
         line-height: 30px;
+        @media screen and (max-width: 360px) {
+            margin: 10px 0;
+            font-size: 18px;
+            line-height: 20px;
+        }
     }
 }

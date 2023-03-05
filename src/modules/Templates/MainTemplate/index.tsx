@@ -2,7 +2,7 @@ import { FC, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ReactToPrint from 'react-to-print';
 
-import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+import UserInfoLayout from '@components/UserInfoLayout';
 
 import { personalInfoSelector, userInfoFetchingSelector } from '@modules/UserInfo/store/selectors';
 

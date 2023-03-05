@@ -6,9 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import UserExperiencesStage from '@components/stages/ExperiencesStage';
 import Modal from '@components/Modal';
 import { IExperiencesInfoStage } from '@components/stages/ExperiencesStage/types';
-import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+import UserInfoLayout from '@components/UserInfoLayout';
 
-import { generateUUID } from '@common/constants/date';
+import { generateUUID } from '@utils/date';
 
 import {
   experiencesInfoSelector,

@@ -4,7 +4,7 @@ import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
 import TextListControl from '@components/TextListControl';
 
-import { monthSelectOptions, yearsSelectOptions } from '@common/constants/date';
+import { monthSelectOptions, yearsSelectOptions } from '@utils/date';
 
 import { TExperiencesInfoStageProps } from './types';
 import styles from './experiences.module.scss';

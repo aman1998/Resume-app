@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getIntervalDates } from '@common/constants/date';
+import { getIntervalDates } from '@utils/date';
 
 import { experiencesInfoSelector } from '@modules/UserInfo/store/selectors';
 

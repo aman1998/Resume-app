@@ -9,9 +9,9 @@ import {
   IEducationsInfoStage,
 } from '@components/stages/EducationsInfoStage/types';
 import UserEducationsInfoStage from '@components/stages/EducationsInfoStage';
-import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+import UserInfoLayout from '@components/UserInfoLayout';
 
-import { generateUUID } from '@common/constants/date';
+import { generateUUID } from '@utils/date';
 
 import {
   educationsInfoSelector,

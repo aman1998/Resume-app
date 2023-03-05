@@ -3,7 +3,7 @@ import { FC } from 'react';
 import TextFieldControl from '@components/TextFieldControl';
 import SelectControl from '@components/SelectControl';
 
-import { yearsSelectOptions } from '@common/constants/date';
+import { yearsSelectOptions } from '@utils/date';
 
 import { TEducationsInfoStageProps } from './types';
 import { educationTypeOptions } from './constants';

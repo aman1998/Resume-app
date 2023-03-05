@@ -1,0 +1,13 @@
+.menu {
+    &__links {
+        @media screen and (min-width: 1300px) {
+            display: none;
+        }
+    }
+    &__info-links {
+        margin-bottom: 16px;
+    }
+    &__template-links {
+        margin-bottom: 16px;
+    }
+}

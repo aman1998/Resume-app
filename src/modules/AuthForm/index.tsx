@@ -52,7 +52,7 @@ const AuthForm: FC = () => {
               {<Image alt="icon" src={favicon.src} width={50} height={50} />}
             </div>
             <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
-            <div>{authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}</div>
+            {authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}
             <AuthFormText type={authType} />
           </div>
         </CSSTransition>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getIntervalYears } from '@common/constants/date';
+import { getIntervalYears } from '@utils/date';
 
 import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
 import { educationsInfoSelector } from '@modules/UserInfo/store/selectors';

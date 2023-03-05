@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Seo from '@components/SEO';
+// import Seo from '@components/SEO';
 import Footer from '@components/Footer';
 
 import AuthForm from '@modules/AuthForm';
@@ -11,7 +11,7 @@ import Steps from './components/Steps';
 
 const Home: FC = () => (
   <>
-    <div className="container" style={{ marginTop: 48 }}>
+    <div className="container">
       <HomeHeader />
       <Steps />
       <Templates />

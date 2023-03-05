@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IContactsInfoStage } from '@components/stages/ContactsInfoStage/types';
 import ContactsInfoStage from '@components/stages/ContactsInfoStage';
-import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+import UserInfoLayout from '@components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 import {

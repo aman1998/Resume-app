@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import { links, templatesLinks } from './constants';
+import { links, templatesLinks } from '@common/constants/app';
 
 const Navigation: FC = () => {
   const { pathname } = useRouter();

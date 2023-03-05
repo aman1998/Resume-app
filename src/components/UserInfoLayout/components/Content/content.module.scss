@@ -1,0 +1,24 @@
+.content {
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px;
+    margin-bottom: 16px;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 16px;
+    position: relative;
+    min-height: calc(100vh - 76px); // header height + layout margin top -> need refactoring use variables
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 8px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 16px;
+        border-bottom: 1px solid #ededed;
+        &--margin {
+            margin-bottom: 16px;
+        }
+    }
+}

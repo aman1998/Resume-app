@@ -1,56 +1,21 @@
-import { FC, useState, MouseEvent } from 'react';
-import { useSignOut } from 'react-firebase-hooks/auth';
-import { useRouter } from 'next/router';
+import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IconButton, Menu, MenuItem, Avatar } from '@mui/material';
-
-import { auth } from 'firebase-config';
 
 import Logo from '@components/Logo';
 
 import { authInfoFetchingSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
-import { resetUserInfo } from '@modules/UserInfo/store/reducers';
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
 
 import Button from '@UI/Button';
 
-import { ENotificationType, showNotification } from '@utils/notifications';
-
 import styles from './header.module.scss';
+import HeaderMenu from './components/Menu';
 
 const Header: FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const isAuth = useSelector(isAuthSelector);
   const loading = useSelector(authInfoFetchingSelector);
 
-  const [signOut] = useSignOut(auth);
-
-  const { push } = useRouter();
   const dispatch = useDispatch();
-
-  const logout = async () => {
-    await signOut();
-    push('/').finally(() => {
-      setAnchorEl(null);
-      dispatch(resetUserInfo());
-      showNotification(ENotificationType.success, 'Вы успешно вышли из аккаунта!');
-    });
-  };
-
-  const goToProfile = () => {
-    setAnchorEl(null);
-    push('/profile/personal');
-  };
 
   const handleAddClick = () => {
     dispatch(changeAuthModalIsOpen(true));
@@ -60,32 +25,7 @@ const Header: FC = () => {
     <header className={styles.header}>
       <div className={`container ${styles['header__container']}`}>
         <Logo />
-        {isAuth && (
-          <>
-            <IconButton
-              onClick={handleClick}
-              size="small"
-              sx={{ ml: 2 }}
-              aria-controls={open ? 'account-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-            >
-              <Avatar sx={{ width: 32, height: 32 }}>R</Avatar>
-            </IconButton>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              <MenuItem onClick={goToProfile}>Профиль</MenuItem>
-              <MenuItem onClick={logout}>Выйти</MenuItem>
-            </Menu>
-          </>
-        )}
+        {isAuth && <HeaderMenu />}
         {!isAuth && !loading && <Button text="Войти" variant="outlined" onClick={handleAddClick} />}
       </div>
     </header>

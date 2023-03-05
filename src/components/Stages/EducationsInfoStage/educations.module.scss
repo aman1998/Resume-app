@@ -12,6 +12,10 @@
         display: grid;
         grid-template-columns: repeat(2, 200px);
         grid-gap: 8px;
+        @media screen and (max-width: 559.99px) {
+            display: flex;
+            flex-direction: column;
+        }
     }
     &__label {
         font-weight: 700;

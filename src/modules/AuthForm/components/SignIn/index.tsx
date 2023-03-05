@@ -25,7 +25,7 @@ import styles from './styles.module.scss';
 const SignIn: FC = () => {
   const [loading, setLoading] = useState(false);
 
-  const [signInWithEmailAndPassword, error] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
   const dispatch = useDispatch();
   const { push } = useRouter();

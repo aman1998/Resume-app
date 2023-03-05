@@ -3,13 +3,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 48px;
+    @media screen and (max-width: 767.99px) {
+        margin-top: 24px;
+    }
     &__subtitle {
         margin-bottom: 8px;
         font-size: 14px;
-        letter-spacing: 1.8px;
-        line-height: 20px;
+        line-height: 16px;
         text-transform: uppercase;
         font-weight: 600;
+        @media screen and (max-width: 559.99px) {
+            font-size: 12px;
+            line-height: 14px;
+        }
     }
     &__title {
         text-align: center;
@@ -18,6 +25,16 @@
         font-size: 46px;
         line-height: 48px;
         max-width: 700px;
+        @media screen and (max-width: 767.99px) {
+            font-size: 32px;
+            line-height: 34px;
+            max-width: 500px;
+        }
+        @media screen and (max-width: 559.99px) {
+            margin-bottom: 10px;
+            font-size: 24px;
+            line-height: 26px;
+        }
     }
     &__description {
         margin-bottom: 24px;
@@ -25,6 +42,16 @@
         line-height: 28px;
         text-align: center;
         max-width: 600px;
+        @media screen and (max-width: 767.99px) {
+            font-size: 18px;
+            line-height: 20px;
+            max-width: 500px;
+        }
+        @media screen and (max-width: 559.99px) {
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 18px;
+        }
     }
     &__btn {
         height: 50px;
@@ -34,6 +61,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: 10px;
         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),  url('../../../../../public/resume.jpg');
         background-position: center;
         background-size: cover;
@@ -41,6 +69,9 @@
         width: 100%;
         height: 330px;
         border-radius: 16px;
+        @media screen and (max-width: 559.99px) {
+            height: 200px;
+        }
         &__text {
             text-align: center;
             margin-bottom: 12px;
@@ -49,6 +80,15 @@
             line-height: 40px;
             color: #F2F2F2;
             max-width: 900px;
+            @media screen and (max-width: 767.99px) {
+                font-size: 24px;
+                line-height: 26px;
+                max-width: max-content;
+            }
+            @media screen and (max-width: 559.99px) {
+                font-size: 18px;
+                line-height: 20px;
+            }
         }
     }
 }

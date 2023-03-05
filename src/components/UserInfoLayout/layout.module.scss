@@ -1,0 +1,13 @@
+.layout {
+    position: relative;
+    margin-top: 16px !important;
+    &__sidebar {
+        position: fixed;
+        background: inherit;
+        width: 200px;
+        z-index: 99;
+        @media screen and (max-width: 1299.99px) {
+            display: none;
+        }
+    }
+}

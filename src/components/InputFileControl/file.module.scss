@@ -5,6 +5,9 @@
     justify-content: center;
     &__avatar {
         margin-bottom: 16px;
+        @media screen and (max-width: 559.99px) {
+            margin-bottom: 8px;
+        }
     }
     &__text {
         font-size: 14px;
@@ -13,5 +16,8 @@
     }
     &__btns {
         margin-top: 16px;
+        @media screen and (max-width: 559.99px) {
+            margin-top: 8px;
+        }
     }
 }

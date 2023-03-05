@@ -1,15 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FC, useEffect } from 'react';
-import classNames from 'classnames';
 
-import Navigation from '@components/Navigation';
+import Navigation from '@components/UserInfoLayout/components/Navigation';
 
 import { isAuthSelector, userInfoSelector } from '@modules/UserInfo/store/selectors';
 import { userInfoFetching } from '@modules/UserInfo/store/reducers';
 
-import { ILayoutProps } from '../../types';
-
+import { ILayoutProps } from './types';
 import styles from './layout.module.scss';
+import Content from './components/Content';
 
 const UserInfoLayout: FC<ILayoutProps> = ({
   children,
@@ -33,19 +32,9 @@ const UserInfoLayout: FC<ILayoutProps> = ({
       <aside className={styles['layout__sidebar']}>
         <Navigation />
       </aside>
-      <div className={styles['layout__content']}>
-        {title && (
-          <div
-            className={classNames(styles['layout__header'], {
-              [styles['layout__header--margin']]: widthHeaderMargin,
-            })}
-          >
-            <div className={styles['layout__title']}>{title}</div>
-            {!!getButton && getButton()}
-          </div>
-        )}
-        <div>{children}</div>
-      </div>
+      <Content getButton={getButton} widthHeaderMargin={widthHeaderMargin} title={title}>
+        {children}
+      </Content>
     </div>
   );
 };

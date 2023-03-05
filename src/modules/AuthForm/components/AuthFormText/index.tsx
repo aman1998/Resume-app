@@ -6,6 +6,8 @@ import Button from '@UI/Button';
 import { EAuthTypes } from '../../types';
 import { changeAuthType } from '../../store/reducers';
 
+import styles from './text.module.scss';
+
 const AuthFormText: FC<{ type: string }> = ({ type }) => {
   const dispatch = useDispatch();
 
@@ -18,14 +20,21 @@ const AuthFormText: FC<{ type: string }> = ({ type }) => {
     switch (type) {
       case EAuthTypes.signin:
         return (
-          <p>
-            Нет аккаунта? <Button variant="text" text="Регистрация" onClick={handleForm} />
+          <p className={styles.text}>
+            Нет аккаунта?{' '}
+            <Button variant="text" text="Регистрация" onClick={handleForm} className={styles.btn} />
           </p>
         );
       case EAuthTypes.signup:
         return (
-          <p>
-            Есть аккаунт? <Button variant="text" text="Вход в аккаунт" onClick={handleForm} />
+          <p className={styles.text}>
+            Есть аккаунт?{' '}
+            <Button
+              variant="text"
+              text="Вход в аккаунт"
+              className={styles.btn}
+              onClick={handleForm}
+            />
           </p>
         );
       default:

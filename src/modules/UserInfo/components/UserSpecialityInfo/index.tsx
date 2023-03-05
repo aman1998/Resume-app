@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import SpecialityInfoStage from '@components/stages/SpecialityInfoStage';
 import { ECurrency, ISpecialityInfoStage } from '@components/stages/SpecialityInfoStage/types';
-import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+import UserInfoLayout from '@components/UserInfoLayout';
 
 import {
   updateUserInfoFetchingSelector,

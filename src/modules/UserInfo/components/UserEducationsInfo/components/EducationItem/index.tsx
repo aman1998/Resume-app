@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getIntervalYears } from '@common/constants/date';
+import { getIntervalYears } from '@utils/date';
 
 import {
   changeEducationsModalIsOpen,

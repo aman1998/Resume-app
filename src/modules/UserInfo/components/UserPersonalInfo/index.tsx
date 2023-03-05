@@ -6,7 +6,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import PersonalInfoStage from '@components/stages/PersonalInfoStage';
 import { IPersonalInfoStage } from '@components/stages/PersonalInfoStage/types';
-import UserInfoLayout from '@components/Layouts/components/UserInfoLayout';
+import UserInfoLayout from '@components/UserInfoLayout';
 
 import { updateUserInfoFetching } from '@modules/UserInfo/store/reducers';
 import {

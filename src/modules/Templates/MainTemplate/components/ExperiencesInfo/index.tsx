@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getIntervalDates } from '@common/constants/date';
+import { getIntervalDates } from '@utils/date';
 
 import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
 import { experiencesInfoSelector } from '@modules/UserInfo/store/selectors';

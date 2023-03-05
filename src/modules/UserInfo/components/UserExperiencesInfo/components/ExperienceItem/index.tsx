@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chip } from '@mui/material';
 
-import { getIntervalDates } from '@common/constants/date';
+import { getIntervalDates } from '@utils/date';
 
 import {
   changeExperiencesModalIsOpen,
