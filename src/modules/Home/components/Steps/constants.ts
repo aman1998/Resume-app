@@ -1,4 +1,7 @@
-import Image1 from '../../../../../public/icon1.png';
+import Image1 from '../../../../../public/images/icon-1.png';
+import Image2 from '../../../../../public/images/icon-2.png';
+import Image3 from '../../../../../public/images/icon-3.png';
+import Image4 from '../../../../../public/images/icon-4.png';
 
 import { ISteps } from './types';
 
@@ -11,16 +14,16 @@ export const steps: ISteps[] = [
   {
     id: '2',
     text: '2. Заполните резюме',
-    icon: Image1,
+    icon: Image2,
   },
   {
     id: '3',
     text: '3. Выберите шаблон',
-    icon: Image1,
+    icon: Image3,
   },
   {
     id: '4',
     text: '4. Скачайте резюме',
-    icon: Image1,
+    icon: Image4,
   },
 ];

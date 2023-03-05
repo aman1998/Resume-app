@@ -28,6 +28,7 @@
         }
     }
     .template {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -35,8 +36,7 @@
         min-height: 500px;
         height: 100%;
         width: 100%;
-        transition: .5s ease all;
-
+        transition: .7s ease all;
         cursor: pointer;
         @media screen and (min-width: 1200px) {
             &:hover {
@@ -44,7 +44,22 @@
             }
         }
         @media screen and (max-width: 767.99px) {
-            // min-height: 300px;
+            min-height: 550px;
+        }
+
+        &__image {
+            position: absolute;
+            z-index: 0;
+        }
+        &__linear-bg{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+            z-index: 1;
+        }
+        &__btn {
+            z-index: 2;
         }
     }
 }

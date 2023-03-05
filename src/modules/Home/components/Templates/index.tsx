@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { changeAuthModalIsOpen } from '@modules/AuthForm/store/reducers';
 import { authInfoFetchingSelector, isAuthSelector } from '@modules/UserInfo/store/selectors';
@@ -30,13 +31,20 @@ const Templates: FC = () => {
           <div
             key={item.id}
             className={styles.template}
-            style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${item.image.src})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
+            // style={{
+            //   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${item.image.src})`,
+            //   backgroundRepeat: 'no-repeat',
+            //   backgroundSize: 'cover',
+            //   backgroundPosition: 'center',
+            // }}
           >
+            <div className={styles['template__linear-bg']} />
+            <Image
+              src={item.image.src}
+              className={styles['template__image']}
+              fill
+              alt="template-image"
+            />
             <Button
               className={styles['template__btn']}
               variant="contained"

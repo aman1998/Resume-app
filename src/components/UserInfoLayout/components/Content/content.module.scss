@@ -17,6 +17,10 @@
         font-size: 18px;
         line-height: 16px;
         border-bottom: 1px solid #ededed;
+        @media screen and (max-width: 767.99px) {
+            font-size: 16px;
+            line-height: 18px;
+        }
         &--margin {
             margin-bottom: 16px;
         }
