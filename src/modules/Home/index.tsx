@@ -1,12 +1,16 @@
 import { FC } from 'react';
-
 // import Seo from '@components/SEO';
+import dynamic from 'next/dynamic';
+
 import Footer from '@components/Footer';
 
-import AuthForm from '@modules/AuthForm';
+const DynamicTemplates = dynamic(() => import('./components/Templates'));
+const DynamicAuthForm = dynamic(() => import('../AuthForm'));
+
+// import AuthForm from '@modules/AuthForm';
 
 import HomeHeader from './components/HomeHeader';
-import Templates from './components/Templates';
+// import Templates from './components/Templates';
 import Steps from './components/Steps';
 
 const Home: FC = () => (
@@ -14,8 +18,8 @@ const Home: FC = () => (
     <div className="container">
       <HomeHeader />
       <Steps />
-      <Templates />
-      <AuthForm />
+      <DynamicTemplates />
+      <DynamicAuthForm />
     </div>
     <Footer />
   </>

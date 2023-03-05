@@ -2,19 +2,16 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import dynamic from 'next/dynamic';
 
-import Modal from '@components/Modal';
 import {
   EEducationTypes,
   IEducationsInfoStage,
 } from '@components/stages/EducationsInfoStage/types';
-import UserEducationsInfoStage from '@components/stages/EducationsInfoStage';
 import UserInfoLayout from '@components/UserInfoLayout';
 
 import {
   educationsInfoSelector,
-  educationsModalIsOpenSelector,
-  updateUserInfoFetchingSelector,
   userInfoFetchingSelector,
 } from '@modules/UserInfo/store/selectors';
 import {
@@ -30,11 +27,11 @@ import UserEducationSkeleton from './components/Skeleton';
 import { educationsSchema } from './validations';
 import EducationItem from './components/EducationItem';
 
+const DynamicAddFormModal = dynamic(() => import('./components/AddFormModal'));
+
 const UserEducationsInfo: FC = () => {
-  const isOpenModal = useSelector(educationsModalIsOpenSelector);
   const educations = useSelector(educationsInfoSelector) || [];
   const userInfoLoading = useSelector(userInfoFetchingSelector);
-  const loading = useSelector(updateUserInfoFetchingSelector);
 
   const dispatch = useDispatch();
 
@@ -56,10 +53,6 @@ const UserEducationsInfo: FC = () => {
         educations: [...newEducations, { ...values, id: generateUUID() }],
       })
     );
-  };
-
-  const closeModal = () => {
-    dispatch(changeEducationsModalIsOpen(false));
   };
 
   const openModal = () => {
@@ -85,19 +78,11 @@ const UserEducationsInfo: FC = () => {
           {educations.map((item) => (
             <EducationItem key={item.id} item={item} reset={reset} />
           ))}
-          <Modal isOpen={isOpenModal} onClose={closeModal}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <UserEducationsInfoStage control={control} errors={errors} />
-              <Button
-                text="Сохранить"
-                type="submit"
-                loading={!!loading}
-                disabled={!!loading}
-                variant="contained"
-                style={{ marginTop: 16, width: 'max-content' }}
-              />
-            </form>
-          </Modal>
+          <DynamicAddFormModal
+            onSubmit={handleSubmit(onSubmit)}
+            control={control}
+            errors={errors}
+          />
         </section>
       )}
     </UserInfoLayout>
