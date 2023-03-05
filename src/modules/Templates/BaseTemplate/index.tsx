@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import { useSelector } from 'react-redux';
 
@@ -40,6 +40,16 @@ const BaseTemplate: FC = () => {
               }}
             />
           )}
+          onBeforeGetContent={() => {
+            if (componentRef.current?.style?.display) {
+              componentRef.current.style.display = 'block';
+            }
+          }}
+          onAfterPrint={() => {
+            if (componentRef.current?.style?.display) {
+              componentRef.current.style.display = 'none';
+            }
+          }}
           content={() => componentRef.current}
         />
       )}
@@ -47,18 +57,32 @@ const BaseTemplate: FC = () => {
       {loading ? (
         <BaseTemplateSkeleton />
       ) : (
-        <section className={styles.template} ref={componentRef}>
-          <TemplateHeader />
-          <TemplateAboutMe />
-          <TemplateGender />
-          <TemplateNationality />
-          <TemplateBirdthday />
-          <TemplateEducation />
-          <TemplateSalary />
-          <TemplateExperience />
-          <TemplateSkills />
-          <TemplatePhone />
-        </section>
+        <>
+          <section className={styles.templateMobile}>
+            <TemplateHeader />
+            <TemplateAboutMe />
+            <TemplateGender />
+            <TemplateNationality />
+            <TemplateBirdthday />
+            <TemplateEducation />
+            <TemplateSalary />
+            <TemplateExperience />
+            <TemplateSkills />
+            <TemplatePhone />
+          </section>
+          <section className={styles.template} ref={componentRef}>
+            <TemplateHeader />
+            <TemplateAboutMe />
+            <TemplateGender />
+            <TemplateNationality />
+            <TemplateBirdthday />
+            <TemplateEducation />
+            <TemplateSalary />
+            <TemplateExperience />
+            <TemplateSkills />
+            <TemplatePhone />
+          </section>
+        </>
       )}
     </UserInfoLayout>
   );

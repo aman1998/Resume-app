@@ -39,6 +39,16 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
               }}
             />
           )}
+          onBeforeGetContent={() => {
+            if (componentRef.current?.style?.display) {
+              componentRef.current.style.display = 'block';
+            }
+          }}
+          onAfterPrint={() => {
+            if (componentRef.current?.style?.display) {
+              componentRef.current.style.display = 'none';
+            }
+          }}
           content={() => componentRef.current}
         />
       )}
@@ -46,24 +56,43 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
       {loading ? (
         <MainTemplateSkeleton isReverse={!!isReverse} />
       ) : (
-        <section
-          className={styles.template}
-          style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}
-          ref={componentRef}
-        >
-          <div className={styles['template__sidebar']}>
-            <TemplateSidebar withColors={withColors} />
-          </div>
-          <div className={styles['template__right']}>
-            <div className={styles['template__fullname']}>
-              {getFullName(info?.lastname, info?.firstname, info?.surname)}
+        <>
+          <section
+            className={styles.templateMobile}
+            style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}
+          >
+            <div className={styles['template__sidebar']}>
+              <TemplateSidebar withColors={withColors} />
             </div>
-            <TemplatePersonalInfo withColors={withColors} />
-            <TemplateExperiencesInfo withColors={withColors} />
-            <TemplateEducationsInfo withColors={withColors} />
-            <TemplateAboutInfo withColors={withColors} />
-          </div>
-        </section>
+            <div className={styles['template__right']}>
+              <div className={styles['template__fullname']}>
+                {getFullName(info?.lastname, info?.firstname, info?.surname)}
+              </div>
+              <TemplatePersonalInfo withColors={withColors} />
+              <TemplateExperiencesInfo withColors={withColors} />
+              <TemplateEducationsInfo withColors={withColors} />
+              <TemplateAboutInfo withColors={withColors} />
+            </div>
+          </section>
+          <section
+            className={styles.template}
+            style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}
+            ref={componentRef}
+          >
+            <div className={styles['template__sidebar']}>
+              <TemplateSidebar withColors={withColors} />
+            </div>
+            <div className={styles['template__right']}>
+              <div className={styles['template__fullname']}>
+                {getFullName(info?.lastname, info?.firstname, info?.surname)}
+              </div>
+              <TemplatePersonalInfo withColors={withColors} />
+              <TemplateExperiencesInfo withColors={withColors} />
+              <TemplateEducationsInfo withColors={withColors} />
+              <TemplateAboutInfo withColors={withColors} />
+            </div>
+          </section>
+        </>
       )}
     </UserInfoLayout>
   );

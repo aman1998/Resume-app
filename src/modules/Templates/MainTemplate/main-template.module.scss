@@ -6,10 +6,9 @@
     padding: 12px;
     gap: 12px;
     font-family: 'Times New Roman', Times,sans-serif;
-    // zoom: 0.5;
-    // -moz-transform: scale(0.5);
-    // transform-origin: 0 0;
-    // -moz-transform-origin: 0 0;
+    @media screen and (max-width: 767.99px) {
+        display: none;
+    }
     &__right {
         // margin-left: 12px;
         width: 100%;
@@ -20,4 +19,21 @@
         font-size: 24px;
         line-height: 26px;
     }
+}
+
+.templateMobile {
+    display: flex;
+    font-size: 14px;
+    line-height: 16px;
+    grid-gap: 12px;
+    padding: 12px;
+    gap: 12px;
+    font-family: 'Times New Roman', Times,sans-serif;
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+    zoom: 0.5;
+    -moz-transform: scale(0.5);
+    transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
 }
