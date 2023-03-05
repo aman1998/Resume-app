@@ -7,6 +7,7 @@ export interface IOptions {
   label: string | number;
 }
 
-export interface ISelectControlProps extends StandardTextFieldProps, IControl {
+export type ISelectControlProps = {
   options: IOptions[];
-}
+} & StandardTextFieldProps &
+  IControl;

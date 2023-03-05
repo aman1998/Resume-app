@@ -12,7 +12,9 @@ import Button from '@UI/Button';
 
 import styles from './header.module.scss';
 
-const DynamicHeaderMenu = dynamic(() => import('./components/Menu'));
+const DynamicHeaderMenu = dynamic(() => import('./components/Menu'), {
+  ssr: false,
+});
 
 const Header: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

@@ -27,7 +27,9 @@ import UserEducationSkeleton from './components/Skeleton';
 import { educationsSchema } from './validations';
 import EducationItem from './components/EducationItem';
 
-const DynamicAddFormModal = dynamic(() => import('./components/AddFormModal'));
+const DynamicAddFormModal = dynamic(() => import('./components/AddFormModal'), {
+  ssr: false,
+});
 
 const UserEducationsInfo: FC = () => {
   const educations = useSelector(educationsInfoSelector) || [];

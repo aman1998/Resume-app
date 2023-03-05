@@ -4,8 +4,12 @@ import dynamic from 'next/dynamic';
 
 import Footer from '@components/Footer';
 
-const DynamicTemplates = dynamic(() => import('./components/Templates'));
-const DynamicAuthForm = dynamic(() => import('../AuthForm'));
+const DynamicTemplates = dynamic(() => import('./components/Templates'), {
+  ssr: false,
+});
+const DynamicAuthForm = dynamic(() => import('../AuthForm'), {
+  ssr: false,
+});
 
 // import AuthForm from '@modules/AuthForm';
 
