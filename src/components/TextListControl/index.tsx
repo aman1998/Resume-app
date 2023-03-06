@@ -31,6 +31,7 @@ const TextListControl: FC<TTextListControlProps> = ({
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => setListItem(e.target.value);
 
+  // @ts-expect-error
   const checkIsDuplicate = fields.some((item) => item.text === listItem);
 
   const addItem = () => {
@@ -66,7 +67,6 @@ const TextListControl: FC<TTextListControlProps> = ({
           className={styles['list__btn']}
           variant="contained"
           text=""
-          contentType="plus"
           disabled={checkIsDuplicate || fields.length >= 10}
           onClick={addItem}
         />
@@ -75,6 +75,7 @@ const TextListControl: FC<TTextListControlProps> = ({
         <TransitionGroup>
           {fields.map((item, index) => (
             <Collapse key={item.id} className={styles['list__collapse']}>
+              {/* @ts-expect-error */}
               <Chip label={item.text} onDelete={() => remove(index)} className={styles.chip} />
             </Collapse>
           ))}

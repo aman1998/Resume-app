@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 import { useSelector } from 'react-redux';
 

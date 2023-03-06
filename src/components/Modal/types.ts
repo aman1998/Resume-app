@@ -1,4 +1,3 @@
-import { ModalProps } from '@mui/material';
 import { ReactNode } from 'react';
 
 export interface IModal {
