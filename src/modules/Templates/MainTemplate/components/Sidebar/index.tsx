@@ -49,7 +49,7 @@ const TemplateSidebar: FC<{ withColors: boolean }> = ({ withColors }) => {
           <div className={styles['info-item__title']}>Почта:</div>
           <div className={styles['info-item__text']}>{user?.contacts?.email}</div>
         </div>
-        {!!user?.contacts.socials.length &&
+        {!!user?.contacts?.socials.length &&
           user.contacts.socials.map((item) => (
             <div key={item.type}>
               {

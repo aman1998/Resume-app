@@ -1,38 +1,23 @@
-import { FC, useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { auth } from 'firebase-config';
-
 import TextFieldControl from '@components/TextFieldControl';
 
-import {
-  authInfoSuccess,
-  changeIsAuth,
-  updateUserInfoFetching,
-} from '@modules/UserInfo/store/reducers';
+import { signUpFetchingSelector } from '@modules/AuthForm/store/selectors';
 
 import Button from '@UI/Button';
 
-import { ENotificationType, showNotification } from '@utils/notifications';
-
-import { changeAuthModalIsOpen } from '../../store/reducers';
+import { signUpFetching } from '../../store/reducers';
 
 import { ISignUp } from './types';
 import { signUpSchema } from './validations';
 import styles from './styles.module.scss';
 
-// need remove to saga in future and delete react-firebase-hooks
 const SignUp: FC = () => {
-  const [loading, setLoading] = useState(false);
-
-  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
-
+  const loading = useSelector(signUpFetchingSelector);
   const dispatch = useDispatch();
-  const { push } = useRouter();
 
   const {
     handleSubmit,
@@ -44,23 +29,9 @@ const SignUp: FC = () => {
   });
 
   const onSubmit = async ({ email, password }: ISignUp) => {
-    try {
-      setLoading(true);
-      const data = await createUserWithEmailAndPassword(email, password);
-      if (data) {
-        dispatch(changeIsAuth(true));
-        dispatch(authInfoSuccess({ id: data.user.uid, email: data.user.email || '' }));
-        dispatch(updateUserInfoFetching({}));
-        push('/profile/personal');
-        dispatch(changeAuthModalIsOpen(false));
-        showNotification(ENotificationType.success, 'Вы успешно вошли в аккаунт!');
-      } else {
-        showNotification(ENotificationType.error, 'Произошла ошибка!');
-      }
-    } finally {
-      setLoading(false);
-    }
+    dispatch(signUpFetching({ email, password }));
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <TextFieldControl

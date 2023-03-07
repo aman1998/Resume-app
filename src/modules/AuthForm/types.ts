@@ -7,8 +7,3 @@ export interface ILoginControllerProps {
   type: EAuthTypes;
   setType: (value: EAuthTypes) => void;
 }
-
-export interface IEmailPassword {
-  email: string;
-  password: string;
-}

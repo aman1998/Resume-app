@@ -1,16 +1,11 @@
 import { FC } from 'react';
-import { useSignOut } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { Menu, MenuItem } from '@mui/material';
 
-import { auth } from 'firebase-config';
-
 import { links, templatesLinks } from '@common/constants/app';
 
-import { resetUserInfo } from '@modules/UserInfo/store/reducers';
-
-import { ENotificationType, showNotification } from '@utils/notifications';
+import { signOutFetching } from '@modules/AuthForm/store/reducers';
 
 import styles from './menu.module.scss';
 import { IHeaderMenuProps } from './types';
@@ -20,18 +15,11 @@ const HeaderMenu: FC<IHeaderMenuProps> = ({ open, setAnchorEl, anchorEl }) => {
     setAnchorEl(null);
   };
 
-  const [signOut] = useSignOut(auth);
-
   const { push, pathname } = useRouter();
   const dispatch = useDispatch();
 
   const logout = async () => {
-    await signOut();
-    push('/').finally(() => {
-      setAnchorEl(null);
-      dispatch(resetUserInfo());
-      showNotification(ENotificationType.success, 'Вы успешно вышли из аккаунта!');
-    });
+    dispatch(signOutFetching({ callback: () => setAnchorEl(null) }));
   };
 
   const goTo = (url: string): void => {
