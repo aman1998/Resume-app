@@ -1,7 +1,7 @@
-import Image1 from '../../../../../public/images/icon-1.png';
-import Image2 from '../../../../../public/images/icon-2.png';
-import Image3 from '../../../../../public/images/icon-3.png';
-import Image4 from '../../../../../public/images/icon-4.png';
+import Image1 from 'src/common/images/icon-1.png';
+import Image2 from 'src/common/images/icon-2.png';
+import Image3 from 'src/common/images/icon-3.png';
+import Image4 from 'src/common/images/icon-4.png';
 
 import { ISteps } from './types';
 

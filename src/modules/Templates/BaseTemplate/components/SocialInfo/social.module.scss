@@ -1,0 +1,23 @@
+.social {
+    display: flex;
+    padding:12px 0;
+    border-bottom: 1px solid #d7d3d3;
+    &__title {
+        margin-right: 64px;
+        font-size: 16px;
+        line-height: 18px;
+        width: 150px;
+        font-weight: 700;
+    }
+    &__info-wrapper {
+        width: 100%;
+    }
+    &-info {
+        display: flex;
+        margin-bottom: 4px;
+        gap: 2px;
+        &__title {
+            font-weight: 700;
+        }
+    }
+}

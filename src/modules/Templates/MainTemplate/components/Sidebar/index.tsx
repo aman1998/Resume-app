@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { userInfoSelector } from '@modules/UserInfo/store/selectors';
 
 import { getSalaryType } from '@utils/resumeUtils';
+import { getSocialSrc } from '@utils/imageUtils';
 
 import styles from './sidebar.module.scss';
 
@@ -48,6 +49,21 @@ const TemplateSidebar: FC<{ withColors: boolean }> = ({ withColors }) => {
           <div className={styles['info-item__title']}>Почта:</div>
           <div className={styles['info-item__text']}>{user?.contacts?.email}</div>
         </div>
+        {!!user?.contacts.socials.length &&
+          user.contacts.socials.map((item) => (
+            <div key={item.type}>
+              {
+                <div className={styles['info-item']}>
+                  <div className={styles['info-item__title']}>
+                    <Image src={getSocialSrc(item.type)} width={15} height={15} alt="social-icon" />
+                    :
+                  </div>
+                  {/* <div className={styles['info-item__title']}>{item.type}:</div> */}
+                  <div className={styles['info-item__text']}>{item.text}</div>
+                </div>
+              }
+            </div>
+          ))}
         <div className={styles['info-item']}>
           <div className={styles['info-item__title']}>Переезд:</div>
           <div className={styles['info-item__text']}>

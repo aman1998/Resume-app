@@ -8,6 +8,6 @@ export interface IControl {
 }
 
 export interface ISkills {
-  id?: string;
+  id: string;
   text: string;
 }

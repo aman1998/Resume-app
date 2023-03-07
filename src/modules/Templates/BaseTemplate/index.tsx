@@ -20,6 +20,7 @@ import TemplateSalary from './components/TemplateSalary';
 import TemplatePhone from './components/TemplatesPhone';
 import TemplateNationality from './components/TemplateNationality';
 import BaseTemplateSkeleton from './components/Skeleton';
+import TemplateSocialInfo from './components/SocialInfo';
 
 const BaseTemplate: FC = () => {
   const loading = useSelector(userInfoFetchingSelector);
@@ -62,25 +63,27 @@ const BaseTemplate: FC = () => {
             <TemplateHeader />
             <TemplateAboutMe />
             <TemplateGender />
+            <TemplatePhone />
+            <TemplateSocialInfo />
             <TemplateNationality />
             <TemplateBirdthday />
             <TemplateEducation />
             <TemplateSalary />
             <TemplateExperience />
             <TemplateSkills />
-            <TemplatePhone />
           </section>
           <section className={styles.template} ref={componentRef}>
             <TemplateHeader />
             <TemplateAboutMe />
             <TemplateGender />
+            <TemplatePhone />
+            <TemplateSocialInfo />
             <TemplateNationality />
             <TemplateBirdthday />
             <TemplateEducation />
             <TemplateSalary />
             <TemplateExperience />
             <TemplateSkills />
-            <TemplatePhone />
           </section>
         </>
       )}

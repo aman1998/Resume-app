@@ -4,7 +4,7 @@ import { IControl } from '@common/types/controlTypes';
 
 export interface IOptions {
   value: string | number;
-  label: string | number;
+  label: string;
 }
 
 export type ISelectControlProps = {

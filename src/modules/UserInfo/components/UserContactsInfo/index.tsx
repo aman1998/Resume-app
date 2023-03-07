@@ -40,7 +40,7 @@ const UserContactsInfo: FC = () => {
     reset({
       email: user?.contacts?.email,
       phone: user?.contacts?.phone,
-      messenger: user?.contacts?.messenger,
+      socials: user?.contacts?.socials,
       site: user?.contacts?.site,
     });
   }, [user, reset]);

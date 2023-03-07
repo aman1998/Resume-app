@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import TextFieldControl from '@components/TextFieldControl';
+import SocialContactsControl from '@components/SocialContactsControl';
 
 import { TContactInfoStageProps } from './types';
 
@@ -21,13 +22,19 @@ const ContactsInfoStage: FC<TContactInfoStageProps> = ({ errors, control }) => (
       labelText="Почта"
       placeholder="Почта"
     />
-    <TextFieldControl
+    <SocialContactsControl
       control={control}
-      errorMessage={errors?.messenger?.message}
-      name="messenger"
+      errorMessage={errors?.socials?.message}
+      name="socials"
+      labelText="Почта"
+    />
+    {/* <TextFieldControl
+      control={control}
+      errorMessage={errors?.socials?.message}
+      name="socials"
       labelText="Мессенджер"
       placeholder="Мессенджер"
-    />
+    /> */}
     <TextFieldControl
       control={control}
       errorMessage={errors?.site?.message}
