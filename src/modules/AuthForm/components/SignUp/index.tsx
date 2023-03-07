@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import TextFieldControl from '@components/TextFieldControl';
 
 import { signUpFetchingSelector } from '@modules/AuthForm/store/selectors';
+import { updateUserInfoFetchingSelector } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
 
@@ -17,6 +18,7 @@ import styles from './styles.module.scss';
 
 const SignUp: FC = () => {
   const loading = useSelector(signUpFetchingSelector);
+  const updateLoading = useSelector(updateUserInfoFetchingSelector);
   const dispatch = useDispatch();
 
   const {
@@ -67,9 +69,9 @@ const SignUp: FC = () => {
 
       <Button
         type="submit"
-        disabled={loading}
+        disabled={loading || updateLoading}
         variant="contained"
-        loading={loading}
+        loading={loading || updateLoading}
         className={styles['form__button']}
         text="Регистрация"
       />
