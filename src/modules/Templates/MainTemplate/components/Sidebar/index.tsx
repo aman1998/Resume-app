@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import classNames from 'classnames';
 
+import DefaultImage from '@common/images/default-image.jpg';
+
 import { userInfoSelector } from '@modules/UserInfo/store/selectors';
 
 import { getSalaryType } from '@utils/resumeUtils';
@@ -15,20 +17,12 @@ const TemplateSidebar: FC<{ withColors: boolean }> = ({ withColors }) => {
 
   return (
     <div className={classNames(styles.sidebar, { [styles['sidebar--colors']]: withColors })}>
-      {user?.personal?.photoUrl ? (
-        <Image
-          src={user.personal.photoUrl}
-          width={withColors ? 220 : 210}
-          height={withColors ? 220 : 210}
-          alt="avatar"
-        />
-      ) : (
-        <div
-          className={classNames(styles['sidebar__not-image'], {
-            [styles['sidebar__not-image--colors']]: withColors,
-          })}
-        />
-      )}
+      <Image
+        src={user?.personal?.photoUrl || DefaultImage.src}
+        width={withColors ? 220 : 210}
+        height={withColors ? 220 : 210}
+        alt="avatar"
+      />
       <div className={styles['sidebar__info']}>
         <div className={styles['info-item']}>
           <div className={styles['info-item__title']}>Должность:</div>
