@@ -29,9 +29,11 @@
     padding: 12px;
     gap: 12px;
     font-family: 'Times New Roman', Times,sans-serif;
+    height: 100%;
     @media screen and (min-width: 768px) {
         display: none;
     }
+    -webkit-text-size-adjust: none;
     zoom: 0.5;
     -moz-transform: scale(0.5);
     transform-origin: 0 0;
