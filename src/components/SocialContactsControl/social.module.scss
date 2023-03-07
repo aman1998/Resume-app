@@ -1,0 +1,11 @@
+.social {
+    &__form {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+    &__btn {
+        padding: 0;
+        font-size: 30px;
+    }
+}

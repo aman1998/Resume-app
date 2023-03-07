@@ -11,6 +11,7 @@ import Button from '@UI/Button';
 
 import { socialOptions } from './constants';
 import SocialChip from './components/Chip';
+import styles from './social.module.scss';
 
 const SocialContactsControl: FC<IControl> = ({ control, name, labelText, errorMessage }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -40,20 +41,15 @@ const SocialContactsControl: FC<IControl> = ({ control, name, labelText, errorMe
   };
 
   return (
-    <div>
-      <div style={{ display: 'flex', gap: 4 }}>
+    <div className={styles.social}>
+      <div className={styles['social__form']}>
         <Controller
           name={name}
           control={control}
           defaultValue={''}
           render={() => (
             <>
-              <TextField
-                select
-                onChange={onChangeType}
-                defaultValue="telegram"
-                // SelectProps={{ IconComponent: () => null }}
-              >
+              <TextField select onChange={onChangeType} defaultValue="telegram">
                 {socialOptions.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
                     <Image src={option.label} width={20} height={20} alt="social-icon" />
@@ -72,7 +68,8 @@ const SocialContactsControl: FC<IControl> = ({ control, name, labelText, errorMe
         />
         <Button
           variant="contained"
-          text="Добавить"
+          text="+"
+          className={styles['social__btn']}
           disabled={checkIsDuplicate || fields.length >= 10}
           onClick={addItem}
         />

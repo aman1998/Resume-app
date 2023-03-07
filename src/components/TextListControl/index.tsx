@@ -66,7 +66,7 @@ const TextListControl: FC<TTextListControlProps> = ({
         <Button
           className={styles['list__btn']}
           variant="contained"
-          text=""
+          text="+"
           disabled={checkIsDuplicate || fields.length >= 10}
           onClick={addItem}
         />
