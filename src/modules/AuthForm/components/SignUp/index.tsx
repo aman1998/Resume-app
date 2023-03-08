@@ -71,7 +71,6 @@ const SignUp: FC = () => {
         type="submit"
         disabled={loading || updateLoading}
         variant="contained"
-        loading={loading || updateLoading}
         className={styles['form__button']}
         text="Регистрация"
       />

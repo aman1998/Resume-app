@@ -58,7 +58,6 @@ const SignIn: FC = () => {
       <Button
         type="submit"
         disabled={loading}
-        loading={loading}
         variant="contained"
         className={styles['form__button']}
         text="Войти"

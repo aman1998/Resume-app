@@ -31,7 +31,6 @@ const AddFormModal: FC<IAddFormModalProps> = ({ control, errors, onSubmit }) => 
         <Button
           text="Сохранить"
           type="submit"
-          loading={!!loading}
           disabled={!!loading}
           variant="contained"
           style={{ marginTop: 16, width: 'max-content' }}

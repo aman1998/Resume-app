@@ -66,7 +66,6 @@ const UserSpecialityInfo: FC = () => {
           <Button
             text="Сохранить"
             type="submit"
-            loading={updateUserLoading}
             disabled={updateUserLoading}
             variant="contained"
             style={{ marginTop: 16, width: 'max-content' }}

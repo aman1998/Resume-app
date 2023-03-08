@@ -54,7 +54,6 @@ const EducationItem: FC<IEducationItemProps> = ({ item, reset }) => {
       <Button
         onClick={() => deleteEducation(item.id)}
         text="Удалить"
-        loading={!!loading}
         disabled={!!loading}
         color="error"
       />

@@ -10,18 +10,23 @@
         line-height: 20px;
         font-weight: 700;
     }
+    &__right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
     &__profession {
         font-size: 14px;
         line-height: 16px;
         font-weight: 700;
         font-style: italic;
     }
-    &__email {
+    &__location, &__email {
         margin-bottom: 2px;
         font-size: 14px;
         line-height: 16px;
     }
-    &__location {
+    &__site{
         font-size: 14px;
         line-height: 16px;
     }

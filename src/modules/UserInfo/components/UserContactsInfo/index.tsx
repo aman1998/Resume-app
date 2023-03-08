@@ -59,7 +59,6 @@ const UserContactsInfo: FC = () => {
           <Button
             type="submit"
             text="Сохранить"
-            loading={updateUserLoading}
             disabled={updateUserLoading}
             variant="contained"
             style={{ marginTop: 16, width: 'max-content' }}

@@ -85,7 +85,6 @@ const UserPersonalInfo: FC = () => {
             type="submit"
             text="Сохранить"
             disabled={updateUserLoading || loading}
-            loading={updateUserLoading || loading}
             variant="contained"
             style={{ marginTop: 16, width: 'max-content' }}
           />

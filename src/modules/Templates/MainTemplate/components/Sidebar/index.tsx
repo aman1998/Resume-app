@@ -43,6 +43,19 @@ const TemplateSidebar: FC<{ withColors: boolean }> = ({ withColors }) => {
           <div className={styles['info-item__title']}>Почта:</div>
           <div className={styles['info-item__text']}>{user?.contacts?.email}</div>
         </div>
+        {user?.contacts?.site && (
+          <div className={styles['info-item']}>
+            <div className={styles['info-item__title']}>Сайт:</div>
+            <a
+              href={user.contacts.site}
+              className={styles['header__site']}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {user.contacts.site}
+            </a>
+          </div>
+        )}
         {!!user?.contacts?.socials.length &&
           user.contacts.socials.map((item) => (
             <div key={item.type}>

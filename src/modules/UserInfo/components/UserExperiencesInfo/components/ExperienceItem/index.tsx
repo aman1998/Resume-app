@@ -62,7 +62,6 @@ const ExperienceItem: FC<IExperienceItemProps> = ({ item, reset }) => {
       <Button
         onClick={() => deleteExperience(item.id)}
         text="Удалить"
-        loading={!!loading}
         disabled={!!loading}
         color="error"
       />

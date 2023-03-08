@@ -16,6 +16,7 @@ const SpecialityInfoStage: FC<TSpecialityInfoStageProps> = ({ control, errors })
       errorMessage={errors?.profession?.message}
       name="profession"
       labelText="Профессия"
+      placeholder="Профессия"
     />
     <div>
       <TextFieldControl
@@ -24,6 +25,7 @@ const SpecialityInfoStage: FC<TSpecialityInfoStageProps> = ({ control, errors })
         errorMessage={errors?.salary?.message}
         name="salary"
         labelText="Зарплата"
+        placeholder="Зарплата"
       />
       <SelectControl
         control={control}
@@ -36,6 +38,7 @@ const SpecialityInfoStage: FC<TSpecialityInfoStageProps> = ({ control, errors })
       control={control}
       name="skills"
       labelText="Навыки"
+      placeholder="Навыки"
       errorMessage={errors?.skills?.message}
     />
     <CheckboxControl control={control} name="relocatioReady" labelText="Готов к переезду" />

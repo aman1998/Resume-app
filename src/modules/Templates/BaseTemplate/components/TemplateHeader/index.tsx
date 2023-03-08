@@ -25,8 +25,18 @@ const TemplateThree: FC = () => {
         </p>
       </div>
       <div className={styles['header__right']}>
-        <p className={styles['header__email']}>{user?.contacts?.email}</p>
         <p className={styles['header__location']}>{user?.personal?.location}</p>
+        <p className={styles['header__email']}>{user?.contacts?.email}</p>
+        {user?.contacts?.site && (
+          <a
+            href={user.contacts.site}
+            className={styles['header__site']}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {user.contacts.site}
+          </a>
+        )}
       </div>
     </div>
   );
