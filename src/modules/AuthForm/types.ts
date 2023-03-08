@@ -1,6 +1,7 @@
 export enum EAuthTypes {
   signin = 'signin',
   signup = 'signup',
+  reset = 'reset',
 }
 
 export interface ILoginControllerProps {

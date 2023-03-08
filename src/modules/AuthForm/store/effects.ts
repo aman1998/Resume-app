@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut as signOutFirebase,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import Router from 'next/router';
 
@@ -18,7 +19,7 @@ import {
 
 import { showNotification, ENotificationType } from '@utils/notifications';
 
-import { IEmailPassword, IFirebaseAuth, ISignOut } from './types';
+import { IEmailPassword, IFirebaseAuth, ISignOut, TEmailPasswordReset } from './types';
 import {
   changeAuthModalIsOpen,
   signInFailure,
@@ -28,6 +29,9 @@ import {
   signUpFailure,
   signUpFetching,
   signUpSuccess,
+  resetEmailPasswordFailure,
+  resetEmailPasswordFetching,
+  resetEmailPasswordSuccess,
 } from './reducers';
 
 function* signIn(action: IPayloadAction<IEmailPassword>) {
@@ -90,10 +94,25 @@ function* signOut(action: IPayloadAction<ISignOut>) {
   }
 }
 
+function* resetEmailPassword(action: IPayloadAction<TEmailPasswordReset>) {
+  try {
+    const { email } = action.payload;
+
+    yield sendPasswordResetEmail(auth, email);
+    yield put(changeAuthModalIsOpen(false));
+    yield put(resetEmailPasswordSuccess('На почту отправлено письмо!'));
+    showNotification(ENotificationType.success, 'На почту отправлено письмо!');
+  } catch {
+    yield put(resetEmailPasswordFailure('Произошла ошибка, повторите снова'));
+    showNotification(ENotificationType.error, 'Произошла ошибка, возможно неверные данные');
+  }
+}
+
 function* Saga(): Generator {
   yield all([takeLatest(signInFetching.type, signIn)]);
   yield all([takeLatest(signUpFetching.type, signUp)]);
   yield all([takeLatest(signOutFetching.type, signOut)]);
+  yield all([takeLatest(resetEmailPasswordFetching.type, resetEmailPassword)]);
 }
 
 export default Saga;

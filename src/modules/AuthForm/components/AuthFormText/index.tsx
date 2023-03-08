@@ -11,8 +11,7 @@ import styles from './text.module.scss';
 const AuthFormText: FC<{ type: string }> = ({ type }) => {
   const dispatch = useDispatch();
 
-  const handleForm = () => {
-    const newType = type === EAuthTypes.signin ? EAuthTypes.signup : EAuthTypes.signin;
+  const handleForm = (newType: EAuthTypes) => {
     dispatch(changeAuthType(newType));
   };
 
@@ -20,10 +19,26 @@ const AuthFormText: FC<{ type: string }> = ({ type }) => {
     switch (type) {
       case EAuthTypes.signin:
         return (
-          <p className={styles.text}>
-            Нет аккаунта?{' '}
-            <Button variant="text" text="Регистрация" onClick={handleForm} className={styles.btn} />
-          </p>
+          <>
+            <p className={styles.text}>
+              Нет аккаунта?{' '}
+              <Button
+                variant="text"
+                text="Регистрация"
+                onClick={() => handleForm(EAuthTypes.signup)}
+                className={styles.btn}
+              />
+            </p>
+            <p className={styles.text}>
+              Забыли пароль{' '}
+              <Button
+                variant="text"
+                text="Сброс пароля"
+                onClick={() => handleForm(EAuthTypes.reset)}
+                className={styles.btn}
+              />
+            </p>
+          </>
         );
       case EAuthTypes.signup:
         return (
@@ -33,7 +48,18 @@ const AuthFormText: FC<{ type: string }> = ({ type }) => {
               variant="text"
               text="Вход в аккаунт"
               className={styles.btn}
-              onClick={handleForm}
+              onClick={() => handleForm(EAuthTypes.signin)}
+            />
+          </p>
+        );
+      case EAuthTypes.reset:
+        return (
+          <p className={styles.text}>
+            <Button
+              variant="text"
+              text="Вернуться назад"
+              className={styles.btn}
+              onClick={() => handleForm(EAuthTypes.signin)}
             />
           </p>
         );

@@ -9,11 +9,11 @@ import Modal from '@components/Modal';
 
 import { authModalIsOpenSelector, authTypeSelector } from './store/selectors';
 import { changeAuthModalIsOpen } from './store/reducers';
-import SignIn from './components/SignIn';
 import { EAuthTypes } from './types';
-import SignUp from './components/SignUp';
 import styles from './styles.module.scss';
 import AuthFormText from './components/AuthFormText';
+import { getTitle } from './utils';
+import AuthContent from './components/AuthContent';
 
 const AuthForm: FC = () => {
   const isOpenModal = useSelector(authModalIsOpenSelector);
@@ -24,17 +24,6 @@ const AuthForm: FC = () => {
   const nodeRef = authType === EAuthTypes.signin ? signInRef : signUpRef;
 
   const dispatch = useDispatch();
-
-  const getTitle = () => {
-    switch (authType) {
-      case EAuthTypes.signin:
-        return 'Вход в аккаунт';
-      case EAuthTypes.signup:
-        return 'Регистрация';
-      default:
-        return '';
-    }
-  };
 
   return (
     <Modal isOpen={isOpenModal} onClose={() => dispatch(changeAuthModalIsOpen(false))}>
@@ -51,8 +40,8 @@ const AuthForm: FC = () => {
             <div className={styles['auth-form__logo']}>
               {<Image alt="icon" src={favicon.src} width={50} height={50} />}
             </div>
-            <h1 className={styles['auth-form__title']}>{getTitle()}</h1>
-            {authType === EAuthTypes.signin ? <SignIn /> : <SignUp />}
+            <h1 className={styles['auth-form__title']}>{getTitle(authType)}</h1>
+            <AuthContent />
             <AuthFormText type={authType} />
           </div>
         </CSSTransition>

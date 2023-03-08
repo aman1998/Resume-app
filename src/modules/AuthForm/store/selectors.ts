@@ -26,4 +26,9 @@ export const signOutFetchingSelector = createSelector(
   (state: IAuthState) => state.signOut.fetching
 );
 
+export const resetEmailPasswordFetchingSelector = createSelector(
+  selectState,
+  (state: IAuthState) => state.resetEmailPassword.fetching
+);
+
 export const authTypeSelector = createSelector(selectState, (state: IAuthState) => state.authType);

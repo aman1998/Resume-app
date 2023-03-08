@@ -7,6 +7,8 @@ export interface IEmailPassword {
   password: string;
 }
 
+export type TEmailPasswordReset = Omit<IEmailPassword, 'password'>;
+
 export interface IFirebaseAuth {
   user: {
     uid: string;
@@ -22,6 +24,7 @@ export interface IAuthState {
   signIn: TRequestHandler<unknown>;
   signUp: TRequestHandler<unknown>;
   signOut: TRequestHandler<unknown>;
+  resetEmailPassword: TRequestHandler<unknown>;
   authModalIsOpen: boolean;
   authType: EAuthTypes;
 }

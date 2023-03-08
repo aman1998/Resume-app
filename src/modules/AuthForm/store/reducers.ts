@@ -10,6 +10,7 @@ const initialState: IAuthState = {
   signIn: defaultState,
   signUp: defaultState,
   signOut: defaultState,
+  resetEmailPassword: defaultState,
   authModalIsOpen: false,
   authType: EAuthTypes.signin,
 };
@@ -20,6 +21,7 @@ const authSlice = createSlice({
   reducers: {
     changeAuthModalIsOpen(state: IAuthState, action: IPayloadAction<boolean>) {
       state.authModalIsOpen = action.payload;
+      state.authType = EAuthTypes.signin;
     },
     changeAuthType(state: IAuthState, action: IPayloadAction<EAuthTypes>) {
       state.authType = action.payload;
@@ -57,6 +59,17 @@ const authSlice = createSlice({
     signOutFailure(state: IAuthState, action: IPayloadAction<unknown>) {
       state.signOut = { ...defaultState, failure: action.payload };
     },
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    resetEmailPasswordFetching(state: IAuthState, _) {
+      state.resetEmailPassword.fetching = true;
+    },
+    resetEmailPasswordSuccess(state: IAuthState, action: IPayloadAction<unknown>) {
+      state.resetEmailPassword = { ...defaultState, data: action.payload };
+    },
+    resetEmailPasswordFailure(state: IAuthState, action: IPayloadAction<unknown>) {
+      state.resetEmailPassword = { ...defaultState, failure: action.payload };
+    },
   },
 });
 
@@ -75,6 +88,10 @@ export const {
   signUpFailure,
   signUpFetching,
   signUpSuccess,
+
+  resetEmailPasswordFailure,
+  resetEmailPasswordFetching,
+  resetEmailPasswordSuccess,
 } = authSlice.actions;
 
 export default authSlice.reducer;
