@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import UserInfoLayout from '@components/UserInfoLayout';
 
-import { userInfoFetchingSelector } from '@modules/UserInfo/store/selectors';
+import { personalInfoSelector, userInfoFetchingSelector } from '@modules/UserInfo/store/selectors';
 
 import Button from '@UI/Button';
 
@@ -24,6 +24,7 @@ import TemplateSocialInfo from './components/SocialInfo';
 
 const BaseTemplate: FC = () => {
   const loading = useSelector(userInfoFetchingSelector);
+  const info = useSelector(personalInfoSelector);
 
   const componentRef = useRef<HTMLInputElement>(null);
 
@@ -33,6 +34,9 @@ const BaseTemplate: FC = () => {
       title="Базовый шаблон"
       getButton={() => (
         <ReactToPrint
+          documentTitle={
+            info?.firstname && info?.lastname ? `${info.firstname}${info?.lastname}` : 'Resume'
+          }
           trigger={() => (
             <Button
               text="Скачать"

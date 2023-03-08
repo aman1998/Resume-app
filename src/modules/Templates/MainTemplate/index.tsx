@@ -31,6 +31,9 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
       title={title}
       getButton={() => (
         <ReactToPrint
+          documentTitle={
+            info?.firstname && info?.lastname ? `${info.firstname}${info?.lastname}` : 'Resume'
+          }
           trigger={() => (
             <Button
               text="Скачать"
