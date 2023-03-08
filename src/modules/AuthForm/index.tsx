@@ -9,11 +9,13 @@ import Modal from '@components/Modal';
 
 import { authModalIsOpenSelector, authTypeSelector } from './store/selectors';
 import { changeAuthModalIsOpen } from './store/reducers';
+import SignIn from './components/SignIn';
 import { EAuthTypes } from './types';
+import SignUp from './components/SignUp';
 import styles from './styles.module.scss';
 import AuthFormText from './components/AuthFormText';
 import { getTitle } from './utils';
-import AuthContent from './components/AuthContent';
+import ResetEmailPassword from './components/ResetEmailPassword';
 
 const AuthForm: FC = () => {
   const isOpenModal = useSelector(authModalIsOpenSelector);
@@ -41,7 +43,13 @@ const AuthForm: FC = () => {
               {<Image alt="icon" src={favicon.src} width={50} height={50} />}
             </div>
             <h1 className={styles['auth-form__title']}>{getTitle(authType)}</h1>
-            <AuthContent />
+            {authType === EAuthTypes.signin ? (
+              <SignIn />
+            ) : authType === EAuthTypes.signup ? (
+              <SignUp />
+            ) : (
+              <ResetEmailPassword />
+            )}
             <AuthFormText type={authType} />
           </div>
         </CSSTransition>
