@@ -53,11 +53,6 @@ const UserPersonalInfo: FC = () => {
     });
   }, [user, reset]);
 
-  const handleResetFile = () => {
-    setValue('file', null);
-    setValue('photoUrl', '');
-  };
-
   const onSubmit = async (values: IPersonalInfoStage) => {
     // need move to saga effects in future
     const { file, ...others } = values;
@@ -80,7 +75,7 @@ const UserPersonalInfo: FC = () => {
         <UserPersonalSkeleton />
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <PersonalInfoStage control={control} errors={errors} handleResetFile={handleResetFile} />
+          <PersonalInfoStage control={control} errors={errors} setValue={setValue} />
           <Button
             type="submit"
             text="Сохранить"

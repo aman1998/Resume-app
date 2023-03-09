@@ -1,3 +1,5 @@
+import { UseFormSetValue } from 'react-hook-form';
+
 import { TNullable } from '../../../rootStore/types';
 
 import { IStage } from '../types';
@@ -16,5 +18,5 @@ export interface IPersonalInfoStage {
 }
 
 export type TPersonalInfoProps = {
-  handleResetFile: () => void;
+  setValue: UseFormSetValue<IPersonalInfoStage>;
 } & IStage<IPersonalInfoStage>;
