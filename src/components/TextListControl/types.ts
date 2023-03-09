@@ -1,15 +1,15 @@
 import { BaseTextFieldProps } from '@mui/material';
-import { IControl } from '@common/types/controlTypes';
 import { UseFieldArrayReturn } from 'react-hook-form';
 
+import { IControl } from '@common/types/controlTypes';
+
 export interface IText {
-    id: string;
-    text: string
- }
+  id: string;
+  text: string;
+}
 
- export interface ITextUseField extends UseFieldArrayReturn {
-    fields: IText[];
- }
-
+export interface ITextUseField extends UseFieldArrayReturn {
+  fields: IText[];
+}
 
 export type TTextListControlProps = BaseTextFieldProps & IControl;

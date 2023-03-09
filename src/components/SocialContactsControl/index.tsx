@@ -1,7 +1,6 @@
-import { ChangeEvent, FC, useRef, useState } from 'react';
+import { ChangeEvent, FC, useCallback, useMemo, useRef, useState } from 'react';
 import { Controller, useFieldArray } from 'react-hook-form';
-import { Collapse, FormHelperText, MenuItem } from '@mui/material';
-import { TransitionGroup } from 'react-transition-group';
+import {  MenuItem } from '@mui/material';
 import Image from 'next/image';
 
 import { IControl } from '@common/types/controlTypes';
@@ -10,13 +9,14 @@ import TextField from '@UI/TextField';
 import Button from '@UI/Button';
 
 import { socialOptions } from './constants';
-import SocialChip from './components/Chip';
 import styles from './social.module.scss';
+import TextList from './components/List';
+import { ITextUseField } from './types';
 
 const SocialContactsControl: FC<IControl> = ({ control, name, labelText, errorMessage }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove }: ITextUseField = useFieldArray({
     control,
     name,
   });
@@ -27,8 +27,11 @@ const SocialContactsControl: FC<IControl> = ({ control, name, labelText, errorMe
   const onChange = (e: ChangeEvent<HTMLInputElement>) => setListItem(e.target.value);
   const onChangeType = (e: ChangeEvent<HTMLInputElement>) => setType(e.target.value);
 
-  // @ts-expect-error
-  const checkIsDuplicate = fields.some((item) => item.type === type);
+  const checkIsDuplicate = useMemo(() => fields.some((item) => item.type === type), [fields, type]);
+
+  const handleRemove = useCallback((index: number) => {
+    remove(index);
+  }, [])
 
   const addItem = () => {
     if (listItem && !checkIsDuplicate) {
@@ -74,17 +77,7 @@ const SocialContactsControl: FC<IControl> = ({ control, name, labelText, errorMe
           onClick={addItem}
         />
       </div>
-      <div style={{ margin: '8px 0' }}>
-        <TransitionGroup>
-          {fields.map((item, index) => (
-            <Collapse key={item.id} style={{ marginBottom: 4 }}>
-              {/* @ts-expect-error */}
-              <SocialChip text={item.text} type={item.type} onDelete={() => remove(index)} />
-            </Collapse>
-          ))}
-          {!!errorMessage && <FormHelperText error>{errorMessage}</FormHelperText>}
-        </TransitionGroup>
-      </div>
+      <TextList fields={fields} errorMessage={errorMessage} handleRemove={handleRemove} />
     </div>
   );
 };

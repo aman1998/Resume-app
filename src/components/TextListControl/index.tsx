@@ -31,6 +31,13 @@ const TextListControl: FC<TTextListControlProps> = ({
     [fields, listItem]
   );
 
+  const handleRemove = useCallback(
+    (index: number): void => {
+      remove(index);
+    },
+    [remove]
+  );
+
   const addItem = () => {
     if (listItem && !checkIsDuplicate) {
       append({ text: listItem });
@@ -40,13 +47,6 @@ const TextListControl: FC<TTextListControlProps> = ({
       }
     }
   };
-
-  const handleRemove = useCallback(
-    (index: number): void => {
-      remove(index);
-    },
-    [remove]
-  );
 
   return (
     <div className={styles.list}>

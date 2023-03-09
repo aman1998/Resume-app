@@ -1,4 +1,4 @@
-import { IText } from '@components/TextListControl/types';
+import { IText } from "@components/SocialContactsControl/types";
 
 export interface ITextListProps {
   errorMessage?: string;
