@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -19,7 +19,7 @@ import { IEducationItemProps } from '../types';
 
 import styles from './item.module.scss';
 
-const EducationItem: FC<IEducationItemProps> = ({ item, reset }) => {
+const EducationItem: FC<IEducationItemProps> = memo(({ item, reset }) => {
   const educations = useSelector(educationsInfoSelector) || [];
   const loading = useSelector(updateUserInfoFetchingSelector);
 
@@ -59,6 +59,6 @@ const EducationItem: FC<IEducationItemProps> = ({ item, reset }) => {
       />
     </div>
   );
-};
+});
 
 export default EducationItem;

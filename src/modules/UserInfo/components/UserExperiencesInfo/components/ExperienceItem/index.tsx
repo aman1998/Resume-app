@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chip } from '@mui/material';
 
@@ -19,7 +19,7 @@ import { IExperienceItemProps } from '../types';
 
 import styles from './item.module.scss';
 
-const ExperienceItem: FC<IExperienceItemProps> = ({ item, reset }) => {
+const ExperienceItem: FC<IExperienceItemProps> = memo(({ item, reset }) => {
   const experiences = useSelector(experiencesInfoSelector) || [];
   const loading = useSelector(updateUserInfoFetchingSelector);
 
@@ -67,6 +67,6 @@ const ExperienceItem: FC<IExperienceItemProps> = ({ item, reset }) => {
       />
     </div>
   );
-};
+});
 
 export default ExperienceItem;
