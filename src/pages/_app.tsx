@@ -8,7 +8,6 @@ import { Cambo } from '@next/font/google';
 import { wrapper } from 'src/rootStore/index';
 
 import Header from '@components/Header';
-import Seo from '@components/SEO';
 
 import PrivateProvider from '@common/providers/PrivateProvider';
 import '@common/styles/main.scss';
@@ -40,7 +39,6 @@ const App: FC<AppProps & { emotionCache?: EmotionCache }> = ({
 
   return (
     <>
-      <Seo seoTitle="Резюме. Бесплатные шаблоны на любой вкус" />
       {/* провайдер кэша */}
       <CacheProvider value={emotionCache}>
         {/* провайдер темы */}

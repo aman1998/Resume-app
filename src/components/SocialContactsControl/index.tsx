@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useCallback, useMemo, useRef, useState } from 'react';
 import { Controller, useFieldArray } from 'react-hook-form';
-import {  MenuItem } from '@mui/material';
+import { MenuItem } from '@mui/material';
 import Image from 'next/image';
 
 import { IControl } from '@common/types/controlTypes';
@@ -31,7 +31,7 @@ const SocialContactsControl: FC<IControl> = ({ control, name, labelText, errorMe
 
   const handleRemove = useCallback((index: number) => {
     remove(index);
-  }, [])
+  }, []);
 
   const addItem = () => {
     if (listItem && !checkIsDuplicate) {

@@ -14,5 +14,3 @@ export interface IText {
 export interface ITextUseField extends UseFieldArrayReturn {
   fields: IText[];
 }
-
-

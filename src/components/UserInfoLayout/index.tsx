@@ -9,6 +9,7 @@ import { userInfoFetching } from '@modules/UserInfo/store/reducers';
 import { ILayoutProps } from './types';
 import styles from './layout.module.scss';
 import Content from './components/Content';
+import Seo from '@components/SEO';
 
 const UserInfoLayout: FC<ILayoutProps> = ({
   children,
@@ -28,6 +29,8 @@ const UserInfoLayout: FC<ILayoutProps> = ({
   }, [dispatch, user, isAuth]);
 
   return (
+    <>
+    <Seo seoTitle={`Резюме. ${title}`} />
     <div className={`container ${styles.layout}`}>
       <aside className={styles['layout__sidebar']}>
         <Navigation />
@@ -36,6 +39,7 @@ const UserInfoLayout: FC<ILayoutProps> = ({
         {children}
       </Content>
     </div>
+    </>
   );
 };
 
