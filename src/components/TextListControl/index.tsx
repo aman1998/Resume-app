@@ -1,17 +1,12 @@
-import { ChangeEvent, FC, useRef, useState } from 'react';
-import Collapse from '@mui/material/Collapse';
-import List from '@mui/material/List';
-import { TransitionGroup } from 'react-transition-group';
+import { ChangeEvent, FC, useCallback, useMemo, useRef, useState } from 'react';
 import { Controller, useFieldArray } from 'react-hook-form';
-import { FormHelperText, Chip } from '@mui/material';
 
 import TextField from '@UI/TextField';
 import Button from '@UI/Button';
 
-import { TTextListControlProps } from './types';
+import { TTextListControlProps, ITextUseField } from './types';
 import styles from './list.module.scss';
-
-// need remove validation outside component to yup
+import TextList from './components/List';
 
 const TextListControl: FC<TTextListControlProps> = ({
   control,
@@ -22,7 +17,7 @@ const TextListControl: FC<TTextListControlProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove }: ITextUseField = useFieldArray({
     control,
     name,
   });
@@ -31,8 +26,10 @@ const TextListControl: FC<TTextListControlProps> = ({
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => setListItem(e.target.value);
 
-  // @ts-expect-error
-  const checkIsDuplicate = fields.some((item) => item.text === listItem);
+  const checkIsDuplicate = useMemo(
+    () => fields.some((item) => item.text === listItem),
+    [fields, listItem]
+  );
 
   const addItem = () => {
     if (listItem && !checkIsDuplicate) {
@@ -43,6 +40,13 @@ const TextListControl: FC<TTextListControlProps> = ({
       }
     }
   };
+
+  const handleRemove = useCallback(
+    (index: number): void => {
+      remove(index);
+    },
+    [remove]
+  );
 
   return (
     <div className={styles.list}>
@@ -71,17 +75,7 @@ const TextListControl: FC<TTextListControlProps> = ({
           onClick={addItem}
         />
       </div>
-      <List>
-        <TransitionGroup>
-          {fields.map((item, index) => (
-            <Collapse key={item.id} className={styles['list__collapse']}>
-              {/* @ts-expect-error */}
-              <Chip label={item.text} onDelete={() => remove(index)} className={styles.chip} />
-            </Collapse>
-          ))}
-          {!!errorMessage && <FormHelperText error>{errorMessage}</FormHelperText>}
-        </TransitionGroup>
-      </List>
+      <TextList errorMessage={errorMessage} fields={fields} handleRemove={handleRemove} />
     </div>
   );
 };
