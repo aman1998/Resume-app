@@ -1,4 +1,4 @@
 export interface ITemplateInfoProps {
   title: string;
-  text: string;
+  text?: string;
 }

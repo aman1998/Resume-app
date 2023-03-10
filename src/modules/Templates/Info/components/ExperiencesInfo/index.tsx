@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
 import { experiencesInfoSelector } from '@modules/UserInfo/store/selectors';
 
 import { getIntervalDates } from '@utils/date';
 
 import InfoItem from '../InfoItem';
+import InfoHeader from '../InfoHeader';
 
 import styles from './experiences.module.scss';
 

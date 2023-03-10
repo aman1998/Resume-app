@@ -28,14 +28,16 @@ export const getGenderType = (type: string | undefined): string => {
   }
 };
 
-export const getSalaryType = (type: ECurrency): string => {
+export const getSalaryInfo = (value?: string | number, type?: string): string => {
+  if (!value || !type) return '';
+
   switch (type) {
     case ECurrency.dollar:
-      return '$';
+      return `${value}$`;
     case ECurrency.euro:
-      return '€';
+      return `${value}€`;
     case ECurrency.ruble:
-      return '₽';
+      return `${value}₽`;
     default:
       return '';
   }

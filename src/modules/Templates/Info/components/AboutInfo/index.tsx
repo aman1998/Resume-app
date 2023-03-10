@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
 import { personalInfoSelector } from '@modules/UserInfo/store/selectors';
+
+import InfoHeader from '../InfoHeader';
 
 const TemplateAboutInfo: FC<{ withColors: boolean }> = ({ withColors }) => {
   const info = useSelector(personalInfoSelector);
@@ -10,7 +11,7 @@ const TemplateAboutInfo: FC<{ withColors: boolean }> = ({ withColors }) => {
   return (
     <div>
       <InfoHeader title="О себе" withColors={withColors} />
-      <p>{info?.aboutme}</p>
+      <p style={{ marginLeft: 10 }}>{info?.aboutme}</p>
     </div>
   );
 };

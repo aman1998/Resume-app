@@ -7,7 +7,7 @@ import DefaultImage from '@common/images/default-image.jpg';
 
 import { userInfoSelector } from '@modules/UserInfo/store/selectors';
 
-import { getSalaryType } from '@utils/resumeUtils';
+import { getSalaryInfo } from '@utils/resumeUtils';
 import { getSocialSrc } from '@utils/imageUtils';
 
 import styles from './sidebar.module.scss';
@@ -31,8 +31,7 @@ const TemplateSidebar: FC<{ withColors: boolean }> = ({ withColors }) => {
         <div className={styles['info-item']}>
           <div className={styles['info-item__title']}>Зарплата:</div>
           <div className={styles['info-item__text']}>
-            {user?.speciality?.salary}{' '}
-            {user?.speciality?.salaryСurrency && getSalaryType(user.speciality.salaryСurrency)}
+            {getSalaryInfo(user?.speciality?.salary, user?.speciality?.salaryСurrency)}
           </div>
         </div>
         <div className={styles['info-item']}>

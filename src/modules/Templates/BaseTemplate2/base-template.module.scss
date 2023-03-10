@@ -1,9 +1,27 @@
-.template {
+.template, .templateMobile {
     padding: 12px;
     font-size: 14px;
     line-height: 16px;
     font-family: 'Times New Roman', Times,sans-serif;
+}
+
+.template {
     @media screen and (max-width: 767.99px) {
+        display: none;
+    }
+}
+
+.templateMobile {
+    zoom: 0.5;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    // -webkit-transform: scale(0.5);
+    // transform: scale(0.5);
+    // -moz-transform: scale(0.5);
+    // transform-origin: 0 0;
+    // -moz-transform-origin: 0 0;
+    
+    @media screen and (min-width: 768px) {
         display: none;
     }
 }

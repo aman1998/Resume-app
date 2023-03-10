@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import InfoHeader from '@modules/Templates/MainTemplate/components/InfoHeader';
 import { personalInfoSelector } from '@modules/UserInfo/store/selectors';
 
 import { getGenderType } from '@utils/resumeUtils';
 
 import InfoItem from '../InfoItem';
+import InfoHeader from '../InfoHeader';
 
 const TemplatePersonalInfo: FC<{ withColors: boolean }> = ({ withColors }) => {
   const info = useSelector(personalInfoSelector);
@@ -14,10 +14,10 @@ const TemplatePersonalInfo: FC<{ withColors: boolean }> = ({ withColors }) => {
   return (
     <div>
       <InfoHeader title="Личная информация" withColors={withColors} />
-      <InfoItem title="Гражданство" text={info?.nationality || 'Не указано'} />
-      <InfoItem title="Город" text={info?.location || 'Не указано'} />
-      <InfoItem title="Дата рождения" text={info?.birthday || 'Не указано'} />
-      <InfoItem title="Пол" text={info?.gender ? getGenderType(info.gender) : 'Не указано'} />
+      <InfoItem title="Гражданство" text={info?.nationality} />
+      <InfoItem title="Город" text={info?.location} />
+      <InfoItem title="Дата рождения" text={info?.birthday} />
+      <InfoItem title="Пол" text={info?.gender ? getGenderType(info.gender) : ''} />
     </div>
   );
 };

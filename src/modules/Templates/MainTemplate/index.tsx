@@ -8,6 +8,8 @@ import { personalInfoSelector, userInfoFetchingSelector } from '@modules/UserInf
 
 import Button from '@UI/Button';
 
+import { getFullName } from '@utils/resumeUtils';
+
 import Info from '../Info';
 
 import styles from './main-template.module.scss';
@@ -43,11 +45,11 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
               componentRef.current.style.display = 'block';
             }
           }}
-          onAfterPrint={() => {
-            if (componentRef.current?.style?.display) {
-              componentRef.current.style.display = 'none';
-            }
-          }}
+          // onAfterPrint={() => {
+          //   if (componentRef.current?.style?.display) {
+          //     componentRef.current.style.display = 'none';
+          //   }
+          // }}
           content={() => componentRef.current}
         />
       )}
@@ -73,7 +75,12 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
             <div className={styles['template__sidebar']}>
               <TemplateSidebar withColors={withColors} />
             </div>
-            <Info withColors={withColors} />
+            <div className={styles['template__right']}>
+              <div className={styles['template__fullname']}>
+                {getFullName(info?.lastname, info?.firstname, info?.surname)}
+              </div>
+              <Info withColors={withColors} />
+            </div>
           </section>
         </>
       )}

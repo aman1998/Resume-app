@@ -1,4 +1,4 @@
-import Template1 from 'src/common/images/template-1.png';
+import Template5 from 'src/common/images/template-5.png';
 import Template2 from 'src/common/images/template-2.png';
 import Template3 from 'src/common/images/template-3.png';
 // import Template4 from 'src/common/images/template-4.png';
@@ -8,8 +8,8 @@ import { ITemplate } from './types';
 export const templates: ITemplate[] = [
   {
     id: '1',
-    image: Template1,
-    link: '/template/1',
+    image: Template5,
+    link: '/template/5',
   },
   {
     id: '2',

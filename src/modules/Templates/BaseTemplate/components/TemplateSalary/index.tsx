@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { specialityInfoSelector } from '@modules/UserInfo/store/selectors';
 
-import { getSalaryType } from '@utils/resumeUtils';
+import { getSalaryInfo } from '@utils/resumeUtils';
 
 import TemplateSimple from '../TemplateSimple';
 
@@ -12,12 +12,7 @@ const TemplateSalary: FC = () => {
 
   if (!info?.salary) return <></>;
 
-  return (
-    <TemplateSimple
-      title="Зарплата"
-      text={`${String(info.salary)} ${getSalaryType(info.salaryСurrency)}`}
-    />
-  );
+  return <TemplateSimple title="Зарплата" text={getSalaryInfo(info.salary, info.salaryСurrency)} />;
 };
 
 export default TemplateSalary;

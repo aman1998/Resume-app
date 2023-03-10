@@ -8,6 +8,12 @@ import { personalInfoSelector, userInfoFetchingSelector } from '@modules/UserInf
 
 import Button from '@UI/Button';
 
+import Info from '../Info';
+
+import styles from './base-template.module.scss';
+import TemplateHeader from './components/TemplateHeader';
+import TemplateSkeleton from './components/Skeleton';
+
 const BaseTemplate: FC = () => {
   const loading = useSelector(userInfoFetchingSelector);
   const info = useSelector(personalInfoSelector);
@@ -36,20 +42,22 @@ const BaseTemplate: FC = () => {
               componentRef.current.style.display = 'block';
             }
           }}
-          onAfterPrint={() => {
-            if (componentRef.current?.style?.display) {
-              componentRef.current.style.display = 'none';
-            }
-          }}
           content={() => componentRef.current}
         />
       )}
     >
       {loading ? (
-        <></>
+        <TemplateSkeleton />
       ) : (
         <>
-          <section ref={componentRef}></section>
+          <section className={styles.templateMobile}>
+            <TemplateHeader />
+            <Info withColors={true} />
+          </section>
+          <section ref={componentRef} className={styles.template}>
+            <TemplateHeader />
+            <Info withColors={true} />
+          </section>
         </>
       )}
     </UserInfoLayout>

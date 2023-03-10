@@ -55,6 +55,11 @@ export const templatesLinks: ILinks[] = [
     title: 'Шаблон 4',
     link: '/template/4',
   },
+  {
+    id: 5,
+    title: 'Шаблон 5',
+    link: '/template/5',
+  },
 ];
 
 export const privatePages = [
@@ -67,4 +72,5 @@ export const privatePages = [
   '/template/2',
   '/template/3',
   '/template/4',
+  '/template/5',
 ];
