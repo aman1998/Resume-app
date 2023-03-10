@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FC, useEffect } from 'react';
 
 import Navigation from '@components/UserInfoLayout/components/Navigation';
+import Seo from '@components/SEO';
 
 import { isAuthSelector, userInfoSelector } from '@modules/UserInfo/store/selectors';
 import { userInfoFetching } from '@modules/UserInfo/store/reducers';
@@ -9,7 +10,6 @@ import { userInfoFetching } from '@modules/UserInfo/store/reducers';
 import { ILayoutProps } from './types';
 import styles from './layout.module.scss';
 import Content from './components/Content';
-import Seo from '@components/SEO';
 
 const UserInfoLayout: FC<ILayoutProps> = ({
   children,
@@ -30,15 +30,15 @@ const UserInfoLayout: FC<ILayoutProps> = ({
 
   return (
     <>
-    <Seo seoTitle={`Резюме. ${title}`} />
-    <div className={`container ${styles.layout}`}>
-      <aside className={styles['layout__sidebar']}>
-        <Navigation />
-      </aside>
-      <Content getButton={getButton} widthHeaderMargin={widthHeaderMargin} title={title}>
-        {children}
-      </Content>
-    </div>
+      <Seo seoTitle={`Резюме. ${title}`} />
+      <div className={`container ${styles.layout}`}>
+        <aside className={styles['layout__sidebar']}>
+          <Navigation />
+        </aside>
+        <Content getButton={getButton} widthHeaderMargin={widthHeaderMargin} title={title}>
+          {children}
+        </Content>
+      </div>
     </>
   );
 };
