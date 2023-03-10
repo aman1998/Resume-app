@@ -72,6 +72,12 @@ const TemplateSidebar: FC<{ withColors: boolean }> = ({ withColors }) => {
             </div>
           ))}
         <div className={styles['info-item']}>
+          <div className={styles['info-item__title']}>Полный день:</div>
+          <div className={styles['info-item__text']}>
+            {user?.speciality?.isFullDay ? 'Да' : 'Нет'}
+          </div>
+        </div>
+        <div className={styles['info-item']}>
           <div className={styles['info-item__title']}>Переезд:</div>
           <div className={styles['info-item__text']}>
             {user?.speciality?.relocatioReady ? 'Да' : 'Нет'}

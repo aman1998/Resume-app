@@ -41,12 +41,23 @@ const SpecialityInfoStage: FC<TSpecialityInfoStageProps> = ({ control, errors })
       placeholder="Навыки"
       errorMessage={errors?.skills?.message}
     />
-    <CheckboxControl control={control} name="relocatioReady" labelText="Готов к переезду" />
-    <CheckboxControl
-      control={control}
-      name="remoteWorkingReady"
-      labelText="Готов к удаленной работе"
-    />
+    <div style={{marginTop: -15}}>
+      <CheckboxControl
+        control={control}
+        name="isFullDay"
+        labelText="Полный рабочий день"
+      />
+    </div>
+    <div style={{marginTop: -20}}>
+      <CheckboxControl control={control} name="relocatioReady" labelText="Готов к переезду" />
+    </div>
+    <div style={{marginTop: -20}}>
+      <CheckboxControl
+        control={control}
+        name="remoteWorkingReady"
+        labelText="Готов к удаленной работе"
+      />
+    </div>
   </div>
 );
 

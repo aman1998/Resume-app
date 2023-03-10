@@ -14,6 +14,7 @@ export interface ISpecialityInfoStage {
   salaryСurrency: ECurrency;
   relocatioReady: boolean;
   remoteWorkingReady: boolean;
+  isFullDay: boolean;
   skills: ISkills[];
 }
 

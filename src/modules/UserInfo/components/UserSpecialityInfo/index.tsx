@@ -48,6 +48,7 @@ const UserSpecialityInfo: FC = () => {
       salaryСurrency: user?.speciality?.salaryСurrency || ECurrency.dollar,
       relocatioReady: !!user?.speciality?.relocatioReady,
       remoteWorkingReady: !!user?.speciality?.remoteWorkingReady,
+      isFullDay: user?.speciality?.isFullDay,
       skills: user?.speciality?.skills || [],
     });
   }, [user, reset]);
