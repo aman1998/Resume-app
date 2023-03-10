@@ -19,7 +19,7 @@ const CheckboxControl: FC<TCheckboxControlProps> = ({
     defaultValue={defaultValue}
     render={({ field: { onChange, value } }) => (
       <FormControlLabel
-        style={{width: 'max-content'}}
+        style={{ width: 'max-content' }}
         control={
           <Checkbox
             {...props}
