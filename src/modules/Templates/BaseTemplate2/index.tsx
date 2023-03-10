@@ -1,6 +1,6 @@
 import { FC, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import ReactToPrint from 'react-to-print';
+import { useSelector } from 'react-redux';
 
 import UserInfoLayout from '@components/UserInfoLayout';
 
@@ -8,23 +8,16 @@ import { personalInfoSelector, userInfoFetchingSelector } from '@modules/UserInf
 
 import Button from '@UI/Button';
 
-import Info from '../Info';
-
-import styles from './main-template.module.scss';
-import TemplateSidebar from './components/Sidebar';
-import { IMainTemplateProps } from './types';
-import MainTemplateSkeleton from './components/Skeleton';
-
-const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = true }) => {
-  const info = useSelector(personalInfoSelector);
+const BaseTemplate: FC = () => {
   const loading = useSelector(userInfoFetchingSelector);
+  const info = useSelector(personalInfoSelector);
 
   const componentRef = useRef<HTMLInputElement>(null);
 
   return (
     <UserInfoLayout
       widthHeaderMargin={false}
-      title={title}
+      title="Шаблон 5"
       getButton={() => (
         <ReactToPrint
           documentTitle={
@@ -53,32 +46,14 @@ const MainTemplate: FC<IMainTemplateProps> = ({ title, isReverse, withColors = t
       )}
     >
       {loading ? (
-        <MainTemplateSkeleton isReverse={!!isReverse} />
+        <></>
       ) : (
         <>
-          <section
-            className={styles.templateMobile}
-            style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}
-          >
-            <div className={styles['template__sidebar']}>
-              <TemplateSidebar withColors={withColors} />
-            </div>
-            <Info withColors={withColors} />
-          </section>
-          <section
-            className={styles.template}
-            style={{ flexDirection: isReverse ? 'row-reverse' : 'row' }}
-            ref={componentRef}
-          >
-            <div className={styles['template__sidebar']}>
-              <TemplateSidebar withColors={withColors} />
-            </div>
-            <Info withColors={withColors} />
-          </section>
+          <section ref={componentRef}></section>
         </>
       )}
     </UserInfoLayout>
   );
 };
 
-export default MainTemplate;
+export default BaseTemplate;
