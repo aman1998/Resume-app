@@ -28,46 +28,50 @@ const HeaderMenu: FC<IHeaderMenuProps> = ({ open, setAnchorEl, anchorEl }) => {
   };
 
   return (
-    <Menu
-      id="basic-menu"
-      anchorEl={anchorEl}
-      open={open}
-      onClose={handleClose}
-      MenuListProps={{
-        'aria-labelledby': 'basic-button',
-      }}
-      className={styles.menu}
-    >
-      {pathname === '/' ? (
-        <MenuItem onClick={() => goTo('/profile/personal')}>Профиль</MenuItem>
-      ) : (
-        <div className={styles['menu__links']}>
-          <div className={styles['menu__info-links']}>
-            {links.map((item) => (
-              <MenuItem
-                selected={pathname === item.link}
-                key={item.link}
-                onClick={() => goTo(item.link)}
-              >
-                {item.title}
-              </MenuItem>
-            ))}
-          </div>
-          <div className={styles['menu__template-links']}>
-            {templatesLinks.map((item) => (
-              <MenuItem
-                selected={pathname === item.link}
-                key={item.link}
-                onClick={() => goTo(item.link)}
-              >
-                {item.title}
-              </MenuItem>
-            ))}
-          </div>
-        </div>
+    <>
+      {open && (
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+          className={styles.menu}
+        >
+          {pathname === '/' ? (
+            <MenuItem onClick={() => goTo('/profile/personal')}>Профиль</MenuItem>
+          ) : (
+            <div className={styles['menu__links']}>
+              <div className={styles['menu__info-links']}>
+                {links.map((item) => (
+                  <MenuItem
+                    selected={pathname === item.link}
+                    key={item.link}
+                    onClick={() => goTo(item.link)}
+                  >
+                    {item.title}
+                  </MenuItem>
+                ))}
+              </div>
+              <div className={styles['menu__template-links']}>
+                {templatesLinks.map((item) => (
+                  <MenuItem
+                    selected={pathname === item.link}
+                    key={item.link}
+                    onClick={() => goTo(item.link)}
+                  >
+                    {item.title}
+                  </MenuItem>
+                ))}
+              </div>
+            </div>
+          )}
+          <MenuItem onClick={logout}>Выйти</MenuItem>
+        </Menu>
       )}
-      <MenuItem onClick={logout}>Выйти</MenuItem>
-    </Menu>
+    </>
   );
 };
 
