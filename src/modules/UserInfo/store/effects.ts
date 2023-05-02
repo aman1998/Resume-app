@@ -45,20 +45,17 @@ const getAuthChannel = () => {
 function* authInfo() {
   try {
     const user: User = yield call(getAuthChannel);
-
     if (user) {
       yield put(changeIsAuth(true));
       yield put(authInfoSuccess({ id: user.uid, email: user.email || '' }));
     } else {
       if (router.pathname !== '/') {
-        router.push('/');
         showNotification(ENotificationType.error, 'Не удалось войти в аккаунт');
       }
       put(resetUserInfo());
     }
   } catch (error) {
     if (router.pathname !== '/') {
-      router.push('/');
       showNotification(ENotificationType.error, 'Не удалось войти в аккаунт');
     }
     yield put(authInfoFailure(String(error)));
