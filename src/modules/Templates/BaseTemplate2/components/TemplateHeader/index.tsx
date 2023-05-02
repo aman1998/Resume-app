@@ -26,7 +26,11 @@ const TemplateHeader: FC = () => {
       />
       <div className={styles['header__info']}>
         <h1 className={styles['header__fullname']}>
-          {getFullName(user?.personal?.lastname, user?.personal.firstname, user?.personal?.surname)}
+          {getFullName(
+            user?.personal?.lastname,
+            user?.personal?.firstname,
+            user?.personal?.surname
+          )}
         </h1>
         <InfoItem title="Должность" text={user?.speciality?.profession} />
         <InfoItem
